@@ -1,5 +1,5 @@
 # 5709 Group Project
-|-------------------------------|----------------------------------------------------------------------------------------------|
+
 | Member                        | Branch                                                                                       |
 | ----------------------------- | -------------------------------------------------------------------------------------------- |
 | Adesh Nalpet Adimurthy        | [stage/b00886154](https://git.cs.dal.ca/adimurthy/5709-group-project/-/tree/stage/b00886154) |
@@ -8,4 +8,3 @@
 | Hemanth Nadipineni            | [stage/B00899473](https://git.cs.dal.ca/adimurthy/5709-group-project/-/tree/stage/B00899473) |
 | Karthik Kannan Nanthakumar    | [stage/B00899473](https://git.cs.dal.ca/adimurthy/5709-group-project/-/tree/stage/B00899473) |
 | Dhruvrajsinh Vansia           | [stage/B00891415](https://git.cs.dal.ca/adimurthy/5709-group-project/-/tree/stage/b00891415) |
-|-------------------------------|----------------------------------------------------------------------------------------------|
