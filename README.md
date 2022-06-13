@@ -1,25 +1,12 @@
 # PyCommerce
-A MERN (MongoDB, Express, React and Node) stack eCommerce application. Checkout the application at [py-commerce.herokuapp.com](https://py-commerce.herokuapp.com/)
-
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=py-commerce&style=flat-square)
-
-![Home page](/screens/home-page.png)
-
-## Features
-- Login and Register with OTP
-- Profile management (view and edit profile information including shipping address(es))
-- Cart management (view, add and delete items in/to cart)
-- Order management (Checkout from cart page, place an order and view orders)
-- Favorites (view, add and delete items in/to favorites)
-- Search for products
-- Common 404 page with a cute doggo
+A MERN (MongoDB, Express, React and Node) stack eCommerce application.
 
 ## Integration
 - Firebase:
     - Create a [Firebase Account](https://firebase.google.com/)
     - `Add project` with `Phone Authentication`
     - Copy the configuration (settings → project settings → SDK setup → npm)
-    - 
+
 - Atlas (MongoDB):
     - Create an [Atlas Account](https://www.mongodb.com/docs/atlas/getting-started/)
     - Choose free tier plan and create a shared cluster.
