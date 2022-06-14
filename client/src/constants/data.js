@@ -73,15 +73,6 @@ export const posterLinks = {
   ]
 };
 
-export const featuredBrandLinks = {
-  links1: [
-    "https://pyblog.xyz/assets/featured/iphone-100x.png",
-    "https://pyblog.xyz/assets/featured/ironman-myro.png",
-    "https://pyblog.xyz/assets/featured/refactor-tomato.png",
-    "	https://pyblog.xyz/assets/featured/foss-thankyou.png",
-  ]
-};
-
 export const emptyFavorites =
   "/images/404.png";
 

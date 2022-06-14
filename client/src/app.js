@@ -6,7 +6,7 @@ import HomePage from "./pages/home-page";
 import ErrorPage from "./pages/error-page";
 
 import ProductPage from "./pages/product-details-page";
-import FavoritesPage from "./pages/favorites-page";
+import ProfilePage from "./pages/profile-page";
 
 import "./app.css";
 
@@ -18,8 +18,11 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
+        <Route exact path="/profile">
+          <ProfilePage />
+        </Route>
         <Route exact path="/favorites">
-          <FavoritesPage />
+          <ProfilePage />
         </Route>
         <Route exact path="/product/:id">
           <ProductPage />

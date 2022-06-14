@@ -4,10 +4,9 @@ import { Box, makeStyles } from "@material-ui/core";
 import Navbar from "../components/navbar";
 import HomeBanner from "../components/header/banner";
 import PosterRow from "../components/poster-grid";
-import FeaturedBrandsRow from "../components/featured";
 import ProductRow from "../components/product/product-grid";
 import Footer from "../components/footer/footer";
-import { featuredBrandLinks, posterLinks } from "../constants/data";
+import { posterLinks } from "../constants/data";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -43,9 +42,6 @@ function HomePage() {
       <ProductRow title="Trending" categoryName="" />
       <PosterRow
         imgUrls={posterLinks.links4}
-      />
-      <FeaturedBrandsRow
-        brandsUrls={featuredBrandLinks.links1}
       />
       <Footer />
     </Box>

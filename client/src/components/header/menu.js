@@ -37,7 +37,7 @@ function Menu() {
   return <Box className={classes.headerMenu}>
     <Link to="/favorites">
       <Box className={classes.menu_link}>
-        <Typography className={classes.menu_more}>Favorites</Typography>
+        <Typography className={classes.menu_more}>Profile</Typography>
       </Box>
     </Link>
 

@@ -7,6 +7,7 @@ import TemplateProvider from "./templates/template-provider";
 import store, { persistor } from "./store";
 import App from "./app";
 import "./index.css";
+import "./adapters/firebase.js"
 
 ReactDOM.render(
   <Provider store={store}>
