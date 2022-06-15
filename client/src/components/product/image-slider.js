@@ -111,7 +111,7 @@ const ProductImageSlider = ({ product }) => {
       <br />
       <Button
         className={clsx(classes.button, classes.addToCart)}
-        style={{ marginRight: 10, backgroundColor: "#696969" }}
+        style={{ marginRight: 10, backgroundColor: "#646E78" }}
         variant="contained">
         <Cart />
         Add to Cart
@@ -119,7 +119,7 @@ const ProductImageSlider = ({ product }) => {
       <Button
         className={clsx(classes.button, classes.buyNow)}
         variant="contained"
-        style={{ backgroundColor: "#222" }}>
+        style={{ backgroundColor: "#288CBE" }}>
         <Flash /> Buy Now
       </Button>
     </Box>
