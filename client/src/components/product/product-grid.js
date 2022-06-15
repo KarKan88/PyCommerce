@@ -105,7 +105,7 @@ function ProductRow({ categoryName, title }) {
         <Box className={classes.leftContainer}>
           <h2 className={classes.row_title}>{title}</h2>
           <Button
-            style={{ backgroundColor: "#222", marginTop: 20 }}
+            style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600 }}
             variant="contained"
             color="primary">
             View All
