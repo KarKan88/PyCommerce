@@ -31,4 +31,3 @@ A MERN (MongoDB, Express, React and Node) stack eCommerce application.
 - Product: `500 x 540`
 - Featured Brands: `1000 x 540`
 - Poster Slider: `1000 x 615`
->>>>>>> main
