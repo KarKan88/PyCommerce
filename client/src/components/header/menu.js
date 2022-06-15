@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 2,
     height: 35,
     padding: "5px 35px",
-    border: "1px solid #dbdbdb",
+    border: "1px solid #FFBB38",
     boxShadow: "none"
   },
   menu_more: {
@@ -47,7 +47,7 @@ function Menu() {
 
   return <Box className={classes.headerMenu}>
     <Button variant="contained" style={{
-      backgroundColor: "#fff"}} className={classes.login_btn}>
+      backgroundColor: "#FFBB38"}} className={classes.login_btn}>
       Login
     </Button>
     
