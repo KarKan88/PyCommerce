@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AppBar, Toolbar, makeStyles, Box } from "@material-ui/core";
 import SearchBar from "./search-box";
 import HeaderMenu from "./menu";
+
 const useStyle = makeStyles(theme => ({
   header: {
     backgroundColor: "#222",
