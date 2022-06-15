@@ -9,6 +9,9 @@ import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
 
 import "./app.css";
+import Registration from "./components/user-management/registration";
+import Login from "./components/user-management/login";
+import ForgotPassword from "./components/user-management/forgot-password";
 
 function App() {
   return (
@@ -26,6 +29,15 @@ function App() {
         </Route>
         <Route exact path="/product/:id">
           <ProductPage />
+        </Route>
+        <Route exact path="/registration">
+          <Registration/>
+        </Route>
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+        <Route exact path="/forgotpassword">
+          <ForgotPassword/>
         </Route>
         <Route component={ErrorPage} />
       </Switch>
