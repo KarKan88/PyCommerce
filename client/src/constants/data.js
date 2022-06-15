@@ -48,28 +48,28 @@ export const navData = [
 
 // Allowed images for ADs by Amazon (Referenced in Readme).
 export const bannerData = [
-  "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/5f823da7-ffcf-4beb-aad2-0bf9bcdf43e7.jpg",
-  "https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/290636a5-fe16-484c-9886-a91844fc272e.jpg",
+  "/images/banner.png",
+  "/images/banner.png",
 ];
 
 // Images Self attribution @Adesh Nalpet Adimurthy
 export const posterLinks = {
   links2: [
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/luffy-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/ralph-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/ben-grimm-popeye.png",
+    "/images/poster.png",
+    "/images/poster.png",
+    "/images/poster.png",
   ],
 
   links3: [
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/goku-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/hulk-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/superman-popeye.png",
+    "/images/poster.png",
+    "/images/poster.png",
+    "/images/poster.png",
   ],
 
   links4: [
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/asterix-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/bluto-popeye.png",
-    "https://www.pyblog.xyz/assets/featured/popeye/wb/saitama-popeye.png",
+    "/images/poster.png",
+    "/images/poster.png",
+    "/images/poster.png",
   ]
 };
 
