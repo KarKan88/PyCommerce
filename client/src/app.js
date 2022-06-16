@@ -68,14 +68,6 @@ function App() {
           <ProductsPage/>
         </Route>
         <Route component={ErrorPage} />
-        {/* <CouponsContext.Provider value={{coupons, setCoupons }}>
-            <Switch>
-              <Route component={CouponsList} path="/" exact={true} />
-              <Route component={AddCoupon} path="/add" />
-              <Route component={EditCoupon} path="/edit/:id" />
-              <Route component={() => <Redirect to="/" />} />
-            </Switch>
-          </CouponsContext.Provider> */}
       </Switch>
     </div>
   );
