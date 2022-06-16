@@ -28,7 +28,7 @@ function Navbar() {
   return (
     <Box className={classes.navbar}>
       {navData.map((data, i) => (
-        <Link to={``} id={i} key={i}>
+        <Link to={data.href} id={i} key={i}>
           <Box className={classes.nav_item}>
             <img src={data.url} className={classes.nav_img} alt={data.text} />
             <p>{data.text}</p>
