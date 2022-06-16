@@ -7,6 +7,7 @@ import Carousel from "react-material-ui-carousel";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import { useHistory } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   component: {
@@ -44,6 +45,7 @@ const useStyle = makeStyles((theme) => ({
 
 function CartPage() {
   const classes = useStyle();
+  const history = useHistory();
 
   const cartItems = [
     {
@@ -125,6 +127,9 @@ function CartPage() {
        }
   }
 
+  const placeOrder = () =>{
+    history.push('/shipping')
+  }
   return (
     <>
         <Grid container className={classes.component} style={{ paddingTop: '30px'}}>
@@ -161,6 +166,7 @@ function CartPage() {
                 variant="contained"
                 className={classes.placeOrder}
                 style={{ backgroundColor: "#222" }}
+                onClick={placeOrder}
               >
                 Place Order
               </Button>
