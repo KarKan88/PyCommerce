@@ -10,6 +10,7 @@ const {
   addItem: addItemFavorites,
   removeItem: removeItemFavorites,
   getFavoritesItems,
+  createPaymentIntent
 } = require("../controllers/favorites-controller");
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router.get("/products/get-product/:id", getProductById);
 router.post("/products/add-product", addProduct);
 
 router.post("/favorites/add-item", addItemFavorites);
+router.post("/create-payment-intent", createPaymentIntent);
 router.delete("/favorites/remove-item", removeItemFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
 
