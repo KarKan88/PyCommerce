@@ -13,6 +13,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
+import ToastMessageContainer from "../toast";
 
 const style = {
   position: "absolute",
@@ -121,6 +122,7 @@ function CommentComponent() {
               </Box>
             </Fade>
           </Modal>
+          <ToastMessageContainer />
         </Grid>
         <Grid item xs={12} md={2} sm={6}>
           {form()}
