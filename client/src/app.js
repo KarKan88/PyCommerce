@@ -7,7 +7,6 @@ import ErrorPage from "./pages/error-page";
 import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
-import useLocalStorage from './hooks/useLocalStorage';
 
 import "./app.css";
 import Registration from "./components/user-management/registration";
@@ -19,7 +18,6 @@ import ManageAddress from "./components/profile/manage-address";
 import ProductsPage from "./pages/products-page";
 
 function App() {
-  const [coupons, setCoupons] = useLocalStorage('coupons', []);
   return (
     <div className="app">
       <Header />
