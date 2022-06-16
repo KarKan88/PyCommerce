@@ -1,6 +1,21 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
+
+const useStyles = makeStyles(theme => ({
+  btn: {
+    color: "#222",
+    fontWeight: 600,
+    textTransform: "capitalize",
+    cursor: "pointer",
+    borderRadius: 2,
+    height: 35,
+    padding: "5px 35px",
+    border: "1px solid #FFBB38",
+    boxShadow: "none"
+  }
+}));
 
 /*
 Component of a coupon on list page.
@@ -16,6 +31,7 @@ const Coupon = ({
   date,
   handleRemoveCoupon
 }) => {
+  const classes = useStyles();
   const history = useHistory();
 
   return (
@@ -28,10 +44,10 @@ const Coupon = ({
           <div>Discount_Percentage: {discountpercentage} </div>
           <div>Date: {new Date(date).toDateString()}</div>
         </div>
-        <Button variant="outline-secondary" onClick={() => history.push(`/edit/${id}`)}>
+        <Button className={classes.btn}  onClick={() => history.push(`/edit/${id}`)}>
           Edit
         </Button>{' '}
-        <Button variant="outline-danger" onClick={() => handleRemoveCoupon(id)}>
+        <Button className={classes.btn}  onClick={() => handleRemoveCoupon(id)}>
           Delete
         </Button>
       </Card.Body>
