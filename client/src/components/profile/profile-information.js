@@ -117,23 +117,21 @@ function ProfileInformation() {
                         variant="body2" 
                         style={{padding:"1%"}}
                         align="left">
-                            {`Name : Dummy Name`}
+                            {`Name : Linda George`}
                         </Typography>
                         <Typography 
                         variant="body2" 
                         style={{padding:"1%"}}
                         align="left">
-                            {`Email : dummy@gmail.com`}
+                            {`Email : linda.geroge@gmail.com`}
                         </Typography>
                         <Typography 
                         variant="body2" 
                         style={{padding:"1%"}}
                         align="left">
-                            {`Phone Number : 999999999`}
+                            {`Phone Number : +1 (904) 748 8787`}
                         </Typography>
-                        <Typography variant="h5" style={{padding:"2%"}}>
-                            <b>Change Password</b>
-                        </Typography>
+                        
                         <TextField style ={{backgroundColor: "#eeeeee", width: "40%"}}
                         variant="filled"
                         size="small"
@@ -160,6 +158,7 @@ function ProfileInformation() {
                         <FormHelperText style={{color:"red"}}>
                         {confirmNewPasswordError}
                         </FormHelperText>
+                        <br/>
                         <Button variant="contained" color = "success"
                             onClick={()=>onHandleSubmit()} style = {{ border:"5px", marginBottom:"4%",backgroundColor: "#FFBB38" }}>
                             <b>Change Password</b>
