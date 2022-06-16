@@ -85,7 +85,7 @@ function SellerRegistration() {
         setCompanyRegistrationNumberError("");
         setLocation("");
         setLocationError("");
-        navigate.push("/"); 
+        navigate.push("/seller-dashboard"); 
     }
 
     function onHandleReset() {
