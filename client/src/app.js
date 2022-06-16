@@ -21,9 +21,12 @@ import useLocalStorage from './hooks/useLocalStorage';
 import CouponsContext from './context/CouponsContext';
 
 import "./app.css";
+import PaymentPage from "./pages/payment-page";
+import Payment from './components/payment/payment'
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
+import OrderConfirmed from "./pages/order-confirm-page";
 
 function App() {
   const [coupons, setCoupons] = useLocalStorage('coupons', []);
@@ -42,6 +45,15 @@ function App() {
         </Route>
         <Route exact path="/product/:id">
           <ProductPage />
+        </Route>
+        <Route exact path="/shipping">
+          <PaymentPage />
+        </Route>
+        <Route exact path="/payment">
+          <Payment />
+        </Route>
+        <Route exact path="/orderConfirmed">
+          <OrderConfirmed />
         </Route>
         <Route exact path="/cart">
           <CartPage />
