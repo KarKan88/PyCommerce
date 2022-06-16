@@ -22,6 +22,8 @@ import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
 import OrderConfirmed from "./pages/order-confirm-page";
+import OrderHistory from "./pages/order-history";
+import DeliveryStatus from "./pages/delivery-status";
 
 function App() {
   return (
@@ -48,6 +50,12 @@ function App() {
         </Route>
         <Route exact path="/orderConfirmed">
           <OrderConfirmed />
+        </Route>
+        <Route exact path="/orderHistory">
+          <ProfilePage />
+        </Route>
+        <Route exact path="/deliveryStatus">
+          <ProfilePage />
         </Route>
         <Route exact path="/cart">
           <CartPage />
