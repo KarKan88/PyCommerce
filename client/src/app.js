@@ -14,6 +14,11 @@ import SellerRegistration from './components/user-management/seller-registration
 import ManageAddress from './components/profile/manage-address';
 import ProfileInformation from './components/profile/profile-information';
 import ProductsPage from "./pages/products-page";
+import AddCouponPage from "./pages/coupon-management/add-coupon-page";
+import EditCouponPage from "./pages/coupon-management/coupon-edit-page";
+import CouponsListPage from "./pages/coupon-management/coupon-list-page";
+import useLocalStorage from './hooks/useLocalStorage';
+import CouponsContext from './context/CouponsContext';
 
 import "./app.css";
 import PaymentPage from "./pages/payment-page";
@@ -24,6 +29,7 @@ import ForgotPassword from "./components/user-management/forgot-password";
 import OrderConfirmed from "./pages/order-confirm-page";
 
 function App() {
+  const [coupons, setCoupons] = useLocalStorage('coupons', []);
   return (
     <div className="app">
       <Header />
@@ -75,7 +81,19 @@ function App() {
         <Route exact path="/profileinformation">
           <ProfileInformation />
         </Route>
-
+        <CouponsContext.Provider value={{coupons, setCoupons }}>
+          <Switch>
+        <Route exact path="/coupons/add">
+          <AddCouponPage />
+        </Route>
+        <Route exact path="/coupons/edit">
+          <EditCouponPage />
+        </Route>
+        <Route exact path="/coupons/list">
+          <CouponsListPage />
+        </Route>
+        </Switch>
+        </CouponsContext.Provider>
 
         <Route exact path="/edit-product/:id">
           <Addproduct />
