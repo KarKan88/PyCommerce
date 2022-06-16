@@ -9,6 +9,7 @@ import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
 
 import "./app.css";
+import PaymentPage from "./pages/payment-page";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/product/:id">
           <ProductPage />
+        </Route>
+        <Route exact path="/payment">
+          <PaymentPage />
         </Route>
         <Route component={ErrorPage} />
       </Switch>
