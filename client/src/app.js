@@ -34,14 +34,17 @@ function App() {
         <Route exact path="/product/:id">
           <ProductPage />
         </Route>
+        <Route exact path="/product/">
+          
+        </Route>
         <Route exact path="/registration">
-          <Registration/>
+          <Registration />
         </Route>
         <Route exact path="/login">
-          <Login/>
+          <Login />
         </Route>
         <Route exact path="/forgotpassword">
-          <ForgotPassword/>
+          <ForgotPassword />
         </Route>
         <Route exact path="/sellerregistration">
           <SellerRegistration/>
