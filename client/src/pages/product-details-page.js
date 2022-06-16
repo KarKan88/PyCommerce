@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
   },
   greyTextColor: {
-    color: "#000",
+    color: "#0000",
     fontSize: 16,
     marginLeft: 5,
   },
@@ -122,7 +122,9 @@ function ProductPage() {
         </Grid>
       )}
       <ToastMessageContainer />
-      <CommentComponent></CommentComponent>
+      <Grid>
+        <CommentComponent></CommentComponent>
+      </Grid>
     </Box>
   );
 }
