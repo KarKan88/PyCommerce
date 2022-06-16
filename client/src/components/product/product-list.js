@@ -11,7 +11,7 @@ import StarIcon from "@material-ui/icons/Star";
 
 const useStyle = makeStyles({
     component: {
-        padding: "20px 40px",
+        padding: "20px 20px",
         borderBottom: "1px solid #e0e0e0",
         borderRadius: 0,
         display: "flex",

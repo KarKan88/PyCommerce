@@ -6,4 +6,6 @@ mongoose
   .connect(_DBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  }).then(() => console.log("Connection Successful")).catch((err) => console.log(`Error : ${err}`));
+  })
+  .then(() => console.log("Connection Successful"))
+  .catch((err) => console.log(`Error : ${err}`));

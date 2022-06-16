@@ -9,20 +9,23 @@ import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
 import Addproduct from "./pages/addproduct";
 import Viewproduct from "./pages/viewproduct";
+import SellerRegistration from './components/user-management/seller-registration';
+import ManageAddress from './components/profile/manage-address';
+import ProfileInformation from './components/profile/profile-information';
+import ProductsPage from "./pages/products-page";
 import AddCouponPage from "./pages/coupon-management/add-coupon-page";
 import EditCouponPage from "./pages/coupon-management/coupon-edit-page";
 import CouponsListPage from "./pages/coupon-management/coupon-list-page";
 import useLocalStorage from './hooks/useLocalStorage';
 import CouponsContext from './context/CouponsContext';
-import SellerRegistration from './components/user-management/seller-registration';
-import ManageAddress from './components/profile/manage-address';
-import ProfileInformation from './components/profile/profile-information';
 
 import "./app.css";
+import PaymentPage from "./pages/payment-page";
+import Payment from './components/payment/payment'
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
-import ProductsPage from "./pages/products-page";
+import OrderConfirmed from "./pages/order-confirm-page";
 
 function App() {
   const [coupons, setCoupons] = useLocalStorage('coupons', []);
@@ -42,9 +45,15 @@ function App() {
         <Route exact path="/product/:id">
           <ProductPage />
         </Route>
-
-
-
+        <Route exact path="/shipping">
+          <PaymentPage />
+        </Route>
+        <Route exact path="/payment">
+          <Payment />
+        </Route>
+        <Route exact path="/orderConfirmed">
+          <OrderConfirmed />
+        </Route>
         <Route exact path="/cart">
           <CartPage />
         </Route>
@@ -66,12 +75,11 @@ function App() {
 
         <Route exact path="/manageaddress">
           <ManageAddress />
-          </Route>
+        </Route>
 
         <Route exact path="/profileinformation">
           <ProfileInformation />
         </Route>
-
 
         <Route exact path="/edit-product/:id">
           <Addproduct />
@@ -83,6 +91,9 @@ function App() {
         <Route exact path="/view-product">
           <Viewproduct />
         </Route>
+
+        <Route component={ErrorPage} />
+
         <CouponsContext.Provider value={{ coupons, setCoupons }}>
           <Switch>
             <Route exact path="/coupons/add">
@@ -96,7 +107,7 @@ function App() {
             </Route>
           </Switch>
         </CouponsContext.Provider>
-        <Route component={ErrorPage} />
+
       </Switch>
     </div>
   );
