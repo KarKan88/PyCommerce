@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bottom: {
-    minHeight: "500px",
+    minHeight: "650px",
     padding: "16px 22px",
     background: "#fff"
   },
