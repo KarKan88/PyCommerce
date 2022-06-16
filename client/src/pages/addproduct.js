@@ -159,6 +159,7 @@ function AddProduct() {
           <div className="box">
             <div className="border-bottom py-3 text-center">
               <h2>{id ? "Update " : "ADD "} Product</h2>
+              <br/>
             </div>
             <div className="p-5">
               <FormControl fullWidth style={{ backgroundColor: "#eeeeee", width: 500 }}>
