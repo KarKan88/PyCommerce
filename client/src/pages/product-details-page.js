@@ -8,6 +8,7 @@ import ProductDetail from "../components/product/product-details";
 import ProductImageSlider from "../components/product/image-slider";
 import LoaderSpinner from "../components/load-spinner";
 import ToastMessageContainer from "../components/toast";
+import CommentComponent from "../components/comment/CommentComponent";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
   },
   greyTextColor: {
-    color: "#000",
+    color: "#0000",
     fontSize: 16,
     marginLeft: 5,
   },
@@ -79,8 +80,10 @@ function ProductPage() {
     }
   }, [product]);
 
-  return isLoading ? (<LoaderSpinner />) :
-    (<Box className={classes.component}>
+  return isLoading ? (
+    <LoaderSpinner />
+  ) : (
+    <Box className={classes.component}>
       {product && Object.keys(product).length && (
         <Grid container className={classes.container}>
           <Grid item lg={5} md={5} sm={9} xs={12}>
@@ -92,7 +95,8 @@ function ProductPage() {
             md={7}
             sm={7}
             xs={12}
-            className={classes.rightContainer}>
+            className={classes.rightContainer}
+          >
             <Typography>{product.title.longTitle}</Typography>
             <Box style={{ display: "flex", alignItems: "center" }}>
               <Typography className={classes.rate}>
@@ -118,8 +122,11 @@ function ProductPage() {
         </Grid>
       )}
       <ToastMessageContainer />
+      <Grid>
+        <CommentComponent></CommentComponent>
+      </Grid>
     </Box>
-    );
+  );
 }
 
 export default ProductPage;
