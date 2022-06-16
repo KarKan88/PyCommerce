@@ -6,7 +6,6 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { Shorten } from "../../utils/string-util";
 import CounterButton from "./CounterButton";
@@ -67,7 +66,7 @@ const CartItem = ({ item }) => {
 
   return (
     <>
-      <Grid style={{paddingRight:'10px', marginRight:'10px', paddingBottom:'10px', paddingTop: '10px'}} >
+      <Grid style={{paddingRight:'0px', marginRight:'15px', paddingBottom:'10px', paddingTop: '10px'}} >
         <Card className={classes.component} raised elevation={5} >
           <Box className={classes.leftComponent}>
             <img src={item.url} className={classes.image} />
