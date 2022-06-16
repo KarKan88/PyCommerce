@@ -85,7 +85,7 @@ function SellerRegistration() {
         setCompanyRegistrationNumberError("");
         setLocation("");
         setLocationError("");
-        navigate.push("/seller-dashboard"); 
+        navigate.push("/add-product"); 
     }
 
     function onHandleReset() {
