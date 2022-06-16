@@ -42,7 +42,7 @@ export default function MembershipPlan() {
   return (
     <Container component="main" maxWidth="sm" style={{ marginTop: 80 }} >
       <Paper variant="outlined" style={{ padding: 25, marginTop: 30, marginBottom: 30 }}>
-        <Typography component="h1" variant="h4" align="center">
+        <Typography variant="h4" align="center">
           Stripe Payment
         </Typography>
         <div>

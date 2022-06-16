@@ -35,7 +35,7 @@ function OrderConfirmed() {
                 <Paper elevation={3} style={{ padding: 30 }}>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
-                            <Typography variant="h2" component="h1" gutterBottom>
+                            <Typography variant="h2" gutterBottom>
                                 Order placed successfully
                             </Typography>
                         </Grid>
