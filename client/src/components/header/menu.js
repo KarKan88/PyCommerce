@@ -68,6 +68,12 @@ function Menu() {
     
     <Link to="/cart">
       <Box className={classes.menu_link}>
+        <Typography className={classes.menu_more}>More</Typography>
+        {/* <ExpandMoreIcon /> */}
+      </Box>
+    </Link>
+    <Link to="/cart">
+      <Box className={classes.menu_link}>
         <ShoppingCartIcon />
         <Typography className={classes.menu_cart}>Cart</Typography>
       </Box>
