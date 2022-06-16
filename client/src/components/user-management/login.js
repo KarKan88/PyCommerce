@@ -56,7 +56,6 @@ function Login() {
         if(!(success && ((emailAddress && password) !== ""))) {
             setLoginError("Email address and password fields are mandatory");
         } else {
-            localStorage.setItem("login","loginSuccess");
             navigate.push('/');
         }
     }
@@ -72,11 +71,13 @@ function Login() {
     return (
         <div>
             <Container maxWidth= "md">
+            <br/>
             <Grid item style= {{paddingLeft:"20%", paddingRight:"20%", paddingTop:"5%"}} >
                 <Paper elevation={18} style = {{justifyContent:"center", alignItems:"center"}}>
                     <form style= {{margin : "5%"}} >
+                    <br/>
                         <Typography variant="h5" style={{padding:"2%"}}>
-                            <b>Login Page</b>
+                            <b>Let's get started</b>
                         </Typography>
                         <FormHelperText style = {{color:"red"}}>
                         {loginError}
@@ -110,7 +111,7 @@ function Login() {
                         {passwordError}
                         </FormHelperText>
                         <Typography>
-                            <a href="/forgotpassword" style={{color:"blue"}}>forgot password?</a>
+                            <a href="/forgotpassword" style={{color:"#288CBE"}}>forgot password?</a>
                         </Typography>
                         <br/>
                         <Button variant="contained" color = "success"
@@ -122,8 +123,9 @@ function Login() {
                            <b>Reset</b> 
                         </Button>
                         <Typography style={{paddingLeft: "30%"}}>
-                        New Customer? <a href="/registration" style={{color:"blue"}}>signup here</a>
+                        New Customer? <a href="/registration" style={{color:"#288CBE"}}>signup here</a>
                     </Typography>
+                    <br/>
                     </form>
                 </Paper>
             </Grid>

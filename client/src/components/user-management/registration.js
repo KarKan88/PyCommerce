@@ -263,8 +263,9 @@ function Registration() {
             <Grid item style= {{padding:"10%"}}>
                 <Paper elevation={18}>
                     <form style= {{margin : "5%"}} >
+                    <br/>
                         <Typography variant="h5" style={{padding:"2%"}}>
-                            <b>Registration Page</b>
+                            <b>Looks like you're new here!</b>
                         </Typography>
                         <FormHelperText style={{color:"red"}}>
                         {registerError}
@@ -349,7 +350,7 @@ function Registration() {
                         type="text"
                         value={phoneNumber}
                         onChange={onHandlePhoneNumber}
-                        />
+                        required/>
                         <FormHelperText style={{color:"red"}}>
                         {phoneNumberError}
                         </FormHelperText>
@@ -366,7 +367,7 @@ function Registration() {
                         type="text"
                         value={address}
                         onChange={onHandleAddress}
-                        />
+                        required/>
                         <FormHelperText style={{color:"red"}}>
                         {addressError}
                         </FormHelperText>

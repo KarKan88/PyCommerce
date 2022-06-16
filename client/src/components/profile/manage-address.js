@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 function ManageAddress() {
 
     const classes = useStyles();
-
     return (
         <div>
         <Grid container className={classes.component}>
