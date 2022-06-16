@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', useRouter);
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 
 app.use((req, res, next) => {
   if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV == "production") {
