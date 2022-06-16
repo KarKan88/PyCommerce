@@ -7,15 +7,18 @@ import ErrorPage from "./pages/error-page";
 import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
+import Sellerdashboard from "./pages/seller-dashboard";
+import Addproduct from "./pages/addproduct";
+import Viewproduct from "./pages/viewproduct";
+import SellerRegistration from './components/user-management/seller-registration';
+import ManageAddress from './components/profile/manage-address';
+import ProfileInformation from './components/profile/profile-information';
+import ProductsPage from "./pages/products-page";
 
 import "./app.css";
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
-import SellerRegistration from "./components/user-management/seller-registration";
-import ProfileInformation from "./components/profile/profile-information";
-import ManageAddress from "./components/profile/manage-address";
-import ProductsPage from "./pages/products-page";
 
 function App() {
   return (
@@ -34,8 +37,8 @@ function App() {
         <Route exact path="/product/:id">
           <ProductPage />
         </Route>
-        <Route exact path="/product/">
-          
+        <Route exact path="/cart">
+          <CartPage />
         </Route>
         <Route exact path="/registration">
           <Registration />
@@ -46,20 +49,33 @@ function App() {
         <Route exact path="/forgotpassword">
           <ForgotPassword />
         </Route>
-        <Route exact path="/sellerregistration">
-          <SellerRegistration/>
-        </Route>
-        <Route exact path="/profileinformation">
-          <ProfileInformation/>
-        </Route>
-        <Route exact path="/manageaddress">
-          <ManageAddress/>
-        </Route>
-        <Route exact path="/cart">
-          <CartPage />
-        </Route>
         <Route exact path="/products">
-          <ProductsPage/>
+          <ProductsPage />
+        </Route>
+        <Route exact path="/sellerregistration">
+          <SellerRegistration />
+        </Route>
+
+        <Route exact path="/manageaddress">
+          <ManageAddress />
+          </Route>
+
+        <Route exact path="/profileinformation">
+          <ProfileInformation />
+        </Route>
+
+
+        <Route exact path="/edit-product/:id">
+          <Addproduct />
+        </Route>
+        <Route exact path="/seller-dashboard">
+          <Sellerdashboard />
+        </Route>
+        <Route exact path="/add-product">
+          <Addproduct />
+        </Route>
+        <Route exact path="/view-product">
+          <Viewproduct />
         </Route>
         <Route component={ErrorPage} />
       </Switch>

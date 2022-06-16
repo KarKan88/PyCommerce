@@ -100,11 +100,11 @@ export default function Sidebar() {
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
               style={currentPath === "/manageaddress" ? activeStyle : {}}>
-              Manage Address
+              Manage Address
             </Typography>
           </Link>
         </Box>
-          <Box className={classes.subMenu}>
+        <Box className={classes.subMenu}>
           <Link to="/favorites">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
