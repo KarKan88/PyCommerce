@@ -7,7 +7,6 @@ import ErrorPage from "./pages/error-page";
 import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
-import Sellerdashboard from "./pages/seller-dashboard";
 import Addproduct from "./pages/addproduct";
 import Viewproduct from "./pages/viewproduct";
 import AddCouponPage from "./pages/coupon-management/add-coupon-page";
@@ -77,9 +76,7 @@ function App() {
         <Route exact path="/edit-product/:id">
           <Addproduct />
         </Route>
-        <Route exact path="/seller-dashboard">
-          <Sellerdashboard />
-        </Route>
+       
         <Route exact path="/add-product">
           <Addproduct />
         </Route>
