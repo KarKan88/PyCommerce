@@ -7,15 +7,7 @@ import ErrorPage from "./pages/error-page";
 import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
-import AddCouponPage from "./pages/coupon-management/add-coupon-page";
-import EditCouponPage from "./pages/coupon-management/coupon-edit-page";
-import CouponsListPage from "./pages/coupon-management/coupon-list-page";
-// import CouponsList from "./components/coupon-management/CouponsList";
-// import AddCoupon from './components/coupon-management/AddCoupon';
-// import CouponsList from './components/coupon-management/CouponsList';
 import useLocalStorage from './hooks/useLocalStorage';
-// import EditCoupon from './components/coupon-management/EditCoupon';
-import CouponsContext from './context/CouponsContext';
 
 import "./app.css";
 import Registration from "./components/user-management/registration";
@@ -62,19 +54,6 @@ function App() {
         <Route exact path="/manageaddress">
           <ManageAddress/>
         </Route>
-        <CouponsContext.Provider value={{coupons, setCoupons }}>
-          <Switch>
-        <Route exact path="/coupons/add">
-          <AddCouponPage />
-        </Route>
-        <Route exact path="/coupons/edit">
-          <EditCouponPage />
-        </Route>
-        <Route exact path="/coupons/list">
-          <CouponsListPage />
-        </Route>
-        </Switch>
-        </CouponsContext.Provider>
         <Route exact path="/cart">
           <CartPage />
         </Route>
@@ -82,14 +61,6 @@ function App() {
           <ProductsPage/>
         </Route>
         <Route component={ErrorPage} />
-        {/* <CouponsContext.Provider value={{coupons, setCoupons }}>
-            <Switch>
-              <Route component={CouponsList} path="/" exact={true} />
-              <Route component={AddCoupon} path="/add" />
-              <Route component={EditCoupon} path="/edit/:id" />
-              <Route component={() => <Redirect to="/" />} />
-            </Switch>
-          </CouponsContext.Provider> */}
       </Switch>
     </div>
   );
