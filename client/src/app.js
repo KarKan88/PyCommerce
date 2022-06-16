@@ -4,7 +4,7 @@ import Header from "./components/header/header";
 
 import HomePage from "./pages/home-page";
 import ErrorPage from "./pages/error-page";
-
+import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
 
@@ -29,6 +29,9 @@ function App() {
         </Route>
         <Route exact path="/product/:id">
           <ProductPage />
+        </Route>
+        <Route exact path="/cart">
+          <CartPage />
         </Route>
         <Route exact path="/registration">
           <Registration/>
