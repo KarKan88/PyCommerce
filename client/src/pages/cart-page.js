@@ -4,7 +4,7 @@ import { Box, makeStyles, Typography, Grid, Button } from "@material-ui/core";
 import CartItem from "../components/cart/CartItem";
 import TotalView from "../components/cart/TotalView";
 import Carousel from "react-material-ui-carousel";
-import BoughtTogether from '../recommendation/BoughtTogether'
+import ProductRow from "../components/product/product-grid";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -34,7 +34,25 @@ const useStyle = makeStyles((theme) => ({
     borderRadius: 2,
     width: 250,
     height: 51,
-  }
+  },
+  placeOrderViewAll: {
+    display: "flex",
+    background: "#222",
+    color: "#fff",
+    borderRadius: 2,
+    width: 250,
+    height: 51,
+  },
+  banner: {
+    margin: "20px 10px 0px 10px",
+    minWidth: 960,
+    textAlign: "center",
+  },
+  banner_img: {
+    width: "70%",
+    height: 480,
+    cursor: "pointer",
+  },
 }));
 
 function CartPage() {
@@ -103,70 +121,115 @@ function CartPage() {
     },
   ];
 
-
-  const sliderItems = cartItems.length > 3 ? 3 : cartItems.length;
+  const sliderItems = cartItems.length > 2 ? 2 : cartItems.length;
   const items = [];
 
   for (let i = 0; i < cartItems.length; i += sliderItems) {
     if (i % sliderItems === 0) {
       items.push(
-        <Grid container className="BannerGrid" key={i}>
+        <Grid container key={i}>
           {cartItems.slice(i, i + sliderItems).map((da, i) => {
             return <CartItem key={i.toString()} item={da} />;
           })}
         </Grid>
-      )
+      );
     }
   }
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 7,
+    },
+    desktop: {
+      breakpoint: { max: 2000, min: 1024 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 50, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <>
-    <br/>
-      <Grid container className={classes.component} >
-        <Grid style={{ paddingBottom: '30px', paddingLeft: "20px", width: "75%" }}>
-          <Box className={classes.header} >
-            <Typography style={{ fontWeight: 600, fontSize: 18 }} >
+      <br />
+      <Grid container className={classes.component}>
+        <Grid
+          style={{ paddingBottom: "30px", paddingLeft: "20px", width: "75%" }}
+        >
+          <Box className={classes.header}>
+            <Typography style={{ fontWeight: 600, fontSize: 18 }}>
               My Cart ({cartItems?.length})
             </Typography>
           </Box>
 
           <Grid
             container
-            style={{ padding: "5px 5px 5px 5px", backgroundColor: "#fff" }}>
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{
+              backgroundColor: "#fff",
+            }}
+          >
             <Carousel
-              animation="slide"
-              interval={10000}
-              navButtonsAlwaysVisible={true}
-              indicators={false}
-              navButtonsProps={{
-                style: {
-                  backgroundColor: "#ffffff",
-                  borderRadius: 0,
-                  color: "#222",
-                },
-              }}
+              swipeable={true}
+              draggable={false}
+              showDots={false}
+              responsive={responsive}
+              ssr={true}
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={2500}
+              keyBoardControl={true}
+              customTransition="all 200ms"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={["mobile"]}
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
             >
               {items}
             </Carousel>
           </Grid>
 
-          <Box className={classes.bottom} >
+          <Grid
+            container
+            style={{
+              backgroundColor: "#fff",
+              padding: "10px 10px 10px 10px",
+            }}
+          >
+              
             <Button
               variant="contained"
               className={classes.placeOrder}
-              style={{ backgroundColor: "#EB853B", color: "#222", fontWeight: 600 }}>
+              style={{
+                backgroundColor: "#EB853B",
+                color: "#222",
+                fontWeight: 600,
+              }}
+            >
               Place Order
             </Button>
-          </Box>
+          </Grid>
         </Grid>
-        <Grid style={{ paddingLeft: '2em' }} display='flex'>
+        <Grid style={{ paddingLeft: "2em" }} display="flex">
           <TotalView cartItems={cartItems} />
         </Grid>
       </Grid>
       <Grid>
-        <BoughtTogether />
+        <ProductRow
+          title="Frequently bought together"
+          categoryName="electronics"
+        />
       </Grid>
-
     </>
   );
 }
