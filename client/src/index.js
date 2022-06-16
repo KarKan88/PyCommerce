@@ -8,6 +8,7 @@ import store, { persistor } from "./store";
 import App from "./app";
 import "./index.css";
 
+
 ReactDOM.render(
   <Provider store={store}>
 

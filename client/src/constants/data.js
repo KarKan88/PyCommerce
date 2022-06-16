@@ -46,13 +46,11 @@ export const navData = [
   }
 ];
 
-// Allowed images for ADs by Amazon (Referenced in Readme).
 export const bannerData = [
   "/images/banner.png",
   "/images/banner.png",
 ];
 
-// Images Self attribution @Adesh Nalpet Adimurthy
 export const posterLinks = {
   links2: [
     "/images/poster.png",

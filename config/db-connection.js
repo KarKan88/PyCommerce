@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./.env" });
-const _DBUrl = process.env.DB;
+const _DBUrl = process.env.DB || "mongodb+srv://hemanth:hemanth123@cluster0.ygfbm.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose
   .connect(_DBUrl, {
