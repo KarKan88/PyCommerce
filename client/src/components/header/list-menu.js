@@ -103,7 +103,7 @@ const ListMenu = ({ handleClose }) => {
             <ListItemIcon className={classes.icon}>
               <PowerSettingsNewIcon />
             </ListItemIcon>
-            <ListItemText>Logout</ListItemText>
+            <ListItemText className={classes.text}>Logout</ListItemText>
           </ListItem>
         </Link>
       </List>
