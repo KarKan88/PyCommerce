@@ -12,6 +12,9 @@ import "./app.css";
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
+import SellerRegistration from "./components/user-management/seller-registration";
+import ProfileInformation from "./components/profile/profile-information";
+import ManageAddress from "./components/profile/manage-address";
 
 function App() {
   return (
@@ -38,6 +41,15 @@ function App() {
         </Route>
         <Route exact path="/forgotpassword">
           <ForgotPassword/>
+        </Route>
+        <Route exact path="/sellerregistration">
+          <SellerRegistration/>
+        </Route>
+        <Route exact path="/profileinformation">
+          <ProfileInformation/>
+        </Route>
+        <Route exact path="/manageaddress">
+          <ManageAddress/>
         </Route>
         <Route component={ErrorPage} />
       </Switch>
