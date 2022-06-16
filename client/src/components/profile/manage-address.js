@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import Sidebar from "./sidebar";
 
-
 const useStyles = makeStyles((theme) => ({
     component: {
       marginTop: 55,
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 function ManageAddress() {
 
     const classes = useStyles();
-
     return (
         <div>
         <Grid container className={classes.component}>

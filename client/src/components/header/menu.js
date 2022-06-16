@@ -54,18 +54,18 @@ function Menu() {
     </Link>
     
     
-    <Link to="/profileinformation">
+    <Link to="/favorites">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Profile</Typography>
       </Box>
     </Link>
 
-    <Link to="/sellerregistration">
+    <Link to="/">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Become a Seller</Typography>
       </Box>
     </Link>
-
+    
     <Link to="/cart">
       <Box className={classes.menu_link}>
         <ShoppingCartIcon />
