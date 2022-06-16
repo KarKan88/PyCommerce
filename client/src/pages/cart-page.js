@@ -8,6 +8,7 @@ import BoughtTogether from '../recommendation/BoughtTogether'
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import { useHistory } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   component: {
@@ -45,6 +46,7 @@ const useStyle = makeStyles((theme) => ({
 
 function CartPage() {
   const classes = useStyle();
+  const history = useHistory();
 
   const cartItems = [
     {
@@ -125,6 +127,9 @@ function CartPage() {
        }
   }
 
+  const placeOrder = () =>{
+    history.push('/shipping')
+  }
   return (
     <>
         <Grid container className={classes.component} >
@@ -161,6 +166,7 @@ function CartPage() {
                 variant="contained"
                 className={classes.placeOrder}
                 style={{ backgroundColor: "#222" }}
+                onClick={placeOrder}
               >
                 Place Order
               </Button>

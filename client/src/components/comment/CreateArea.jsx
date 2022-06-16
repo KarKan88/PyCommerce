@@ -57,7 +57,6 @@ function CreateArea(props) {
             value={note.Title}
             placeholder="Title"
             style={{
-              backgroundColor: "#F1F4F6",
               color: "#646E78",
               padding: "6px",
             }}
@@ -77,7 +76,6 @@ function CreateArea(props) {
             placeholder="Please add your experince about the product"
             rows="3"
             style={{
-              backgroundColor: "#F1F4F6",
               color: "#646E78",
               padding: "6px",
             }}
