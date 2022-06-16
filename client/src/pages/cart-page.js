@@ -8,6 +8,7 @@ import ProductRow from "../components/product/product-grid";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import { useHistory } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   component: {
@@ -57,6 +58,7 @@ const useStyle = makeStyles((theme) => ({
 
 function CartPage() {
   const classes = useStyle();
+  const history = useHistory();
 
   const cartItems = [
     {
@@ -142,7 +144,7 @@ function CartPage() {
       items: 7,
     },
     desktop: {
-      breakpoint: { max: 2000, min: 1024 },
+      breakpoint: { max: 3000, min: 1024 },
       items: 5,
     },
     tablet: {
@@ -150,11 +152,14 @@ function CartPage() {
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 50, min: 0 },
+      breakpoint: { max: 464, min: 0 },
       items: 1,
     },
   };
 
+  const placeOrder = () =>{
+    history.push('/shipping')
+  }
   return (
     <>
       <br />
@@ -215,6 +220,7 @@ function CartPage() {
                 color: "#222",
                 fontWeight: 600,
               }}
+              onClick={placeOrder}
             >
               Place Order
             </Button>
