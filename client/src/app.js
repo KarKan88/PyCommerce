@@ -76,24 +76,11 @@ function App() {
 
         <Route exact path="/manageaddress">
           <ManageAddress />
-          </Route>
+        </Route>
 
         <Route exact path="/profileinformation">
           <ProfileInformation />
         </Route>
-        <CouponsContext.Provider value={{coupons, setCoupons }}>
-          <Switch>
-        <Route exact path="/coupons/add">
-          <AddCouponPage />
-        </Route>
-        <Route exact path="/coupons/edit">
-          <EditCouponPage />
-        </Route>
-        <Route exact path="/coupons/list">
-          <CouponsListPage />
-        </Route>
-        </Switch>
-        </CouponsContext.Provider>
 
         <Route exact path="/edit-product/:id">
           <Addproduct />
@@ -107,7 +94,23 @@ function App() {
         <Route exact path="/view-product">
           <Viewproduct />
         </Route>
+
         <Route component={ErrorPage} />
+
+        <CouponsContext.Provider value={{ coupons, setCoupons }}>
+          <Switch>
+            <Route exact path="/coupons/add">
+              <AddCouponPage />
+            </Route>
+            <Route exact path="/coupons/edit">
+              <EditCouponPage />
+            </Route>
+            <Route exact path="/coupons/list">
+              <CouponsListPage />
+            </Route>
+          </Switch>
+        </CouponsContext.Provider>
+
       </Switch>
     </div>
   );
