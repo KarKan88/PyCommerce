@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import Sidebar from "./sidebar";
 
-
 const useStyles = makeStyles((theme) => ({
     component: {
       marginTop: 55,
