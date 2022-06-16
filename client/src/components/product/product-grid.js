@@ -104,12 +104,14 @@ function ProductRow({ categoryName, title }) {
       <Box className={classes.row_container}>
         <Box className={classes.leftContainer}>
           <h2 className={classes.row_title}>{title}</h2>
+          <Link to="/products">
           <Button
             style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600 }}
             variant="contained"
             color="primary">
             View All
           </Button>
+          </Link>
         </Box>
         <Box className={classes.products_wrapper} textAlign="center">
           {isLoading ? (

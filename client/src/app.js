@@ -21,6 +21,7 @@ import "./app.css";
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
+import ProductsPage from "./pages/products-page";
 
 function App() {
   const [coupons, setCoupons] = useLocalStorage('coupons', []);
@@ -66,6 +67,9 @@ function App() {
         </Route>
         <Route exact path="/forgotpassword">
           <ForgotPassword/>
+        </Route>
+        <Route exact path="/products">
+          <ProductsPage/>
         </Route>
         <Route component={ErrorPage} />
         {/* <CouponsContext.Provider value={{coupons, setCoupons }}>

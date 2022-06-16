@@ -116,7 +116,7 @@ function CartPage() {
   for (let i = 0; i < cartItems.length; i += sliderItems) {
     if (i % sliderItems === 0) {
       items.push(
-            <Grid container className="BannerGrid" >
+            <Grid container className="BannerGrid" key={i}>
               {cartItems.slice(i, i + sliderItems).map((da, i) => {
                 return <CartItem key={i.toString()} item={da} />;
               })}
