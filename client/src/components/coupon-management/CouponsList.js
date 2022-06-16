@@ -3,7 +3,6 @@ import _ from 'lodash';
 import Coupon from './Coupon';
 import CouponsContext from '../../context/CouponsContext';
 
-
 /*
 Component to display all coupons.
 Referenced from the tutorial on freecodecamp: https://www.freecodecamp.org/news/react-crud-app-how-to-create-a-book-management-app-from-scratch/

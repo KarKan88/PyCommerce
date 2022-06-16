@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
-import { Button, makeStyles, Box, Typography } from "@material-ui/core";
+import { Form, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-const useStyles = makeStyles(theme => ({
-  btn: {
-    color: "#222",
-    fontWeight: 600,
-    textTransform: "capitalize",
-    cursor: "pointer",
-    borderRadius: 2,
-    height: 35,
-    padding: "5px 35px",
-    border: "1px solid #FFBB38",
-    boxShadow: "none"
-  }
-}));
+
 /*
 Component for the form to add a coupon.
 Referenced from the tutorial on freecodecamp: https://www.freecodecamp.org/news/react-crud-app-how-to-create-a-book-management-app-from-scratch/
@@ -30,7 +17,7 @@ const CouponForm = (props) => {
       date: props.coupon ? props.coupon.date : ''
     };
   });
-  const classes = useStyles();
+
   const [errorMsg, setErrorMsg] = useState('');
   const { couponcode: couponcode, condition: condition, discountpercentage: discountpercentage, maxdiscount: maxdiscount } = coupon;
 
@@ -135,7 +122,7 @@ const CouponForm = (props) => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Button  type="submit" className={classes.btn}>
+        <Button variant="outline-light" type="submit" className="submit-btn">
           Submit
         </Button>
       </Form>
