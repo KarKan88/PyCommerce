@@ -162,10 +162,10 @@ function SellerRegistration() {
                         aria-labelledby="alert-dialog-title"
                         >
                         <DialogTitle id="alert-dialog-title">
-                            Successfully Registered as Seller !!!
+                            Successfully Registered as Seller 🥳
                         </DialogTitle>
                         <DialogActions>
-                            <Button variant="contained" size="small" onClick={onHandleClose} style={{backgroundColor: "blue", color:"white"}}>
+                            <Button variant="contained" size="small" onClick={onHandleClose} style={{backgroundColor: "#FFBB38", color:"#222"}}>
                                 <b>ok</b>
                             </Button>
                         </DialogActions>

@@ -190,7 +190,7 @@ function CartPage() {
               responsive={responsive}
               ssr={true}
               infinite={true}
-              autoPlay={true}
+              autoPlay={false}
               autoPlaySpeed={2500}
               keyBoardControl={true}
               customTransition="all 200ms"
