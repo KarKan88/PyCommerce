@@ -263,8 +263,9 @@ function Registration() {
             <Grid item style= {{padding:"10%"}}>
                 <Paper elevation={18}>
                     <form style= {{margin : "5%"}} >
+                    <br/>
                         <Typography variant="h5" style={{padding:"2%"}}>
-                            <b>Registration Page</b>
+                            <b>Looks like you're new here!</b>
                         </Typography>
                         <FormHelperText style={{color:"red"}}>
                         {registerError}
@@ -399,7 +400,7 @@ function Registration() {
                         {securityQuestionTwoError}
                         </FormHelperText>
                         <Button variant="contained" color = "success"
-                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px"}}>
+                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px", backgroundColor: "#FFBB38", width:"45%"}}>
                            <b>Register</b> 
                         </Button>
                         <Dialog
@@ -422,7 +423,7 @@ function Registration() {
                             </Button>
                         </DialogActions>
                         </Dialog>
-                        <Button variant="contained" style = {{backgroundColor: "#FF5C5C", marginLeft: "5%", marginBottom:"5%"}}
+                        <Button variant="contained" style = {{backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom:"5%", width:"50%"}}
                         onClick={onHandleReset}>
                            <b>Reset</b> 
                         </Button>
