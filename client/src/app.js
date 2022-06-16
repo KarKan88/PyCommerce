@@ -21,6 +21,9 @@ import "./app.css";
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
+import SellerRegistration from "./components/user-management/seller-registration";
+import ProfileInformation from "./components/profile/profile-information";
+import ManageAddress from "./components/profile/manage-address";
 import ProductsPage from "./pages/products-page";
 
 function App() {
@@ -41,8 +44,24 @@ function App() {
         <Route exact path="/product/:id">
           <ProductPage />
         </Route>
-
-
+        <Route exact path="/registration">
+          <Registration/>
+        </Route>
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+        <Route exact path="/forgotpassword">
+          <ForgotPassword/>
+        </Route>
+        <Route exact path="/sellerregistration">
+          <SellerRegistration/>
+        </Route>
+        <Route exact path="/profileinformation">
+          <ProfileInformation/>
+        </Route>
+        <Route exact path="/manageaddress">
+          <ManageAddress/>
+        </Route>
         <CouponsContext.Provider value={{coupons, setCoupons }}>
           <Switch>
         <Route exact path="/coupons/add">
@@ -58,15 +77,6 @@ function App() {
         </CouponsContext.Provider>
         <Route exact path="/cart">
           <CartPage />
-        </Route>
-        <Route exact path="/registration">
-          <Registration/>
-        </Route>
-        <Route exact path="/login">
-          <Login/>
-        </Route>
-        <Route exact path="/forgotpassword">
-          <ForgotPassword/>
         </Route>
         <Route exact path="/products">
           <ProductsPage/>
