@@ -1,6 +1,7 @@
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, List, ListItem, ListItemText, makeStyles, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons'
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function OrderHistory() {
 
+    const history = useHistory()
     const [orderDetails, setODs] = useState([{
         orderId: "Order#001",
         orderDate: "2nd May, 2022",
@@ -83,6 +85,10 @@ function OrderHistory() {
         setExpanded(isExpanded ? panel : false);
     };
 
+    const onTrack = ()=>{
+        history.push('/deliveryStatus')
+    }
+
     return (
         <div className={classes.root}>
             <Typography variant='h4' gutterBottom>Order History</Typography>
@@ -121,7 +127,7 @@ function OrderHistory() {
                         <AccordionActions>
                             {/* <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10 }} size="small"
                                 type='button' >Update Shipping Address</Button> */}
-                            <Button variant="contained" style={{ backgroundColor: "#FFBB38" }} size="small">
+                            <Button variant="contained" onClick={onTrack} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
                                 Track Package
                             </Button>
                         </AccordionActions>
