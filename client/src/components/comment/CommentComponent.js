@@ -61,10 +61,10 @@ function CommentComponent() {
   return (
     <Box sx={{ marginTop: "10px" }}>
       <Grid container spacing={2} style={{ paddingTop: "2%", marginTop: "1%" }}>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <h2> REVIEWS AND RATINGS</h2>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Button
             style={{
               backgroundColor: "#FFBB38",
@@ -72,10 +72,10 @@ function CommentComponent() {
             }}
             variant="contained"
           >
-            Contained
+            POST REVIEW
           </Button>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           {form()}
         </Grid>
       </Grid>

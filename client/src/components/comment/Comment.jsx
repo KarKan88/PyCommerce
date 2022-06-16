@@ -12,9 +12,16 @@ function Comment(props) {
       <Card style={{ paddingTop: "10px" }}>
         <Stack direction="row" spacing={3} mt={2} ml={2}>
           <Avatar>{props.avatar}</Avatar>
-          <h4 style={{ marginLeft: "10px" }}> {props.name}</h4>
-          <Rating style={{ marginLeft: "10px" }} value={rate} readOnly />
-          <h4 style={{ marginLeft: "10px", float: "right" }}>
+          <h4 style={{ marginLeft: "10px", paddingTop: "1%" }}>
+            {" "}
+            {props.name}
+          </h4>
+          <Rating
+            style={{ marginLeft: "10px", paddingTop: "1%" }}
+            value={rate}
+            readOnly
+          />
+          <h4 style={{ marginLeft: "10px", float: "right", paddingTop: "1%" }}>
             {new Intl.DateTimeFormat("en-GB", {
               year: "numeric",
               month: "long",
@@ -26,6 +33,7 @@ function Comment(props) {
           <h4
             style={{
               paddingLeft: "2%",
+              paddingTop: "2%",
             }}
           >
             {props.title}
