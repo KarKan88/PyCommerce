@@ -248,7 +248,7 @@ function ForgotPassword() {
                         {securityQuestionTwoError}
                         </FormHelperText>
                         <Button variant="contained" color = "success"
-                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px"}}>
+                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px",backgroundColor: "#FFBB38", width:"45%"}}>
                            <b>Submit</b> 
                         </Button>
                         <Dialog
@@ -271,7 +271,7 @@ function ForgotPassword() {
                             </Button>
                         </DialogActions>
                         </Dialog>
-                        <Button variant="contained" style = {{backgroundColor: "#FF5C5C", marginLeft: "5%", marginBottom:"5%"}}
+                        <Button variant="contained" style = {{backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom:"5%", width:"50%"}}
                         onClick={onHandleReset}>
                            <b>Reset</b> 
                         </Button>
