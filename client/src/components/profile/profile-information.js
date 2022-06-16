@@ -161,8 +161,8 @@ function ProfileInformation() {
                         {confirmNewPasswordError}
                         </FormHelperText>
                         <Button variant="contained" color = "success"
-                            onClick={()=>onHandleSubmit()} style = {{ border:"5px", marginBottom:"4%" }}>
-                            Change Password
+                            onClick={()=>onHandleSubmit()} style = {{ border:"5px", marginBottom:"4%",backgroundColor: "#FFBB38" }}>
+                            <b>Change Password</b>
                         </Button>
                         <Snackbar style={{backgroundColor: "green", color: "white"}}
                           open={openSnackBar}
@@ -173,7 +173,7 @@ function ProfileInformation() {
                         anchorOrigin={{ vertical, horizontal }}
                         key={vertical + horizontal}
                           />
-                        <Button variant="contained" style = {{backgroundColor: "#FF5C5C", marginLeft: "5%", marginBottom:"4%"}}
+                        <Button variant="contained" style = {{backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom:"4%", width:"15%"}}
                         onClick={onHandleReset}>
                            <b>Reset</b> 
                         </Button>
