@@ -123,7 +123,7 @@ function CartPage() {
     <>
     <br/>
       <Grid container className={classes.component} >
-        <Grid style={{ paddingBottom: '30px', paddingLeft: "20px", width: "75%" }}>
+        <Grid style={{ paddingBottom: '25px', paddingLeft: "20px", width: "75%" }}>
           <Box className={classes.header} >
             <Typography style={{ fontWeight: 600, fontSize: 18 }} >
               My Cart ({cartItems?.length})
@@ -134,8 +134,6 @@ function CartPage() {
             container
             style={{ padding: "5px 5px 5px 5px", backgroundColor: "#fff" }}>
             <Carousel
-              animation="slide"
-              interval={10000}
               navButtonsAlwaysVisible={true}
               indicators={false}
               navButtonsProps={{
