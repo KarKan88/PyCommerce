@@ -81,6 +81,25 @@ export default function Sidebar() {
           <p>Menu</p>
         </Box>
         <Box className={classes.subMenu}>
+          <Link to="/profileinformation">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/profileinformation" ? activeStyle : {}}>
+              Profile Information
+            </Typography>
+          </Link>
+        </Box>
+        <Box className={classes.subMenu}>
+          <Link to="/manageaddress">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/manageaddress" ? activeStyle : {}}>
+              Manage Address
+            </Typography>
+          </Link>
+        </Box>
+        <Box className={classes.subMenu}>
+
           <Link to="/favorites">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
