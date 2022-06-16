@@ -56,7 +56,6 @@ function Login() {
         if(!(success && ((emailAddress && password) !== ""))) {
             setLoginError("Email address and password fields are mandatory");
         } else {
-            localStorage.setItem("login","loginSuccess");
             navigate.push('/');
         }
     }

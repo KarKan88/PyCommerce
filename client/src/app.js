@@ -7,6 +7,11 @@ import ErrorPage from "./pages/error-page";
 import CartPage from "./pages/cart-page";
 import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
+import AddCouponPage from "./pages/coupon-management/add-coupon-page";
+import EditCouponPage from "./pages/coupon-management/coupon-edit-page";
+import CouponsListPage from "./pages/coupon-management/coupon-list-page";
+import useLocalStorage from './hooks/useLocalStorage';
+import CouponsContext from './context/CouponsContext';
 
 import "./app.css";
 import PaymentPage from "./pages/payment-page";
@@ -21,6 +26,7 @@ import ManageAddress from "./components/profile/manage-address";
 import ProductsPage from "./pages/products-page";
 
 function App() {
+  const [coupons, setCoupons] = useLocalStorage('coupons', []);
   return (
     <div className="app">
       <Header />
@@ -50,7 +56,23 @@ function App() {
           <CartPage />
         </Route>
         <Route exact path="/product/">
-          
+
+        </Route>
+        <CouponsContext.Provider value={{ coupons, setCoupons }}>
+          <Switch>
+            <Route exact path="/coupons/add">
+              <AddCouponPage />
+            </Route>
+            <Route exact path="/coupons/edit">
+              <EditCouponPage />
+            </Route>
+            <Route exact path="/coupons/list">
+              <CouponsListPage />
+            </Route>
+          </Switch>
+        </CouponsContext.Provider>
+        <Route exact path="/cart">
+          <CartPage />
         </Route>
         <Route exact path="/registration">
           <Registration />
@@ -61,20 +83,8 @@ function App() {
         <Route exact path="/forgotpassword">
           <ForgotPassword />
         </Route>
-        <Route exact path="/sellerregistration">
-          <SellerRegistration/>
-        </Route>
-        <Route exact path="/profileinformation">
-          <ProfileInformation/>
-        </Route>
-        <Route exact path="/manageaddress">
-          <ManageAddress/>
-        </Route>
-        <Route exact path="/cart">
-          <CartPage />
-        </Route>
         <Route exact path="/products">
-          <ProductsPage/>
+          <ProductsPage />
         </Route>
         <Route component={ErrorPage} />
       </Switch>

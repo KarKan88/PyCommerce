@@ -350,7 +350,7 @@ function Registration() {
                         type="text"
                         value={phoneNumber}
                         onChange={onHandlePhoneNumber}
-                        />
+                        required/>
                         <FormHelperText style={{color:"red"}}>
                         {phoneNumberError}
                         </FormHelperText>
@@ -367,7 +367,7 @@ function Registration() {
                         type="text"
                         value={address}
                         onChange={onHandleAddress}
-                        />
+                        required/>
                         <FormHelperText style={{color:"red"}}>
                         {addressError}
                         </FormHelperText>
