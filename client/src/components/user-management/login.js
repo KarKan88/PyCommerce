@@ -71,11 +71,13 @@ function Login() {
     return (
         <div>
             <Container maxWidth= "md">
-            <Grid item style= {{padding:"20%"}} >
+            <br/>
+            <Grid item style= {{paddingLeft:"20%", paddingRight:"20%", paddingTop:"5%"}} >
                 <Paper elevation={18} style = {{justifyContent:"center", alignItems:"center"}}>
                     <form style= {{margin : "5%"}} >
+                    <br/>
                         <Typography variant="h5" style={{padding:"2%"}}>
-                            <b>Login Page</b>
+                            <b>Let's get started</b>
                         </Typography>
                         <FormHelperText style = {{color:"red"}}>
                         {loginError}
@@ -109,21 +111,22 @@ function Login() {
                         {passwordError}
                         </FormHelperText>
                         <Typography>
-                            <a href="/forgotpassword" style={{color:"blue"}}>forgot password?</a>
+                            <a href="/forgotpassword" style={{color:"#288CBE"}}>forgot password?</a>
                         </Typography>
                         <br/>
                         <Button variant="contained" color = "success"
-                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px"}}>
+                        onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px",backgroundColor: "#FFBB38", width:"45%"}}>
                            <b>Login</b> 
                         </Button>
-                        <Button variant="contained" style = {{backgroundColor: "#FF5C5C", marginLeft: "5%", marginBottom:"5%"}}
+                        <Button variant="contained" style = {{backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom:"5%", width:"50%"}}
                         onClick={onHandleReset}>
                            <b>Reset</b> 
                         </Button>
-                    </form>
-                    <Typography style={{paddingLeft: "30%"}}>
-                        New Customer? <a href="/registration" style={{color:"blue"}}>signup here</a>
+                        <Typography style={{paddingLeft: "30%"}}>
+                        New Customer? <a href="/registration" style={{color:"#288CBE"}}>signup here</a>
                     </Typography>
+                    <br/>
+                    </form>
                 </Paper>
             </Grid>
             </Container>
