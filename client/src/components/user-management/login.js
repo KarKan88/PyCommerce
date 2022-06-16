@@ -56,6 +56,7 @@ function Login() {
         if(!(success && ((emailAddress && password) !== ""))) {
             setLoginError("Email address and password fields are mandatory");
         } else {
+            localStorage.setItem("login","loginSuccess");
             navigate.push('/');
         }
     }
@@ -71,7 +72,7 @@ function Login() {
     return (
         <div>
             <Container maxWidth= "md">
-            <Grid item style= {{padding:"20%"}} >
+            <Grid item style= {{paddingLeft:"20%", paddingRight:"20%", paddingTop:"5%"}} >
                 <Paper elevation={18} style = {{justifyContent:"center", alignItems:"center"}}>
                     <form style= {{margin : "5%"}} >
                         <Typography variant="h5" style={{padding:"2%"}}>

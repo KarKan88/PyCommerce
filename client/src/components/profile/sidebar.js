@@ -6,7 +6,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-
+import {useHistory} from "react-router-dom";
 import clsx from "clsx";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 
@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Sidebar() {
   const classes = useStyles();
   const location = useLocation();
+  const navigate = useHistory();
   const currentPath = location.pathname;
 
   const activeStyle = {
@@ -74,6 +75,11 @@ export default function Sidebar() {
     color: "#222",
     backgroundColor: "#F0F0F0",
   };
+  function onHandleLogout()
+  {
+    localStorage.removeItem("login");
+    navigate.push("/");
+  }
   return (
     <>
       <Box className={classes.bottom}>
@@ -81,6 +87,24 @@ export default function Sidebar() {
           <p>Menu</p>
         </Box>
         <Box className={classes.subMenu}>
+          <Link to="/profileinformation">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/profileinformation" ? activeStyle : {}}>
+              Profile Information
+            </Typography>
+          </Link>
+        </Box>
+        <Box className={classes.subMenu}>
+          <Link to="/manageaddress">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/manageaddress" ? activeStyle : {}}>
+              Manage Address
+            </Typography>
+          </Link>
+        </Box>
+          <Box className={classes.subMenu}>
           <Link to="/favorites">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
@@ -88,10 +112,10 @@ export default function Sidebar() {
               Favorites
             </Typography>
           </Link>
+          
         </Box>
         <Divider className={classes.divider} />
-
-        <Box
+        <Box onClick={onHandleLogout}
           className={clsx(classes.sideBarLink, classes.hoverTab)}
           style={{ cursor: "pointer" }}>
           <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />

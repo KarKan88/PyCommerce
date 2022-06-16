@@ -4,6 +4,7 @@ import { Box, makeStyles, Typography, Grid, Button, Card, SubCategory } from "@m
 import CartItem from "../components/cart/CartItem";
 import TotalView from "../components/cart/TotalView";
 import Carousel from "react-material-ui-carousel";
+import BoughtTogether from '../recommendation/BoughtTogether'
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -80,23 +81,23 @@ function CartPage() {
     },
     {
       title: {
-        shortTitle: "Dell G1",
-        longTitle: "Dell G1 I5-9th gen",
+        shortTitle: "Gaming chair",
+        longTitle: "Gaming chair",
       },
       price: {
-        mrp: 800,
-        cost: 600,
-        discount: 22,
+        mrp: 500,
+        cost: 400,
+        discount: 20,
       },
       qty: 1,
-      category: "electronics",
-      tagline: "laptop",
-      url: "https://miro.medium.com/max/1400/1*2fAtste9D54C_0NgIBJbuA.jpeg",
+      category: "furniture",
+      tagline: "chair",
+      url: "https://m.media-amazon.com/images/I/61ag4d3mKyL._AC_SX679_.jpg",
     },
     {
       title: {
-        shortTitle: "Dell G10",
-        longTitle: "Dell G10 I3-9th gen",
+        shortTitle: "LG moniter",
+        longTitle: "LG moniter",
       },
       price: {
         mrp: 500,
@@ -105,8 +106,8 @@ function CartPage() {
       },
       qty: 1,
       category: "electronics",
-      tagline: "laptop",
-      url: "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-3420/media-gallery/peripherals_laptop_latitude_3420nt_gallery_1.psd?fmt=pjpg&pscan=auto&scl=1&wid=3319&hei=2405&qlt=100,0&resMode=sharp2&size=3319,2405",
+      tagline: "moniter",
+      url: "https://m.media-amazon.com/images/I/61pI7loWpZS._AC_SX679_.jpg",
     },
   ];
 
@@ -117,13 +118,12 @@ function CartPage() {
   for (let i = 0; i < cartItems.length; i += sliderItems) {
     if (i % sliderItems === 0) {
       items.push(
-            <Grid container className="BannerGrid" >
+            <Grid container className="BannerGrid" key={i}>
               {cartItems.slice(i, i + sliderItems).map((da, i) => {
                 return <CartItem key={i.toString()} item={da} />;
               })}
             </Grid>
-
-        )
+            )
        }
   }
 
@@ -132,7 +132,7 @@ function CartPage() {
   }
   return (
     <>
-        <Grid container className={classes.component} style={{ paddingTop: '30px'}}>
+        <Grid container className={classes.component} >
           <Grid style={{ paddingBottom: '30px'}}>
             <Box className={classes.header} >
               <Typography style={{ fontWeight: 600, fontSize: 18 }} >
@@ -175,6 +175,9 @@ function CartPage() {
           <Grid style={{ paddingLeft:'10px'}} display='flex'>
             <TotalView cartItems={cartItems} />
           </Grid>
+        </Grid>
+        <Grid>
+          <BoughtTogether/>
         </Grid>
       
     </>
