@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import toastMessage from "../../utils/toast-message";
 
 function CreateArea(props) {
   const [note, setNote] = useState({
@@ -25,16 +26,23 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      Avatar: "CU",
-      Name: "CurrentUser",
-      Rating: "",
-      Title: "",
-      Comment: "",
-      CDate: Date.now,
-    });
-    event.preventDefault();
+    if (note.Title === "") {
+      toastMessage("Please have a title before submitting", "error");
+    } else if (note.Rating === "" || Number(note.Rating) === 0) {
+      toastMessage("Please Rate before submitting", "error");
+    } else {
+      props.onAdd(note);
+      setNote({
+        Avatar: "CU",
+        Name: "CurrentUser",
+        Rating: "",
+        Title: "",
+        Comment: "",
+        CDate: Date.now,
+      });
+      toastMessage("Review has been added Sucessfully", "success");
+      event.preventDefault();
+    }
   }
 
   return (
