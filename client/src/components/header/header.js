@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, makeStyles, Box } from "@material-ui/core";
 import SearchBar from "./search-box";
 import HeaderMenu from "./menu";
+import { AppBar, Toolbar, makeStyles, Box, IconButton, Drawer } from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
+import ListMenu from "./list-menu";
 
 const useStyle = makeStyles(theme => ({
   header: {
@@ -50,18 +52,35 @@ const useStyle = makeStyles(theme => ({
 
 function Header() {
   const classes = useStyle();
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
   return <div className="header">
+
     <AppBar className={classes.header}>
-      <Toolbar>
-        <Link to="/">
-          <Box className={classes.logo_Container}>
-            <h2>PyCommerce</h2>
-          </Box>
-        </Link>
-        <SearchBar />
-        <HeaderMenu />
-      </Toolbar>
-    </AppBar>
+        <Toolbar>
+          <IconButton color="inherit" className={classes.menuButton} onClick={handleOpen}>
+            <Menu />
+          </IconButton>
+
+          <Drawer open={open} onClose={handleClose}>
+            <ListMenu handleClose={handleClose} />
+          </Drawer>
+          <Link to="/">
+            <Box className={classes.logo_Container}>
+              <h2>PyCommerce</h2>
+            </Box>
+          </Link>
+          <SearchBar />
+          <HeaderMenu />
+        </Toolbar>
+      </AppBar>
   </div>;
 }
 
