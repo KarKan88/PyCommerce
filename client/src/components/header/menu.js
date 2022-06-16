@@ -2,7 +2,7 @@ import React from "react";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 const useStyles = makeStyles(theme => ({
   headerMenu: {
     display: "flex",
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 2,
     height: 35,
     padding: "5px 35px",
-    border: "1px solid #dbdbdb",
+    border: "1px solid #FFBB38",
     boxShadow: "none"
   },
   menu_more: {
@@ -46,10 +46,13 @@ function Menu() {
   const classes = useStyles();
 
   return <Box className={classes.headerMenu}>
-    <Button variant="contained" style={{
-      backgroundColor: "#fff"}} className={classes.login_btn}>
-      Login
-    </Button>
+
+    <Link to="/login">
+      <Button variant="contained" style={{backgroundColor: "#FFBB38"}} className={classes.login_btn}>
+        Login
+      </Button>
+    </Link>
+    
     
     <Link to="/favorites">
       <Box className={classes.menu_link}>
@@ -66,7 +69,7 @@ function Menu() {
     <Link to="/">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>More</Typography>
-        <ExpandMoreIcon />
+        {/* <ExpandMoreIcon /> */}
       </Box>
     </Link>
     <Link to="/cart">

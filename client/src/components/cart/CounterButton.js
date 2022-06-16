@@ -18,22 +18,13 @@ const CounterButton = ({
 }) => {
   const classes = useStyle();
   const [counter, setCounter] = useState(product.qty);
-  const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    if (counter + 1 <= 5) {
       setCounter(counter => counter + 1);
-    //   dispatch(updateQuantity(product._id, counter + 1));
-    //   toastMessage(`You've changed ${product.title.longTitle} quantity to ${counter + 1}`, "success");
-    } else {
-      toastMessage("We're sorry! Only 5 unit(s) allowed in each order", "error");
-    }
   };
 
   const handleDecrement = () => {
     setCounter(counter => counter - 1);
-    // dispatch(updateQuantity(product._id, counter - 1));
-    // toastMessage(`You've changed ${product.title.longTitle} quantity to ${counter - 1}`, "success");
   };
 
   return <>
