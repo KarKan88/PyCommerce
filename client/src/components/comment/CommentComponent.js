@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import CreateArea from "./CreateArea";
+import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@material-ui/core/Grid";
@@ -10,11 +11,26 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { styled } from "@mui/material/styles";
+import Fade from "@mui/material/Fade";
+import Backdrop from "@mui/material/Backdrop";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 350,
+  padding: "10px",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 function createComment(object) {
   return (
     <Comment
+      key={object.Name}
       avatar={object.Avatar}
       name={object.Name}
       commnet={object.Comment}
@@ -37,7 +53,9 @@ const handleChange = (event) => {};
 
 function CommentComponent() {
   const [CompleteData, setCompleteData] = React.useState(data);
-  const [Checkbox, setCheckedbox] = useState(state);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [sort, setAge] = React.useState("");
 
   const handleChange = (event) => {
@@ -57,16 +75,30 @@ function CommentComponent() {
       </FormControl>
     );
   };
+  function addNote(Data) {
+    setCompleteData((prevData) => {
+      return [...prevData, Data];
+    });
+    handleClose();
+  }
 
   return (
     <Box sx={{ marginTop: "10px" }}>
-      <Grid container spacing={2} style={{ paddingTop: "2%", marginTop: "1%" }}>
-        <Grid item xs={8}>
+      <Grid
+        container
+        spacing={2}
+        style={{ paddingTop: "2%", marginTop: "1%" }}
+        justifyContent="flex-end"
+      >
+        <Grid item xs={12} md={8} sm={12}>
           <h2> REVIEWS AND RATINGS</h2>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2} sm={6}>
           <Button
+            onClick={handleOpen}
             style={{
+              paddingTop: "10px",
+              marginTop: "5px",
               backgroundColor: "#FFBB38",
               color: "black",
             }}
@@ -74,13 +106,28 @@ function CommentComponent() {
           >
             POST REVIEW
           </Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <CreateArea onAdd={addNote} />
+              </Box>
+            </Fade>
+          </Modal>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2} sm={6}>
           {form()}
         </Grid>
       </Grid>
 
-      <Grid container spacing={5}>
+      <Grid container spacing={5} sm={12}>
         {/* <Grid item xs={2}></Grid> */}
         <Grid item xs={12}>
           {CompleteData.map(createComment)}

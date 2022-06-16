@@ -18,7 +18,7 @@ function Comment(props) {
           </h4>
           <Rating
             style={{ marginLeft: "10px", paddingTop: "1%" }}
-            value={rate}
+            value={Number(rate)}
             readOnly
           />
           <h4 style={{ marginLeft: "10px", float: "right", paddingTop: "1%" }}>
