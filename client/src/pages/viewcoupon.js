@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Form } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "56.25%", 
   },
   expand: {
     transform: "rotate(0deg)",
@@ -60,7 +59,6 @@ function ViewProduct(props) {
 
 
   useEffect(() => {
-    // Update the document title using the browser API
     if (localStorage.getItem("couponData")) {
       let values = JSON.parse(localStorage.getItem("couponData"));
       if (values.length > 0) {
@@ -136,13 +134,6 @@ function ViewProduct(props) {
                     >
                       DISCOUNT PERCENTAGE : {item.quantity}
                     </Typography>
-                    {/* <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Price : {item.price}
-                    </Typography> */}
                     <Typography
                       variant="body2"
                       color="textSecondary"
@@ -178,9 +169,6 @@ function ViewProduct(props) {
                       </Button>
                     </div>
 
-                    {/* <IconButton aria-label="share">
-                      <EyeIcon />
-                    </IconButton> */}
                   </CardActions>
                 </Card>
               </div>
