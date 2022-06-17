@@ -15,11 +15,7 @@ import SellerRegistration from './components/user-management/seller-registration
 import ManageAddress from './components/profile/manage-address';
 import ProfileInformation from './components/profile/profile-information';
 import ProductsPage from "./pages/products-page";
-import AddCouponPage from "./pages/coupon-management/add-coupon-page";
-import EditCouponPage from "./pages/coupon-management/coupon-edit-page";
-import CouponsListPage from "./pages/coupon-management/coupon-list-page";
 import useLocalStorage from './hooks/useLocalStorage';
-import CouponsContext from './context/CouponsContext';
 
 import "./app.css";
 import PaymentPage from "./pages/payment-page";
