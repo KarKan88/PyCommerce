@@ -85,7 +85,6 @@ function AddProduct() {
       price,
       discount,
       quantity,
-    //   image,
     });
     if (!isValid) {
       setErrors(errors);
@@ -95,13 +94,11 @@ function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
-    //   category,
       name,
       serialNo,
       price,
       discount,
       quantity,
-    //   image,
       id: id ? id : Math.round(Math.random() * 100000),
     };
 
