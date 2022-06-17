@@ -95,6 +95,24 @@ export default function Sidebar() {
               View Products
             </Typography>
           </Link>
+          <Box className={classes.sideBarLink}>
+          <p>Coupon Management</p>
+        </Box>
+          <Link to="/add-coupon">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/add-coupon" ? activeStyle : {}}>
+              Add Coupons
+            </Typography>
+          </Link>
+          <Link to="/view-coupon">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/view-coupon" ? activeStyle : {}}>
+              View Coupons
+            </Typography>
+          </Link>
+
           {/* <Link to="/editproduct">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}

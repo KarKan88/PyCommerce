@@ -9,6 +9,8 @@ import ProductPage from "./pages/product-details-page";
 import ProfilePage from "./pages/profile-page";
 import Addproduct from "./pages/addproduct";
 import Viewproduct from "./pages/viewproduct";
+import Addcoupon from "./pages/addcoupon";
+import Viewcoupon from "./pages/viewcoupon";
 import SellerRegistration from './components/user-management/seller-registration';
 import ManageAddress from './components/profile/manage-address';
 import ProfileInformation from './components/profile/profile-information';
@@ -100,9 +102,20 @@ function App() {
           <Viewproduct />
         </Route>
 
+        <Route exact path="/edit-coupon/:id">
+          <Addcoupon />
+        </Route>
+       
+        <Route exact path="/add-coupon">
+          <Addcoupon />
+        </Route>
+        <Route exact path="/view-coupon">
+          <Viewcoupon />
+        </Route>
+
         <Route component={ErrorPage} />
 
-        <CouponsContext.Provider value={{ coupons, setCoupons }}>
+        {/* <CouponsContext.Provider value={{ coupons, setCoupons }}>
           <Switch>
             <Route exact path="/coupons/add">
               <AddCouponPage />
@@ -114,7 +127,7 @@ function App() {
               <CouponsListPage />
             </Route>
           </Switch>
-        </CouponsContext.Provider>
+        </CouponsContext.Provider> */}
 
       </Switch>
     </div>
