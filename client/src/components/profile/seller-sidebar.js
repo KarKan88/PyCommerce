@@ -81,6 +81,9 @@ export default function Sidebar() {
           <p>Menu</p>
         </Box>
         <Box className={classes.subMenu}>
+          <Box className={classes.sideBarLink}>
+            <p>Products</p>
+          </Box>
           <Link to="/add-product">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
@@ -95,9 +98,11 @@ export default function Sidebar() {
               View Products
             </Typography>
           </Link>
+          <Divider />
+          <br />
           <Box className={classes.sideBarLink}>
-          <p>Coupon Management</p>
-        </Box>
+            <p>Coupons</p>
+          </Box>
           <Link to="/add-coupon">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
@@ -126,15 +131,15 @@ export default function Sidebar() {
         <Box
           className={clsx(classes.sideBarLink, classes.hoverTab)}
           style={{ cursor: "pointer" }}>
-          
-            {/* <div className="d-flex"> */}
-            <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />
-            <Link to="/">
-            <p style={{ color:"black"}}>Logout</p>
-            </Link>
-            {/* </div> */}
-            
-          
+
+          {/* <div className="d-flex"> */}
+          <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />
+          <Link to="/">
+            <p style={{ color: "black" }}>Logout</p>
+          </Link>
+          {/* </div> */}
+
+
         </Box>
       </Box>
     </>

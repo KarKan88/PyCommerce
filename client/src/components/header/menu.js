@@ -57,7 +57,7 @@ function Menu() {
     
     <Link to="/favorites">
       <Box className={classes.menu_link}>
-        <Typography className={classes.menu_more}>More</Typography>
+        <Typography className={classes.menu_more}>Profile</Typography>
         <ExpandMoreIcon />
       </Box>
     </Link>

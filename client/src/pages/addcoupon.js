@@ -157,7 +157,7 @@ function AddProduct() {
                   margin="normal"
                   helperText={errors.name}
                   id="standard-basic"
-                  label="COUPON CODE"
+                  label="Coupon Code"
                   value={name}
 
                   onChange={(e) => onChange(e)}
@@ -176,7 +176,7 @@ function AddProduct() {
                   margin="normal"
                   error={errors.serialNo ? true : false}
                   helperText={errors.serialNo}
-                  label="COUPON CONDITION"
+                  label="Coupon Condition"
                   value={serialNo}
 
                   name="serialNo"
@@ -193,7 +193,7 @@ function AddProduct() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  label="DISCOUNT PERCENTAGE"
+                  label="Discount %"
                   value={discount}
                   name="discount"
                   error={errors.discount ? true : false}
@@ -210,7 +210,7 @@ function AddProduct() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  label="MAXIMUM OFF"
+                  label="Maximum Off"
                   value={quantity}
 
                   error={errors.quantity ? true : false}
