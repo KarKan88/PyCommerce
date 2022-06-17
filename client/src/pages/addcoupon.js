@@ -149,7 +149,7 @@ function AddProduct() {
        
 
               <FormControl >
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   error={errors.name ? true : false}
                   fullWidth
                   variant="filled"
@@ -168,7 +168,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl fullWidth className="w-50">
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
@@ -187,7 +187,7 @@ function AddProduct() {
 
 
               <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
@@ -204,7 +204,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
