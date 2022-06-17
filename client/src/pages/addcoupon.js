@@ -77,13 +77,7 @@ function AddProduct() {
       setQuantity(ev.target.value);
     }
   };
-//   const onChangeFile = (ev) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(ev.target.files[0]);
-//     reader.onload = () => {
-//       setImage(reader.result);
-//     };
-//   };
+
   const isValid = () => {
     const { errors, isValid } = validateInput({
     //   category,
