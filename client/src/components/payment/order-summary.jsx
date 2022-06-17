@@ -80,7 +80,7 @@ export default function OrderSummary() {
                     <Divider />
                     <List>
                         <ListItem>
-                            <ListItemText primary="Sub Total" />
+                            <ListItemText primary="Total" />
                             <Typography variant="body2" fontWeight={600}>
                                 $34.06
                             </Typography>

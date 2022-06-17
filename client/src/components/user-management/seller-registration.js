@@ -110,7 +110,7 @@ function SellerRegistration() {
                         <FormHelperText style={{color:"red"}}>
                         {registerError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -124,7 +124,7 @@ function SellerRegistration() {
                         <FormHelperText style={{color:"red"}}>
                         {companyNameError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -138,7 +138,7 @@ function SellerRegistration() {
                         <FormHelperText style={{color:"red"}}>
                         {companyRegistrationNumberError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"

@@ -68,10 +68,7 @@ export default function AddressForm() {
                             {msg}
                         </Alert>
                     </Collapse>
-                    <Typography variant="h6" gutterBottom>
-                        Contact details
-                    </Typography>
-                    <Box m={1} mb={3} style={{paddingLeft: 25, paddingRight: 25}}>
+                    <Box m={1} mb={3} style={{ paddingLeft: 25, paddingRight: 25 }}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <TextField
@@ -81,7 +78,7 @@ export default function AddressForm() {
                                     label="Email"
                                     fullWidth
                                     autoComplete="email"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -92,7 +89,7 @@ export default function AddressForm() {
                                     label="First name"
                                     fullWidth
                                     autoComplete="given-name"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -103,7 +100,7 @@ export default function AddressForm() {
                                     label="Last name"
                                     fullWidth
                                     autoComplete="family-name"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -114,16 +111,13 @@ export default function AddressForm() {
                                     type="number"
                                     fullWidth
                                     autoComplete="email"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                         </Grid>
                     </Box>
-                    <Divider />
-                    <Box m={1} style={{paddingLeft: 25, paddingRight: 25}}>
-                        <Typography variant="h6" gutterBottom>
-                            Shipping address
-                        </Typography>
+
+                    <Box m={1} style={{ paddingLeft: 25, paddingRight: 25 }}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <TextField
@@ -133,7 +127,7 @@ export default function AddressForm() {
                                     label="Address line 1"
                                     fullWidth
                                     autoComplete="shipping address-line1"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -143,7 +137,7 @@ export default function AddressForm() {
                                     label="Address line 2"
                                     fullWidth
                                     autoComplete="shipping address-line2"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -154,13 +148,14 @@ export default function AddressForm() {
                                     label="City"
                                     fullWidth
                                     autoComplete="shipping address-level2"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormControl required fullWidth>
                                     <InputLabel id="demo-simple-select-required-label">State/Province/Region</InputLabel>
                                     <Select
+                                        variant="filled"
                                         labelId="demo-simple-select-required-label"
                                         id="demo-simple-select-required"
                                         required
@@ -189,7 +184,7 @@ export default function AddressForm() {
                                     label="Zip / Postal code"
                                     fullWidth
                                     autoComplete="shipping postal-code"
-                                    variant="standard"
+                                    variant="filled"
                                 />
                             </Grid>
                             <Grid item xs={12}

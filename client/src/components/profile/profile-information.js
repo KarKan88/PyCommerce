@@ -138,7 +138,7 @@ function ProfileInformation() {
                                 {`Phone Number : +1 (904) 748 8787`}
                             </Typography>
 
-                            <TextField style={{ backgroundColor: "#eeeeee", width: "40%" }}
+                            <TextField style={{ backgroundColor: "#fff", width: "40%" }}
                                 variant="filled"
                                 size="small"
                                 margin="normal"
@@ -151,7 +151,7 @@ function ProfileInformation() {
                             <FormHelperText style={{ color: "red", whiteSpace: "pre-line" }}>
                                 {newPasswordError}
                             </FormHelperText>
-                            <TextField style={{ backgroundColor: "#eeeeee", width: "40%" }}
+                            <TextField style={{ backgroundColor: "#fff", width: "40%" }}
                                 variant="filled"
                                 size="small"
                                 margin="normal"

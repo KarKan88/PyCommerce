@@ -270,7 +270,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {registerError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -284,7 +284,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {firstNameError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -298,7 +298,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {lastNameError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -312,7 +312,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {emailAddressError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -326,7 +326,7 @@ function Registration() {
                         <FormHelperText style={{color:"red", whiteSpace:"pre-line"}}>
                         {passwordError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -340,7 +340,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {confirmPasswordError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -354,7 +354,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {phoneNumberError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         multiline
                         rows={3}
@@ -371,7 +371,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {addressError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -385,7 +385,7 @@ function Registration() {
                         <FormHelperText style={{color:"red"}}>
                         {securityQuestionOneError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"

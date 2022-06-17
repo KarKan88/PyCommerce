@@ -162,9 +162,9 @@ function AddProduct() {
               <br/>
             </div>
             <div className="p-5">
-              <FormControl fullWidth style={{ backgroundColor: "#eeeeee", width: 500 }}>
+              <FormControl fullWidth style={{ backgroundColor: "#fff", width: 500 }}>
                 <InputLabel id="demo-simple-select-label" 
-                style={{ backgroundColor: "#eeeeee"}}
+                style={{ backgroundColor: "#fff"}}
                 fullWidth
                 variant="filled"
                 size="small"
@@ -200,7 +200,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl >
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   error={errors.name ? true : false}
                   fullWidth
                   variant="filled"
@@ -219,7 +219,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl fullWidth className="w-50">
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
@@ -238,7 +238,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
@@ -259,7 +259,7 @@ function AddProduct() {
 
               {!image ? (
                 <FormControl fullWidth>
-                  <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                  <TextField style={{ backgroundColor: "#fff", width: 500 }}
                     fullWidth
                     //variant="filled"
                     size="small"
@@ -283,7 +283,7 @@ function AddProduct() {
               )}
 
               <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
@@ -301,7 +301,7 @@ function AddProduct() {
               </FormControl>
 
               <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
                   fullWidth
                   variant="filled"
