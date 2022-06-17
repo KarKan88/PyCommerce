@@ -5,10 +5,7 @@ import validateInput from "../validations/validationAddCoupon";
 import { useHistory, useParams } from "react-router-dom";
 
 import {
-  InputLabel,
   TextField,
-  MenuItem,
-  Select,
   FormControl,
   Button,
 } from "@material-ui/core";
@@ -37,14 +34,12 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [discount, setDiscount] = useState("");
   const [quantity, setQuantity] = useState("");
-//   const [image, setImage] = useState("");
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState("");
 
   const { id } = useParams("");
 
   useEffect(() => {
-    // Update the document title using the browser API
 
     if (id) {
       let localData = JSON.parse(localStorage.getItem("couponData"));
@@ -57,7 +52,6 @@ function AddProduct() {
       if (!category) {
         setCategory(value?.category ?? "");
         setName(value?.name ?? "");
-        // setImage(value?.image ?? "");
         setDiscount(value?.discount ?? "");
         setQuantity(value?.quantity ?? "");
         setSerialNo(value?.serialNo ?? "");
@@ -162,42 +156,7 @@ function AddProduct() {
               <br/>
             </div>
             <div className="p-5">
-              {/* <FormControl fullWidth style={{ backgroundColor: "#eeeeee", width: 500 }}>
-                <InputLabel id="demo-simple-select-label" 
-                style={{ backgroundColor: "#eeeeee"}}
-                fullWidth
-                variant="filled"
-                size="small"
-                margin="normal">
-                  
-                  Product Category
-                </InputLabel>
-                <Select 
-                fullWidth
-                variant="standard"
-                size="small"
-                margin="normal"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={category ?? ""}
-                  // value={category ?? ""}
-
-                  label="Product Category"
-                  error={errors.category ? true : false}
-                  helperText={errors.category}
-                  onChange={(e) => onChange(e)}
-                  name="category"
-                >
-                  <MenuItem value="Grocery">Grocery</MenuItem>
-                  <MenuItem value="Mobile">Mobile</MenuItem>
-                  <MenuItem value="Fashion">Fashion</MenuItem>
-                  <MenuItem value="Electronics">Electronics</MenuItem>
-                  <MenuItem value="Home">Home</MenuItem>
-                  <MenuItem value="Appliances">Appliances</MenuItem>
-                  <MenuItem value="Travel">Travel</MenuItem>
-                  <MenuItem value="Toys">Toys</MenuItem>
-                </Select>
-              </FormControl> */}
+       
 
               <FormControl >
                 <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
@@ -229,7 +188,6 @@ function AddProduct() {
                   helperText={errors.serialNo}
                   label="COUPON CONDITION"
                   value={serialNo}
-                  // value={serialNo}
 
                   name="serialNo"
                   onChange={(e) => onChange(e)}
@@ -237,50 +195,6 @@ function AddProduct() {
                 />
               </FormControl>
 
-              {/* <FormControl fullWidth>
-                <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
-                  id="standard-basic"
-                  fullWidth
-                  variant="filled"
-                  size="small"
-                  margin="normal"
-                  label="Price"
-                  error={errors.price ? true : false}
-                  helperText={errors.price}
-                  value={price}
-                  price={price}
-                  // value={price}
-                  name="price"
-                  onChange={(e) => onChange(e)}
-
-
-                />
-              </FormControl> */}
-{/* 
-              {!image ? (
-                <FormControl fullWidth>
-                  <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
-                    fullWidth
-                    //variant="filled"
-                    size="small"
-                    margin="normal"
-                    label="Image"
-                    type="file"
-                    value={image}
-                    // value={image}
-
-                    error={errors.image ? true : false}
-                    helperText={errors.image}
-                    onChange={(e) => onChangeFile(e)}
-                    name="image"
-
-                  />
-                </FormControl>
-              ) : (
-                <label>
-                  <img src={image} width="150" height="150" onClick={() => setImage('')}></img>
-                </label>
-              )} */}
 
               <FormControl fullWidth>
                 <TextField style={{ backgroundColor: "#eeeeee", width: 500 }}
@@ -291,7 +205,6 @@ function AddProduct() {
                   margin="normal"
                   label="DISCOUNT PERCENTAGE"
                   value={discount}
-                  // value={discount}
                   name="discount"
                   error={errors.discount ? true : false}
                   helperText={errors.discount}
@@ -309,7 +222,6 @@ function AddProduct() {
                   margin="normal"
                   label="MAXIMUM OFF"
                   value={quantity}
-                  // value={quantity}
 
                   error={errors.quantity ? true : false}
                   helperText={errors.quantity}

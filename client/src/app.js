@@ -115,19 +115,7 @@ function App() {
 
         <Route component={ErrorPage} />
 
-        {/* <CouponsContext.Provider value={{ coupons, setCoupons }}>
-          <Switch>
-            <Route exact path="/coupons/add">
-              <AddCouponPage />
-            </Route>
-            <Route exact path="/coupons/edit">
-              <EditCouponPage />
-            </Route>
-            <Route exact path="/coupons/list">
-              <CouponsListPage />
-            </Route>
-          </Switch>
-        </CouponsContext.Provider> */}
+
 
       </Switch>
     </div>

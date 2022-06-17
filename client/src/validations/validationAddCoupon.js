@@ -4,9 +4,7 @@ import isEmpty from "lodash/isEmpty";
 function validateInput(data) {
   let errors = {};
 
-//   if (Validator.isEmpty(data.category)) {
-//     errors.category = "This field is required";
-//   }
+
   if (Validator.isEmpty(data.name)) {
     errors.name = "This field is required";
   }
@@ -23,11 +21,6 @@ function validateInput(data) {
     errors.quantity = "Please enter a valid number";
   }
 
-//   if (Validator.isEmpty(data.price)) {
-//     errors.price = "This field is required";
-//   } else if (!Validator.isNumeric(data.price)) {
-//     errors.price = "Please enter a valid number";
-//   }
 
   if (Validator.isEmpty(data.discount)) {
     errors.discount = "This field is required";
