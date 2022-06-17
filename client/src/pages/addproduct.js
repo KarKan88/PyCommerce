@@ -320,13 +320,13 @@ function AddProduct() {
               </FormControl>
 
               <div className="mt-5 w-100">
-                <Button style={{ backgroundColor: "#FFBB38", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 }}
+                <Button style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 }}
                   variant="contained"
                   type="submit"
                   color="primary"
                   className="w-100"
                 >
-                  Submit
+                  Add Product
                 </Button>
               </div>
             </div>
