@@ -80,7 +80,6 @@ function AddProduct() {
 
   const isValid = () => {
     const { errors, isValid } = validateInput({
-    //   category,
       name,
       serialNo,
       price,
