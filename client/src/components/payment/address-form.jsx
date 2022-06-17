@@ -1,50 +1,38 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Divider, Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container } from '@material-ui/core';
+import { Divider, Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container, makeStyles } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-// import { FormContainer, SelectElement, TextFieldElement } from 'react-hook-form-mui';
 import { Close } from '@material-ui/icons';
-import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 export default function AddressForm() {
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            width: '100%',
+        },
+        header: {
+            padding: "20px 40px",
+            fontSize: 18,
+            fontWeight: 500,
+            borderBottom: "1px solid #e0e0e0",
+        },
+        heading: {
+            fontSize: theme.typography.pxToRem(15),
+            flexBasis: '80%',
+            flexShrink: 0,
+        },
+        secondaryHeading: {
+            fontSize: theme.typography.pxToRem(15),
+            color: theme.palette.text.secondary,
+        },
+    }));
+    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [msg, setMsg] = React.useState("Error Message");
     const history = useHistory();
 
-    // const formContext = useForm();
-
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            )
-    }
-    const validateZipCode = (zipcode) => {
-        return String(zipcode)
-            .toLowerCase()
-            .match(
-                /[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
-            )
-    }
-
     const onCheckout = (event, formData) => {
-        // event.stopPropagation()
-        // console.log(formData)
-        // let errMsg = "";
-        // if (!validateEmail(formData.email)) {
-        //     errMsg += "Invalid Email! \n";
-        // }
-        // if (!validateZipCode(formData.zip)) {
-        //     errMsg += "Invalid Zip code! \n";
-        // }
-        // if (errMsg) {
-        //     setMsg(errMsg)
-        //     setOpen(true)
-        // }
-        // console.log(errMsg)
         history.push('/payment')
     }
 
@@ -55,8 +43,8 @@ export default function AddressForm() {
     return (
         <React.Fragment>
             <Container component="main" maxWidth="sm" style={{ marginBottom: 40 }} >
-                <Paper variant="outlined" style={{ padding: 25, marginTop: 30, marginBottom: 30 }}>
-                    <Typography component="h1" variant="h4" align="center">
+                <Paper variant="outlined" style={{ marginTop: 30, marginBottom: 30, paddingBottom: 25 }}>
+                    <Typography className={classes.header}>
                         Checkout
                     </Typography>
 
@@ -83,7 +71,7 @@ export default function AddressForm() {
                     <Typography variant="h6" gutterBottom>
                         Contact details
                     </Typography>
-                    <Box m={1} mb={3}>
+                    <Box m={1} mb={3} style={{paddingLeft: 25, paddingRight: 25}}>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <TextField
@@ -132,7 +120,7 @@ export default function AddressForm() {
                         </Grid>
                     </Box>
                     <Divider />
-                    <Box m={1}>
+                    <Box m={1} style={{paddingLeft: 25, paddingRight: 25}}>
                         <Typography variant="h6" gutterBottom>
                             Shipping address
                         </Typography>
@@ -208,9 +196,9 @@ export default function AddressForm() {
                                 display="flex"
                                 justifyContent="flex-end"
                                 alignItems="flex-end">
-                                <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10 }}
+                                <Button variant="contained" style={{ backgroundColor: "#EB853B", marginLeft: 10, fontWeight: 600 }}
                                     type='button' onClick={onCheckout}>Proceed to Checkout</Button>
-                                <Button variant="contained" style={{ backgroundColor: "#FF5C5C", marginLeft: 10 }}
+                                <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }}
                                     onClick={goBack}>Continue Shopping</Button>
                             </Grid>
                         </Grid>
