@@ -177,7 +177,7 @@ function ForgotPassword() {
                         <FormHelperText style={{color:"red"}}>
                         {passwordError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -191,7 +191,7 @@ function ForgotPassword() {
                         <FormHelperText style={{color:"red"}}>
                         {emailAddressError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -205,7 +205,7 @@ function ForgotPassword() {
                         <FormHelperText style={{color:"red", whiteSpace:"pre-line"}}>
                         {newPasswordError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -219,7 +219,7 @@ function ForgotPassword() {
                         <FormHelperText style={{color:"red"}}>
                         {confirmNewPasswordError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -233,7 +233,7 @@ function ForgotPassword() {
                         <FormHelperText style={{color:"red"}}>
                         {securityQuestionOneError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"

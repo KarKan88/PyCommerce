@@ -6,7 +6,12 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        padding: 20
+    },
+    header: {
+        padding: "20px 40px",
+        fontSize: 18,
+        fontWeight: 500,
+        borderBottom: "1px solid #e0e0e0",
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -85,13 +90,16 @@ function OrderHistory() {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const onTrack = ()=>{
+    const onTrack = () => {
         history.push('/deliveryStatus')
     }
 
     return (
         <div className={classes.root}>
-            <Typography variant='h4' gutterBottom>Order History</Typography>
+            <Typography className={classes.header}>
+                My Orders
+            </Typography>
+
             {orderDetails.map((order) => {
                 return (
                     <Accordion expanded={expanded === order.orderId} onChange={handleChange(order.orderId)}>

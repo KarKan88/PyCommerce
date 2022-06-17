@@ -9,7 +9,14 @@ import { Box } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        padding: 30
+        "& .MuiStepIcon-active": { color: "#4BBC57" },
+        "& .MuiStepIcon-completed": { color: "#4BBC57" }
+    },
+    header: {
+        padding: "20px 40px",
+        fontSize: 18,
+        fontWeight: 500,
+        borderBottom: "1px solid #e0e0e0",
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -56,17 +63,17 @@ export default function DeliveryStatus() {
     return (
         <>
             <div className={classes.root}>
-                <Typography variant="h4" gutterBottom>
+                <Typography className={classes.header}>
                     Track Package
                 </Typography>
-                <Box style={{ display: 'flex', justifyContent: "space-between", alignItems: "space-between" }}>
-                                        
-                <Typography className={classes.heading}>
-                    <b>Order Placed</b>: May 2nd, 2022 <b>Order Total</b>: CDN$140:58
-                </Typography>
-                <Typography className={classes.secondaryHeading}>Order ID: Order#001</Typography>
+                <Box style={{ display: 'flex', justifyContent: "space-between", alignItems: "space-between", padding: 40 }}>
+
+                    <Typography className={classes.heading}>
+                        <b>Order Placed</b>: May 2nd, 2022 <b>Order Total</b>: CDN$140:58
+                    </Typography>
+                    <Typography className={classes.secondaryHeading}>Order ID: Order#001</Typography>
                 </Box>
-                <Stepper activeStep={activeStep} alternativeLabel>
+                <Stepper activeStep={activeStep} alternativeLabel style={{ iconColor: "red" }}>
                     {steps.map((label) => (
                         <Step key={label}>
                             <StepLabel>{label}</StepLabel>

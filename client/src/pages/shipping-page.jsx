@@ -18,7 +18,6 @@ function ShippingPage() {
                         </Route>
                     </Switch>
                 </Grid>
-                <Divider orientation="vertical" flexItem />
                 <Grid item lg={4} xs={12}>
                     <OrderSummary />
                 </Grid>
