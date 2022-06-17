@@ -28,7 +28,6 @@ import OrderHistory from "./pages/order-history";
 import DeliveryStatus from "./pages/delivery-status";
 
 function App() {
-  const [coupons, setCoupons] = useLocalStorage('coupons', []);
   return (
     <div className="app">
       <Header />

@@ -1,6 +1,8 @@
 # PyCommerce
 A MERN (MongoDB, Express, React and Node) stack eCommerce application.
 
+Demo: [https://pycommerce-16.herokuapp.com](https://pycommerce-16.herokuapp.com/)
+
 ## Integration
 - Firebase:
     - Create a [Firebase Account](https://firebase.google.com/)
@@ -31,3 +33,4 @@ A MERN (MongoDB, Express, React and Node) stack eCommerce application.
 - Product: `500 x 540`
 - Featured Brands: `1000 x 540`
 - Poster Slider: `1000 x 615`
+

@@ -72,7 +72,7 @@ function ViewProduct(props) {
 
   const routeToEdit = (id) => {
     console.log(id)
-    navigate.push('/edit-product/'+id)
+    navigate.push('/edit-coupon/'+id)
 
   }
   const deleteProduct = (index) => {
