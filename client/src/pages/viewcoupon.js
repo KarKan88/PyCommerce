@@ -52,15 +52,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ViewProduct(props) {
-
-
     const [data, setData] = useState([]);
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
     const navigate = useHistory();
-
 
     useEffect(() => {
         if (localStorage.getItem("couponData")) {
@@ -75,10 +72,9 @@ function ViewProduct(props) {
     });
 
     const routeToEdit = (id) => {
-        console.log(id)
-        navigate.push('/edit-coupon/' + id)
-
-    }
+        console.log(id);
+        navigate.push("/edit-coupon/" + id);
+    };
     const deleteProduct = (index) => {
         let deletedData = data;
         deletedData.splice(index, 1);
@@ -100,20 +96,26 @@ function ViewProduct(props) {
         <
         Sidebar / >
         <
-        /Grid> <
+        /Grid>{" "} <
         Grid style = {
-            { background: "#fff" } }
+            {
+                background: "#fff",
+            }
+        }
         item lg = { 9 }
         md = { 9 }
         sm = { 12 }
         xs = { 12 } >
         <
         Grid container className = { classes.component }
-        spacing = { 3 } > {
+        spacing = { 3 } > { " " } {
             data.map((item, index) => ( <
                 Grid key = { index }
                 style = {
-                    { background: "#fff" } }
+                    {
+                        background: "#fff",
+                    }
+                }
                 item lg = { 4 }
                 md = { 4 }
                 sm = { 6 }
@@ -122,52 +124,64 @@ function ViewProduct(props) {
                 div classname = "" >
                 <
                 Card className = { classes.root } >
-
                 <
                 CardContent >
                 <
                 Typography variant = "body2"
                 color = "textSecondary"
                 component = "p" >
-                COUPON CODE: { item.serialNo } <
-                /Typography> <
+                COUPON CODE: { item.serialNo } { " " } <
+                /Typography>{" "} <
                 Typography variant = "body2"
                 color = "textSecondary"
                 component = "p" >
-                COUPON CONDITION: { item.name } <
-                /Typography> <
+                COUPON CONDITION: { item.name } { " " } <
+                /Typography>{" "} <
                 Typography variant = "body2"
                 color = "textSecondary"
                 component = "p" >
-                DISCOUNT PERCENTAGE: { item.quantity } <
-                /Typography> <
+                DISCOUNT PERCENTAGE: { item.quantity } { " " } <
+                /Typography>{" "} <
                 Typography variant = "body2"
                 color = "textSecondary"
                 component = "p" >
-                MAXIMUM AMOUNT OFF: { item.discount } <
-                /Typography> <
-                /CardContent> <
+                MAXIMUM AMOUNT OFF: { item.discount } { " " } <
+                /Typography>{" "} <
+                /CardContent>{" "} <
                 CardActions disableSpacing className = "" >
                 <
                 div className = "mx-2" >
                 <
                 Button style = {
-                    { backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 } }
+                    {
+                        backgroundColor: "#EB853B",
+                        marginTop: 20,
+                        color: "#222",
+                        fontWeight: 600,
+                        marginRight: 10,
+                    }
+                }
                 size = "small"
-
                 variant = "contained"
                 type = "submit"
                 color = "primary"
                 className = ""
                 onClick = {
                     () => deleteProduct(index) } >
-                DELETE <
-                /Button> <
-                /div> <
+                DELETE { " " } <
+                /Button>{" "} <
+                /div>{" "} <
                 div className = "mx-2" >
                 <
                 Button style = {
-                    { backgroundColor: "#FFBB38", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 } }
+                    {
+                        backgroundColor: "#FFBB38",
+                        marginTop: 20,
+                        color: "#222",
+                        fontWeight: 600,
+                        marginRight: 10,
+                    }
+                }
                 size = "small"
                 variant = "contained"
                 type = "submit"
@@ -175,19 +189,17 @@ function ViewProduct(props) {
                 className = ""
                 onClick = {
                     () => routeToEdit(item.id) } >
-                MODIFY <
-                /Button> <
-                /div>
-
-                <
-                /CardActions> <
-                /Card> <
-                /div> <
+                MODIFY { " " } <
+                /Button>{" "} <
+                /div>{" "} <
+                /CardActions>{" "} <
+                /Card>{" "} <
+                /div>{" "} <
                 /Grid>
             ))
-        } <
-        /Grid> <
-        /Grid> <
+        } { " " } <
+        /Grid>{" "} <
+        /Grid>{" "} <
         /Grid>
     );
 }

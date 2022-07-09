@@ -60,27 +60,38 @@ export default function DeliveryStatus() {
     const [activeStep, setActiveStep] = React.useState(2);
     const steps = getSteps();
 
-    return (
-        <>
-            <div className={classes.root}>
-                <Typography className={classes.header}>
-                    Track Package
-                </Typography>
-                <Box style={{ display: 'flex', justifyContent: "space-between", alignItems: "space-between", padding: 40 }}>
+    return ( <
+        >
+        <
+        div className = { classes.root } >
+        <
+        Typography className = { classes.header } >
+        Track Package <
+        /Typography> <
+        Box style = {
+            { display: 'flex', justifyContent: "space-between", alignItems: "space-between", padding: 40 } } >
 
-                    <Typography className={classes.heading}>
-                        <b>Order Placed</b>: May 2nd, 2022 <b>Order Total</b>: CDN$140:58
-                    </Typography>
-                    <Typography className={classes.secondaryHeading}>Order ID: Order#001</Typography>
+        <
+        Typography className = { classes.heading } >
+        <
+        b > Order Placed < /b>: May 2nd, 2022 <b>Order Total</b >: CDN$140: 58 <
+        /Typography> <
+        Typography className = { classes.secondaryHeading } > Order ID: Order #001</Typography>
+
                 </Box>
-                <Stepper activeStep={activeStep} alternativeLabel style={{ iconColor: "red" }}>
-                    {steps.map((label) => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
-            </div>
-        </>
+
+                <Stepper activeStep= { activeStep }
+        alternativeLabel style = {
+            { iconColor: "red" } } > {
+            steps.map((label) => ( <
+                Step key = { label } >
+                <
+                StepLabel > { label } < /StepLabel> <
+                /Step>
+            ))
+        } <
+        /Stepper> <
+        /div> <
+        />
     );
 }
