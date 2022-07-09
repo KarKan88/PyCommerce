@@ -8,8 +8,8 @@ import isEmpty from "lodash/isEmpty";
 function validateInput(data) {
   let errors = {};
 
-  if (Validator.isEmpty(data.name)) {
-    errors.name = "This field is required";
+  if (Validator.isEmpty(data.couponCode)) {
+    errors.couponCode = "This field is required";
   }
 
   if (Validator.isEmpty(data.serialNo)) {

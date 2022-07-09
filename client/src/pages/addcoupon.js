@@ -1,14 +1,16 @@
-/**
- * Author: Hemanth Nadipineni
- * Banner ID: B00899473
- */
 import React, { useState, useEffect } from "react";
 import { Grid, makeStyles, Form } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 import validateInput from "../validations/validationAddCoupon";
 import { useHistory, useParams } from "react-router-dom";
-
-import { TextField, FormControl, Button } from "@material-ui/core";
+import {
+  InputLabel,
+  TextField,
+  MenuItem,
+  Select,
+  FormControl,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -25,15 +27,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddProduct() {
+function AddCoupon() {
   const navigate = useHistory();
   const classes = useStyles();
   const [category, setCategory] = useState("");
-  const [name, setName] = useState("");
+
+  const [couponCode, setCouponCode] = useState("");
   const [serialNo, setSerialNo] = useState("");
-  const [price, setPrice] = useState("");
   const [discount, setDiscount] = useState("");
   const [quantity, setQuantity] = useState("");
+
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState("");
 
@@ -45,31 +48,24 @@ function AddProduct() {
       if (JSON.stringify(data) != JSON.stringify(localData)) {
         setData(localData);
       }
-
       let value = localData.find((x) => +x.id == +id);
-
       if (!category) {
         setCategory(value?.category ?? "");
-        setName(value?.name ?? "");
+        setCouponCode(value?.couponCode ?? "");
         setDiscount(value?.discount ?? "");
         setQuantity(value?.quantity ?? "");
         setSerialNo(value?.serialNo ?? "");
-        setPrice(value?.price ?? "");
       }
     } else {
     }
   });
 
   const onChange = (ev) => {
-    if (ev.target.name == "category") {
-      console.log(ev.target);
-      setCategory(ev.target.value);
-    } else if (ev.target.name == "name") {
-      setName(ev.target.value);
+    setCategory("Mobile");
+    if (ev.target.name == "couponCode") {
+      setCouponCode(ev.target.value);
     } else if (ev.target.name == "serialNo") {
       setSerialNo(ev.target.value);
-    } else if (ev.target.name == "price") {
-      setPrice(ev.target.value);
     } else if (ev.target.name == "discount") {
       setDiscount(ev.target.value);
     } else if (ev.target.name == "quantity") {
@@ -79,9 +75,9 @@ function AddProduct() {
 
   const isValid = () => {
     const { errors, isValid } = validateInput({
-      name,
+      category,
+      couponCode,
       serialNo,
-      price,
       discount,
       quantity,
     });
@@ -93,9 +89,9 @@ function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
-      name,
+      category,
+      couponCode,
       serialNo,
-      price,
       discount,
       quantity,
       id: id ? id : Math.round(Math.random() * 100000),
@@ -141,7 +137,7 @@ function AddProduct() {
         <form onSubmit={handleSubmit} style={{ padding: 40 }}>
           <div className="box">
             <div className="border-bottom py-3 text-center">
-              <h2>{id ? "Update " : "ADD "} COUPON</h2>
+              <h2>{id ? "Update " : "Add "} Coupon</h2>
               <br />
             </div>
             <div className="p-5">
@@ -156,9 +152,9 @@ function AddProduct() {
                   helperText={errors.name}
                   id="standard-basic"
                   label="Coupon Code"
-                  value={name}
+                  value={couponCode}
                   onChange={(e) => onChange(e)}
-                  name="name"
+                  name="couponCode"
                 />
               </FormControl>
 
@@ -172,7 +168,7 @@ function AddProduct() {
                   margin="normal"
                   error={errors.serialNo ? true : false}
                   helperText={errors.serialNo}
-                  label="Coupon Condition"
+                  label="Serial Number"
                   value={serialNo}
                   name="serialNo"
                   onChange={(e) => onChange(e)}
@@ -187,7 +183,7 @@ function AddProduct() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  label="Discount %"
+                  label="Discount"
                   value={discount}
                   name="discount"
                   error={errors.discount ? true : false}
@@ -204,7 +200,7 @@ function AddProduct() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  label="Maximum Off"
+                  label="Quantity"
                   value={quantity}
                   error={errors.quantity ? true : false}
                   helperText={errors.quantity}
@@ -227,7 +223,7 @@ function AddProduct() {
                   color="primary"
                   className="w-100"
                 >
-                  SAVE COUPON
+                  Add Product
                 </Button>
               </div>
             </div>
@@ -238,4 +234,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddCoupon;

@@ -11,15 +11,15 @@ import Addproduct from "./pages/addproduct";
 import Viewproduct from "./pages/viewproduct";
 import Addcoupon from "./pages/addcoupon";
 import Viewcoupon from "./pages/viewcoupon";
-import SellerRegistration from './components/user-management/seller-registration';
-import ManageAddress from './components/profile/manage-address';
-import ProfileInformation from './components/profile/profile-information';
+import SellerRegistration from "./components/user-management/seller-registration";
+import ManageAddress from "./components/profile/manage-address";
+import ProfileInformation from "./components/profile/profile-information";
 import ProductsPage from "./pages/products-page";
-import useLocalStorage from './hooks/useLocalStorage';
+import useLocalStorage from "./hooks/useLocalStorage";
 
 import "./app.css";
 import PaymentPage from "./pages/payment-page";
-import Payment from './components/payment/payment'
+import Payment from "./components/payment/payment";
 import Registration from "./components/user-management/registration";
 import Login from "./components/user-management/login";
 import ForgotPassword from "./components/user-management/forgot-password";
@@ -77,41 +77,37 @@ function App() {
         <Route exact path="/sellerregistration">
           <SellerRegistration />
         </Route>
-
         <Route exact path="/manageaddress">
           <ManageAddress />
         </Route>
-
         <Route exact path="/profileinformation">
           <ProfileInformation />
         </Route>
-
         <Route exact path="/edit-product/:id">
           <Addproduct />
         </Route>
-       
         <Route exact path="/add-product">
           <Addproduct />
         </Route>
         <Route exact path="/view-product">
           <Viewproduct />
         </Route>
-
-        <Route exact path="/edit-coupon/:id">
-          <Addcoupon />
-        </Route>
-       
+        /** 
+        Start of Routing for coupon-management
+         */
         <Route exact path="/add-coupon">
           <Addcoupon />
         </Route>
         <Route exact path="/view-coupon">
           <Viewcoupon />
         </Route>
-
+        <Route exact path="/edit-coupon/:id">
+          <Addcoupon />
+        </Route>
+        /** 
+        End of Routing for coupon-management
+         */
         <Route component={ErrorPage} />
-
-
-
       </Switch>
     </div>
   );

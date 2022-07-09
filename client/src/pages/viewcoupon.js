@@ -3,17 +3,9 @@
  * Banner ID: B00899473
  */
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
-import Sidebar from "../components/profile/seller-sidebar";
-
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-
-import Typography from "@material-ui/core/Typography";
+import { Grid, makeStyles, Card, CardContent, CardActions, colors, Button, Typography } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
-
-import { Button } from "@material-ui/core";
+import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ViewProduct(props) {
+function ViewCoupon(props) {
   const [data, setData] = useState([]);
 
   const classes = useStyles();
@@ -71,11 +63,11 @@ function ViewProduct(props) {
     }
   });
 
-  const routeToEdit = (id) => {
+  const editCoupon = (id) => {
     console.log(id);
     navigate.push("/edit-coupon/" + id);
   };
-  const deleteProduct = (index) => {
+  const deleteCoupon = (index) => {
     let deletedData = data;
     deletedData.splice(index, 1);
 
@@ -129,14 +121,14 @@ function ViewProduct(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      COUPON CODE: {item.serialNo}{" "}
+                      COUPON CODE: {item.couponCode}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      COUPON CONDITION: {item.name}{" "}
+                      COUPON CONDITION: {item.couponCode}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
@@ -168,7 +160,7 @@ function ViewProduct(props) {
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={() => deleteProduct(index)}
+                        onClick={() => deleteCoupon(index)}
                       >
                         DELETE{" "}
                       </Button>{" "}
@@ -187,7 +179,7 @@ function ViewProduct(props) {
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={() => routeToEdit(item.id)}
+                        onClick={() => editCoupon(item.id)}
                       >
                         MODIFY{" "}
                       </Button>{" "}
@@ -203,4 +195,4 @@ function ViewProduct(props) {
   );
 }
 
-export default ViewProduct;
+export default ViewCoupon;
