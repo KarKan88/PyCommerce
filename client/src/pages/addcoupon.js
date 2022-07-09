@@ -33,7 +33,7 @@ function AddCoupon() {
   const [category, setCategory] = useState("");
 
   const [couponCode, setCouponCode] = useState("");
-  const [serialNo, setSerialNo] = useState("");
+  const [couponCondition, setCouponCondition] = useState("");
   const [discount, setDiscount] = useState("");
   const [quantity, setQuantity] = useState("");
 
@@ -52,9 +52,10 @@ function AddCoupon() {
       if (!category) {
         setCategory(value?.category ?? "");
         setCouponCode(value?.couponCode ?? "");
+        setCouponCondition(value?.couponCondition ?? "");
         setDiscount(value?.discount ?? "");
         setQuantity(value?.quantity ?? "");
-        setSerialNo(value?.serialNo ?? "");
+        
       }
     } else {
     }
@@ -64,8 +65,8 @@ function AddCoupon() {
     setCategory("Mobile");
     if (ev.target.name == "couponCode") {
       setCouponCode(ev.target.value);
-    } else if (ev.target.name == "serialNo") {
-      setSerialNo(ev.target.value);
+    } else if (ev.target.name == "couponCondition") {
+      setCouponCondition(ev.target.value);
     } else if (ev.target.name == "discount") {
       setDiscount(ev.target.value);
     } else if (ev.target.name == "quantity") {
@@ -77,7 +78,7 @@ function AddCoupon() {
     const { errors, isValid } = validateInput({
       category,
       couponCode,
-      serialNo,
+      couponCondition,
       discount,
       quantity,
     });
@@ -91,7 +92,7 @@ function AddCoupon() {
     let data = {
       category,
       couponCode,
-      serialNo,
+      couponCondition,
       discount,
       quantity,
       id: id ? id : Math.round(Math.random() * 100000),
@@ -166,11 +167,11 @@ function AddCoupon() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  error={errors.serialNo ? true : false}
-                  helperText={errors.serialNo}
-                  label="Serial Number"
-                  value={serialNo}
-                  name="serialNo"
+                  error={errors.couponCondition ? true : false}
+                  helperText={errors.couponCondition}
+                  label="Coupon Condition"
+                  value={couponCondition}
+                  name="couponCondition"
                   onChange={(e) => onChange(e)}
                 />
               </FormControl>

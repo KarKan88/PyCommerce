@@ -12,8 +12,8 @@ function validateInput(data) {
     errors.couponCode = "This field is required";
   }
 
-  if (Validator.isEmpty(data.serialNo)) {
-    errors.serialNo = "This field is required";
+  if (Validator.isEmpty(data.couponCondition)) {
+    errors.couponCondition = "This field is required";
   }
 
   if (Validator.isEmpty(data.quantity)) {

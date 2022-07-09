@@ -3,7 +3,16 @@
  * Banner ID: B00899473
  */
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Card, CardContent, CardActions, colors, Button, Typography } from "@material-ui/core";
+import {
+  Grid,
+  makeStyles,
+  Card,
+  CardContent,
+  CardActions,
+  colors,
+  Button,
+  Typography,
+} from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
@@ -128,7 +137,7 @@ function ViewCoupon(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      COUPON CONDITION: {item.couponCode}{" "}
+                      COUPON CONDITION: {item.couponCondition}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
