@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 55,
   },
 }));
-
+/**
+ * Function to show the AddCoupon component from components
+ */
 function AddCouponPage() {
   const classes = useStyles();
 

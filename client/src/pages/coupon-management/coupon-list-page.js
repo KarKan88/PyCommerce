@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 55,
   },
 }));
-
+/**
+ * Function to show the CouponsListPage component from components
+ */
 function CouponsListPage() {
   const classes = useStyles();
 

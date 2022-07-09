@@ -53,7 +53,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
-
+/**
+ * Funtion to view the coupons extracted from the storage
+ */
 function ViewCoupon(props) {
   const [data, setData] = useState([]);
 
@@ -61,7 +63,9 @@ function ViewCoupon(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const navigate = useHistory();
-
+/**
+ * Get the coupon data from the storage using useEffect.
+ */
   useEffect(() => {
     if (localStorage.getItem("couponData")) {
       let values = JSON.parse(localStorage.getItem("couponData"));
@@ -74,10 +78,16 @@ function ViewCoupon(props) {
     }
   });
 
+  /**
+   * Funtion to handle the event when edit coupon is clicked 
+   */
   const editCoupon = (id) => {
     console.log(id);
     navigate.push("/edit-coupon/" + id);
   };
+  /**
+   * Function to handle the event when delete coupon is clicked
+   */
   const deleteCoupon = (index) => {
     let deletedData = data;
     deletedData.splice(index, 1);
@@ -88,6 +98,9 @@ function ViewCoupon(props) {
     }, 1000);
   };
 
+  /**
+   * Return the Card items with coupon data on each card.
+   */
   return (
     <Grid container className={classes.component}>
       <Grid

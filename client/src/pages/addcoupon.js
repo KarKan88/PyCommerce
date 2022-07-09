@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
+/**
+ * Declaration of AddCoupon function to create a form and its functionalities 
+ */
 function AddCoupon() {
   const navigate = useHistory();
   const classes = useStyles();
@@ -47,7 +49,9 @@ function AddCoupon() {
   const [errors, setErrors] = useState("");
 
   const { id } = useParams("");
-
+  /**
+   * Initialize the variables for coupon details declared above into localStorage as couponData
+   */
   useEffect(() => {
     if (id) {
       let localData = JSON.parse(localStorage.getItem("couponData"));
@@ -66,7 +70,9 @@ function AddCoupon() {
     } else {
     }
   });
-
+  /**
+   * Initialize the variable of coupon details from the form inputs.
+   */
   const onChange = (ev) => {
     setCategory("Mobile");
     if (ev.target.name == "couponCode") {
@@ -79,7 +85,9 @@ function AddCoupon() {
       setMaximumOff(ev.target.value);
     }
   };
-
+/**
+ * Check for the errors in form input.
+ */
   const isValid = () => {
     const { errors, isValid } = validateInput({
       category,
@@ -93,6 +101,9 @@ function AddCoupon() {
     }
     return isValid;
   };
+  /**
+   * Function to handle the events on submission of the form
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
@@ -103,7 +114,9 @@ function AddCoupon() {
       maximumOff,
       id: id ? id : Math.round(Math.random() * 100000),
     };
-
+    /**
+     * Check if the inputs filled in the form are valid and then store it in localStorage
+     */
     if (isValid(data)) {
       if (id) {
         let localData = JSON.parse(localStorage.getItem("couponData"));
@@ -128,6 +141,9 @@ function AddCoupon() {
     }
   };
 
+  /**
+   * The page returns the form for the user to give inputs for the coupon data
+   */
   return (
     <Grid container className={classes.component}>
       <Grid

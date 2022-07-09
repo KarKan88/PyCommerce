@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 55,
   },
 }));
-
+/**
+ * Function to show the EditCoupon component from components
+ */
 function EditCouponPage() {
   const classes = useStyles();
 
