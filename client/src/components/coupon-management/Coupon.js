@@ -10,6 +10,10 @@ import { Card } from "react-bootstrap";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
+
+/**
+ * Initialzing a variable useStyles to create a styling for the Coupon Component
+ */
 const useStyles = makeStyles((theme) => ({
   btn: {
     color: "#222",
@@ -28,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
 Component of a coupon on list page.
 Referenced from the tutorial on https://medium.com/free-code-camp/crud-using-react-41d047224e26
 */
-
+/**
+ * Declaration of a Coupon variable with all the required fields
+ */
 const Coupon = ({
   id,
   couponcode,
@@ -41,6 +47,9 @@ const Coupon = ({
   const classes = useStyles();
   const history = useHistory();
 
+  /**
+   * Return the Title card with details of coupon + Edit and Delete options
+   */
   return (
     <Card style={{ width: "18rem" }} className="coupon">
       <Card.Body>
@@ -64,5 +73,7 @@ const Coupon = ({
     </Card>
   );
 };
-
+/**
+ * Export the component as Coupon
+ */
 export default Coupon;

@@ -7,7 +7,9 @@ import { makeStyles } from "@material-ui/core";
 
 import AddCoupon from "../../components/coupon-management/AddCoupon";
 import ToastMessageContainer from "../../components/toast";
-
+/**
+ * Initialzing a variable useStyles to create a styling for the Coupon Page
+ */
 const useStyles = makeStyles((theme) => ({
   addcoupon: {
     padding: "30px",
@@ -25,5 +27,7 @@ function AddCouponPage() {
     </div>
   );
 }
-
+/**
+ * Export the page as AddCouponPage
+ */
 export default AddCouponPage;

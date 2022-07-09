@@ -10,14 +10,20 @@ import React, { useContext } from "react";
 import _ from "lodash";
 import Coupon from "./Coupon";
 import CouponsContext from "../../context/CouponsContext";
-
+/**
+ * Get the list of coupons with thier details from the coupons context.
+ */
 const CouponsList = () => {
   const { coupons, setCoupons } = useContext(CouponsContext);
-
+/**
+ * Function to handle the coupon deletion events.
+ */
   const handleRemoveCoupon = (id) => {
     setCoupons(coupons.filter((coupon) => coupon.id !== id));
   };
-
+/**
+ * Return the remaining coupons available, otherwise put a message to show No coupons are available.
+ */
   return (
     <React.Fragment>
       <div className="coupon-li">
@@ -40,5 +46,7 @@ const CouponsList = () => {
     </React.Fragment>
   );
 };
-
+/**
+ * Export the component as CouponsList
+ */
 export default CouponsList;

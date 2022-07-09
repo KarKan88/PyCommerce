@@ -15,7 +15,9 @@ const EditCoupon = ({ history }) => {
   const { coupons, setCoupons } = useContext(CouponsContext);
   const { id } = useParams();
   const couponToEdit = coupons.find((coupon) => coupon.id === id);
-
+/**
+ * Handle the events for submission of coupons and show the list of coupons after submission.
+ */
   const handleOnSubmit = (coupon) => {
     const filteredCoupons = coupons.filter((coupon) => coupon.id !== id);
     setCoupons([coupon, ...filteredCoupons]);
@@ -28,5 +30,7 @@ const EditCoupon = ({ history }) => {
     </div>
   );
 };
-
+/**
+ * Export the component as EditCoupon
+ */
 export default EditCoupon;

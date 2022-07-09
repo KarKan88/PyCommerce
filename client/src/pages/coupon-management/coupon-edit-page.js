@@ -7,7 +7,9 @@ import { makeStyles } from "@material-ui/core";
 
 import EditCoupon from "../../components/coupon-management/EditCoupon";
 import ToastMessageContainer from "../../components/toast";
-
+/**
+ * Initialzing a variable useStyles to create a styling for the Edit coupon page
+ */
 const useStyles = makeStyles((theme) => ({
   editcoupon: {
     padding: "30px",
@@ -25,5 +27,7 @@ function EditCouponPage() {
     </div>
   );
 }
-
+/**
+ * Export the page as EditCouponPage
+ */
 export default EditCouponPage;

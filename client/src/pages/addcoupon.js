@@ -1,3 +1,7 @@
+/**
+ * Author: Hemanth Nadipineni
+ * Banner ID: B00899473
+ */
 import React, { useState, useEffect } from "react";
 import { Grid, makeStyles, Form } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
@@ -11,7 +15,9 @@ import {
   FormControl,
   Button,
 } from "@material-ui/core";
-
+/**
+ * Initialzing a variable useStyles to create a styling for the Add Coupon Page
+ */
 const useStyles = makeStyles((theme) => ({
   component: {
     marginTop: 55,
@@ -234,5 +240,7 @@ function AddCoupon() {
     </Grid>
   );
 }
-
+/**
+ * Export the page as AddCoupon
+ */
 export default AddCoupon;

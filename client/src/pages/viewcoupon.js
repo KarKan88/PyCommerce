@@ -16,7 +16,9 @@ import {
 import { red } from "@material-ui/core/colors";
 import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
-
+/**
+ * Initialzing a variable useStyles to create a styling for the Coupon View Page
+ */
 const useStyles = makeStyles((theme) => ({
   component: {
     marginTop: 55,
@@ -203,5 +205,7 @@ function ViewCoupon(props) {
     </Grid>
   );
 }
-
+/**
+ * Export the page as ViewCoupon
+ */
 export default ViewCoupon;

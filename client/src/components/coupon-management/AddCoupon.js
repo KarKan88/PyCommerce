@@ -12,6 +12,9 @@ import CouponsContext from "../../context/CouponsContext";
 const AddCoupon = ({ history }) => {
   const { coupons, setCoupons } = useContext(CouponsContext);
 
+  /**
+   * Handling on submit event and initializing coupon variable. 
+   */
   const handleOnSubmit = (coupon) => {
     setCoupons([coupon, ...coupons]);
     history.push("/coupons/list");
@@ -24,4 +27,7 @@ const AddCoupon = ({ history }) => {
   );
 };
 
+/**
+ * Export the component as AddCoupon
+ */
 export default AddCoupon;

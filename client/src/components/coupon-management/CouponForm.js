@@ -45,12 +45,16 @@ const CouponForm = (props) => {
     discountpercentage: discountpercentage,
     maxdiscount: maxdiscount,
   } = coupon;
-
+  /**
+   * Declaration if variable to handle events on submission of the form
+   */
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const values = [couponcode, condition, discountpercentage, maxdiscount];
     let errorMsg = "";
-
+    /**
+     * Check if all the fields are filled
+     */
     const allFieldsFilled = values.every((field) => {
       const value = `${field}`.trim();
       return value !== "" && value !== "0";
@@ -71,7 +75,9 @@ const CouponForm = (props) => {
     }
     setErrorMsg(errorMsg);
   };
-
+/**
+ * Handling input changes when the user edits details of a coupon.
+ */
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     switch (name) {
@@ -98,6 +104,9 @@ const CouponForm = (props) => {
         }));
     }
   };
+  /**
+   * Return form to the component where a user can fill all the details.
+   */
 
   return (
     <div className="main-form">
@@ -155,5 +164,7 @@ const CouponForm = (props) => {
     </div>
   );
 };
-
+/**
+ * Export the component as CouponForm
+ */
 export default CouponForm;
