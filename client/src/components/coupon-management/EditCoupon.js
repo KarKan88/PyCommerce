@@ -3,7 +3,7 @@
  * Banner ID: B00899473
  */
 /*
-Component to display all coupons.
+Component to edit a coupon.
 Referenced from the tutorial on freecodecamp: https://www.freecodecamp.org/news/react-crud-app-how-to-create-a-book-management-app-from-scratch/
 */
 import React, { useContext } from 'react';
