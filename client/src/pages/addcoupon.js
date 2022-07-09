@@ -35,7 +35,7 @@ function AddCoupon() {
   const [couponCode, setCouponCode] = useState("");
   const [couponCondition, setCouponCondition] = useState("");
   const [discount, setDiscount] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [maximumOff, setMaximumOff] = useState("");
 
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState("");
@@ -54,7 +54,7 @@ function AddCoupon() {
         setCouponCode(value?.couponCode ?? "");
         setCouponCondition(value?.couponCondition ?? "");
         setDiscount(value?.discount ?? "");
-        setQuantity(value?.quantity ?? "");
+        setMaximumOff(value?.maximumOff ?? "");
         
       }
     } else {
@@ -69,8 +69,8 @@ function AddCoupon() {
       setCouponCondition(ev.target.value);
     } else if (ev.target.name == "discount") {
       setDiscount(ev.target.value);
-    } else if (ev.target.name == "quantity") {
-      setQuantity(ev.target.value);
+    } else if (ev.target.name == "maximumOff") {
+      setMaximumOff(ev.target.value);
     }
   };
 
@@ -80,7 +80,7 @@ function AddCoupon() {
       couponCode,
       couponCondition,
       discount,
-      quantity,
+      maximumOff,
     });
     if (!isValid) {
       setErrors(errors);
@@ -94,7 +94,7 @@ function AddCoupon() {
       couponCode,
       couponCondition,
       discount,
-      quantity,
+      maximumOff,
       id: id ? id : Math.round(Math.random() * 100000),
     };
 
@@ -201,12 +201,12 @@ function AddCoupon() {
                   variant="filled"
                   size="small"
                   margin="normal"
-                  label="Quantity"
-                  value={quantity}
-                  error={errors.quantity ? true : false}
-                  helperText={errors.quantity}
+                  label="Maximum Off"
+                  value={maximumOff}
+                  error={errors.maximumOff ? true : false}
+                  helperText={errors.maximumOff}
                   onChange={(e) => onChange(e)}
-                  name="quantity"
+                  name="maximumOff"
                 />
               </FormControl>
 
@@ -224,7 +224,7 @@ function AddCoupon() {
                   color="primary"
                   className="w-100"
                 >
-                  Add Product
+                  Add Coupon
                 </Button>
               </div>
             </div>

@@ -16,10 +16,10 @@ function validateInput(data) {
     errors.couponCondition = "This field is required";
   }
 
-  if (Validator.isEmpty(data.quantity)) {
-    errors.quantity = "This field is required";
-  } else if (!Validator.isNumeric(data.quantity)) {
-    errors.quantity = "Please enter a valid number";
+  if (Validator.isEmpty(data.maximumOff)) {
+    errors.maximumOff = "This field is required";
+  } else if (!Validator.isNumeric(data.maximumOff)) {
+    errors.maximumOff = "Please enter a valid number";
   }
 
   if (Validator.isEmpty(data.discount)) {

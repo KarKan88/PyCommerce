@@ -130,28 +130,28 @@ function ViewCoupon(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      COUPON CODE: {item.couponCode}{" "}
+                      Coupon Code: {item.couponCode}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      COUPON CONDITION: {item.couponCondition}{" "}
+                      Coupon Condition: {item.couponCondition}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      DISCOUNT PERCENTAGE: {item.quantity}{" "}
+                      Discount Percentage: {item.discount}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      MAXIMUM AMOUNT OFF: {item.discount}{" "}
+                      Maximum Off: {item.maximumOff}{" "}
                     </Typography>{" "}
                   </CardContent>{" "}
                   <CardActions disableSpacing className="">
