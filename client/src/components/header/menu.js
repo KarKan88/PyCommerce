@@ -55,7 +55,7 @@ function Menu() {
     </Link>
     
     
-    <Link to="/favorites">
+    <Link to="/profileinformation">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Profile</Typography>
         <ExpandMoreIcon />

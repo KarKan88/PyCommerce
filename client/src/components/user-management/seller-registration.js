@@ -16,13 +16,15 @@ import { useHistory } from "react-router-dom";
 function SellerRegistration() {
 
     const [companyName, setCompanyName] = useState("");
+    const [cNameSuccess, setCNameSuccess] = useState(false);
     const [companyNameError, setCompanyNameError] = useState("");
     const [companyRegistrationNumber, setCompanyRegistrationNumber] = useState("");
+    const [regSuccess, setRegSuccess] = useState(false);
     const [companyRegistrationNumberError, setCompanyRegistrationNumberError] = useState("");
     const [location, setLocation] = useState("");
+    const [locSuccess, setLocSuccess] = useState(false);
     const [locationError, setLocationError] = useState("");
     const [registerError, setRegisterError] = useState("");
-    const [success, setSuccess] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const navigate = useHistory();
 
@@ -32,9 +34,9 @@ function SellerRegistration() {
         let err = "";
         if(!name.trim()) {
             err = "Company Name cannot be empty"
-            setSuccess(false);
+            setCNameSuccess(false);
         } else {
-            setSuccess(true);
+            setCNameSuccess(true);
         }
         setCompanyName(name);
         setCompanyNameError(err);
@@ -46,9 +48,9 @@ function SellerRegistration() {
         let err = "";
         if(!number.trim()) {
             err = "Company's Registration Number cannot be empty";
-            setSuccess(false);
+            setRegSuccess(false);
         } else {
-            setSuccess(true);
+            setRegSuccess(true);
         }
         setCompanyRegistrationNumber(number);
         setCompanyRegistrationNumberError(err);
@@ -60,16 +62,16 @@ function SellerRegistration() {
         let err = "";
         if(!location.trim()) {
             err = "Company operating city cannot be empty";
-            setSuccess(false);
+            setLocSuccess(false);
         } else {
-            setSuccess(true);
+            setLocSuccess(true);
         }
         setLocation(location);
         setLocationError(err);
     }
 
     function onHandleSubmit() {
-        if(success && ((companyName && companyRegistrationNumber && location) !== "")) {
+        if((cNameSuccess && regSuccess && locSuccess) && ((companyName && companyRegistrationNumber && location) !== "")) {
             setOpenDialog(true);
         } else {
             setRegisterError("All fields are mandatory");
@@ -80,10 +82,13 @@ function SellerRegistration() {
         setRegisterError("");
         setOpenDialog(false);
         setCompanyName("");
+        setCNameSuccess(false);
         setCompanyNameError("");
         setCompanyRegistrationNumber("");
+        setRegSuccess(false);
         setCompanyRegistrationNumberError("");
         setLocation("");
+        setLocSuccess(false);
         setLocationError("");
         navigate.push("/add-product"); 
     }
@@ -91,10 +96,13 @@ function SellerRegistration() {
     function onHandleReset() {
         setRegisterError("");
         setCompanyName("");
+        setCNameSuccess(false);
         setCompanyNameError("");
         setCompanyRegistrationNumber("");
+        setRegSuccess(false);
         setCompanyRegistrationNumberError("");
         setLocation("");
+        setLocSuccess(false);
         setLocationError("");
     }
 

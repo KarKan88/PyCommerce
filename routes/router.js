@@ -13,7 +13,23 @@ const {
   createPaymentIntent
 } = require("../controllers/favorites-controller");
 
+const {
+  verifyEmailAddress,
+  userRegistration,
+  userLogin,
+  forgotPassword,
+  sellerRegistration
+} = require("../controllers/user-controller");
+
+const {verifyJWT} = require("../authentication/authentication");
+
 const router = express.Router();
+
+router.post("/register", userRegistration);
+router.post("/verifyemail", verifyEmailAddress);
+router.post("/login", userLogin);
+router.post("/forgotpassword", forgotPassword);
+router.post("/sellerregistration", verifyJWT, sellerRegistration);
 
 router.get("/products/get-products", getProducts);
 router.get("/products/get-products/:categoryName", getProductsByCategory);

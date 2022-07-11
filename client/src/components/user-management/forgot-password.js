@@ -19,17 +19,21 @@ import { useHistory } from "react-router-dom";
 function ForgotPassword() {
 
     const [emailAddress, setEmailAddress] = useState("");
+    const [emailSuccess, setEmailSuccess] = useState(false);
     const [emailAddressError, setEmailAddressError] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [newPasswordError, setNewPasswordError] = useState("");
-    const [confirmNewPassword, setConfirmNewPassword] = useState("");
-    const [confirmNewPasswordError, setConfirmNewPasswordError] = useState("");
     const [securityQuestionOne, setSecurityQuestionOne] = useState("");
+    const [q1Success, setQ1Success] = useState(false);
     const [securityQuestionOneError, setSecurityQuestionOneError] = useState("");
     const [securityQuestionTwo, setSecurityQuestionTwo] = useState("");
+    const [q2Success, setQ2Success] = useState(false);
     const [securityQuestionTwoError, setSecurityQuestionTwoError] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [passwordSuccess, setPasswordSuccess] = useState(false);
+    const [newPasswordError, setNewPasswordError] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const [conPasswordSuccess, setConPasswordSuccess] = useState(false);
+    const [confirmNewPasswordError, setConfirmNewPasswordError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [success, setSuccess] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
     const navigate = useHistory();
 
@@ -40,12 +44,12 @@ function ForgotPassword() {
         let err = "";
         if(!emailAddressName.trim()) {
             err = "Email Address cannot be empty";
-            setSuccess(false);
+            setEmailSuccess(false);
         } else if(!emailAddressRegex.test(emailAddressName)) {
             err = "Email Address doesn't match criteria, ex: indu@outlook.com";
-            setSuccess(false);
+            setEmailSuccess(false);
         } else {
-            setSuccess(true);
+            setEmailSuccess(true);
         }
         setEmailAddress(emailAddressName);
         setEmailAddressError(err);
@@ -58,7 +62,7 @@ function ForgotPassword() {
         let err = "";
         if(!passwordValue.trim()) {
             err = "Password cannot be empty";
-            setSuccess(false);
+            setPasswordSuccess(false);
         } else if(!passwordRegex.test(passwordValue)) {
             err = "Password doesn't match the criteria, \n" + 
                   "at least eight characters,\n" +
@@ -66,9 +70,9 @@ function ForgotPassword() {
                   "at least one lowercase letter,\n" +
                   "at least one uppercase letter, \n" +
                   "at least one special character ";
-            setSuccess(false);
+            setPasswordSuccess(false);
         } else {
-            setSuccess(true);
+            setPasswordSuccess(true);
         }
         setNewPassword(passwordValue);
         setNewPasswordError(err);
@@ -80,12 +84,12 @@ function ForgotPassword() {
         let err = "";
         if(!cPassword.trim()) {
             err = "Confirm Password cannot be empty";
-            setSuccess(false);
+            setConPasswordSuccess(false);
         } else if(newPassword !== cPassword) {
             err = "Passwords doesn't match";
-            setSuccess(false);
+            setConPasswordSuccess(false);
         } else {
-            setSuccess(true);
+            setConPasswordSuccess(true);
         }
         setConfirmNewPassword(cPassword);
         setConfirmNewPasswordError(err);
@@ -98,12 +102,12 @@ function ForgotPassword() {
         let err = "";
         if(!sqOne.trim()) {
             err = "Security Question Answer cannot be empty";
-            setSuccess(false);
+            setQ1Success(false);
         } else if(!sqOneRegex.test(sqOne)) {
             err = "Security Question Answer should only have alphabets";
-            setSuccess(false);
+            setQ1Success(false);
         } else {
-            setSuccess(true);
+            setQ1Success(true);
         }
         setSecurityQuestionOne(sqOne);
         setSecurityQuestionOneError(err);
@@ -116,19 +120,20 @@ function ForgotPassword() {
         let err = "";
         if(!sqTwo.trim()) {
             err = "Security Question Answer cannot be empty";
-            setSuccess(false);
+            setQ2Success(false);
         } else if(!sqTwoRegex.test(sqTwo)) {
             err = "Security Question Answer should only have alphabets";
-            setSuccess(false);
+            setQ2Success(false);
         } else {
-            setSuccess(true);
+            setQ2Success(true);
         }
         setSecurityQuestionTwo(sqTwo);
         setSecurityQuestionTwoError(err);
     }
 
     function onHandleSubmit() {
-        if(success && ((emailAddress && newPassword && confirmNewPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
+        if((emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success) 
+            && ((emailAddress && newPassword && confirmNewPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
             setOpenDialog(true);
         } else {
             setPasswordError("All fields are mandatory");
@@ -139,14 +144,19 @@ function ForgotPassword() {
         setPasswordError("");
         setOpenDialog(false);
         setEmailAddress("");
+        setEmailSuccess(false);
         setEmailAddressError("");
         setNewPassword("");
+        setPasswordSuccess(false);
         setNewPasswordError("");
         setConfirmNewPassword("");
+        setConPasswordSuccess(false);
         setConfirmNewPasswordError("");
         setSecurityQuestionOne("");
+        setQ1Success(false);
         setSecurityQuestionOneError("");
         setSecurityQuestionTwo("");
+        setQ2Success(false);
         setSecurityQuestionTwoError("");
         navigate.push("/login");
     }
@@ -154,14 +164,19 @@ function ForgotPassword() {
     function onHandleReset() {
         setPasswordError("");
         setEmailAddress("");
+        setEmailSuccess(false);
         setEmailAddressError("");
         setNewPassword("");
+        setPasswordSuccess(false);
         setNewPasswordError("");
         setConfirmNewPassword("");
+        setConPasswordSuccess(false);
         setConfirmNewPasswordError("");
         setSecurityQuestionOne("");
+        setQ1Success(false);
         setSecurityQuestionOneError("");
         setSecurityQuestionTwo("");
+        setQ2Success(false);
         setSecurityQuestionTwoError("");
     }
 
@@ -196,34 +211,6 @@ function ForgotPassword() {
                         variant="filled"
                         size="small"
                         margin="normal"
-                        name="password"
-                        label="Password"
-                        type="password"
-                        value={newPassword}
-                        onChange={onHandlePassword}
-                        required/>
-                        <FormHelperText style={{color:"red", whiteSpace:"pre-line"}}>
-                        {newPasswordError}
-                        </FormHelperText>
-                        <TextField style ={{backgroundColor: "#fff"}}
-                        fullWidth
-                        variant="filled"
-                        size="small"
-                        margin="normal"
-                        name="confirmpassword"
-                        label="Confirm Password"
-                        type="password"
-                        value={confirmNewPassword}
-                        onChange={onHandleConfirmPassword}
-                        required/>
-                        <FormHelperText style={{color:"red"}}>
-                        {confirmNewPasswordError}
-                        </FormHelperText>
-                        <TextField style ={{backgroundColor: "#fff"}}
-                        fullWidth
-                        variant="filled"
-                        size="small"
-                        margin="normal"
                         name="securityquestionone"
                         label="Security Question - Favourite City"
                         type="text"
@@ -246,6 +233,34 @@ function ForgotPassword() {
                         required/>
                         <FormHelperText style={{color:"red"}}>
                         {securityQuestionTwoError}
+                        </FormHelperText>
+                        <TextField style ={{backgroundColor: "#fff"}}
+                        fullWidth
+                        variant="filled"
+                        size="small"
+                        margin="normal"
+                        name="password"
+                        label="Password"
+                        type="password"
+                        value={newPassword}
+                        onChange={onHandlePassword}
+                        required/>
+                        <FormHelperText style={{color:"red", whiteSpace:"pre-line"}}>
+                        {newPasswordError}
+                        </FormHelperText>
+                        <TextField style ={{backgroundColor: "#fff"}}
+                        fullWidth
+                        variant="filled"
+                        size="small"
+                        margin="normal"
+                        name="confirmpassword"
+                        label="Confirm Password"
+                        type="password"
+                        value={confirmNewPassword}
+                        onChange={onHandleConfirmPassword}
+                        required/>
+                        <FormHelperText style={{color:"red"}}>
+                        {confirmNewPasswordError}
                         </FormHelperText>
                         <Button variant="contained" color = "success"
                         onClick={onHandleSubmit} style = {{ marginBottom:"5%", border:"5px",backgroundColor: "#FFBB38", width:"45%"}}>
