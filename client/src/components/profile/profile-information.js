@@ -15,18 +15,24 @@ import Sidebar from "./sidebar";
 
 const useStyles = makeStyles((theme) => ({
     component: {
-      marginTop: 55,
-      padding: "30px 6%",
-      display: "flex",
+        marginTop: 55,
+        padding: "30px 6%",
+        display: "flex",
+    },
+    header: {
+        padding: "20px 40px",
+        fontSize: 18,
+        fontWeight: 500,
+        borderBottom: "1px solid #e0e0e0",
     },
     leftComponent: {
-      paddingRight: 15,
-      [theme.breakpoints.between(0, 960)]: {
-        paddingRight: 0,
-        marginBottom: 20,
-      },
+        paddingRight: 15,
+        [theme.breakpoints.between(0, 960)]: {
+            paddingRight: 0,
+            marginBottom: 20,
+        },
     },
-  }));
+}));
 function ProfileInformation() {
 
     const classes = useStyles();
@@ -43,16 +49,16 @@ function ProfileInformation() {
         let passwordValue = event.target.value;
         let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         let err = "";
-        if(!passwordValue.trim()) {
+        if (!passwordValue.trim()) {
             err = "Password cannot be empty";
             setSuccess(false);
-        } else if(!passwordRegex.test(passwordValue)) {
-            err = "Password doesn't match the criteria, \n" + 
-                  "at least eight characters,\n" +
-                  "at least one number,\n" +
-                  "at least one lowercase letter,\n" +
-                  "at least one uppercase letter, \n" +
-                  "at least one special character ";
+        } else if (!passwordRegex.test(passwordValue)) {
+            err = "Password doesn't match the criteria, \n" +
+                "at least eight characters,\n" +
+                "at least one number,\n" +
+                "at least one lowercase letter,\n" +
+                "at least one uppercase letter, \n" +
+                "at least one special character ";
             setSuccess(false);
         } else {
             setSuccess(true);
@@ -64,10 +70,10 @@ function ProfileInformation() {
     function onHandleConfirmPassword(event) {
         let cPassword = event.target.value;
         let err = "";
-        if(!cPassword.trim()) {
+        if (!cPassword.trim()) {
             err = "Confirm Password cannot be empty";
             setSuccess(false);
-        } else if(newPassword !== cPassword) {
+        } else if (newPassword !== cPassword) {
             err = "Passwords doesn't match";
             setSuccess(false);
         } else {
@@ -77,8 +83,8 @@ function ProfileInformation() {
         setConfirmNewPasswordError(err);
     }
 
-    function onHandleSubmit(){
-        if(success && ((newPassword && confirmNewPassword) !== "")) {
+    function onHandleSubmit() {
+        if (success && ((newPassword && confirmNewPassword) !== "")) {
             setOpenSnackBar(true);
         }
         setNewPassword("");
@@ -97,89 +103,89 @@ function ProfileInformation() {
 
     return (
         <div>
-        <Grid container className={classes.component}>
-        <Grid
-          item
-          lg={3}
-          md={3}
-          sm={12}
-          xs={12}
-          className={classes.leftComponent}>
-          <Sidebar />
-        </Grid>
-            <Grid item lg={9} md={9} sm={12} xs={12}>     
-                <Card >
-                    <Typography variant="h5" style={{paddingTop:"2%", paddingLeft:"4%"}}>
-                        <b>User Profile Information</b>
-                    </Typography>
-                    <CardContent>
-                        <Typography 
-                        variant="body2" 
-                        style={{padding:"1%"}}
-                        align="left">
-                            {`Name : Linda George`}
+            <Grid container className={classes.component}>
+                <Grid
+                    item
+                    lg={3}
+                    md={3}
+                    sm={12}
+                    xs={12}
+                    className={classes.leftComponent}>
+                    <Sidebar />
+                </Grid>
+                <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
+                    <Card elevation={0}>
+                        <Typography className={classes.header}>
+                            My Profile
                         </Typography>
-                        <Typography 
-                        variant="body2" 
-                        style={{padding:"1%"}}
-                        align="left">
-                            {`Email : linda.geroge@gmail.com`}
-                        </Typography>
-                        <Typography 
-                        variant="body2" 
-                        style={{padding:"1%"}}
-                        align="left">
-                            {`Phone Number : +1 (904) 748 8787`}
-                        </Typography>
-                        
-                        <TextField style ={{backgroundColor: "#eeeeee", width: "40%"}}
-                        variant="filled"
-                        size="small"
-                        margin="normal"
-                        name="password"
-                        label="Password"
-                        type="password"
-                        value={newPassword}
-                        onChange={onHandlePassword}
-                        required/>
-                        <FormHelperText style={{color:"red", whiteSpace:"pre-line"}}>
-                        {newPasswordError}
-                        </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee", width: "40%"}}
-                        variant="filled"
-                        size="small"
-                        margin="normal"
-                        name="confirmpassword"
-                        label="Confirm Password"
-                        type="password"
-                        value={confirmNewPassword}
-                        onChange={onHandleConfirmPassword}
-                        required/>
-                        <FormHelperText style={{color:"red"}}>
-                        {confirmNewPasswordError}
-                        </FormHelperText>
-                        <br/>
-                        <Button variant="contained" color = "success"
-                            onClick={()=>onHandleSubmit()} style = {{ border:"5px", marginBottom:"4%",backgroundColor: "#FFBB38" }}>
-                            <b>Change Password</b>
-                        </Button>
-                        <Snackbar style={{backgroundColor: "green", color: "white"}}
-                          open={openSnackBar}
-                          message={`password changed successfully`}
-                          action= {<Button variant="contained" size="small" onClick={onHandleReset}>
-                          close
-                        </Button>}
-                        anchorOrigin={{ vertical, horizontal }}
-                        key={vertical + horizontal}
-                          />
-                        <Button variant="contained" style = {{backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom:"4%", width:"15%"}}
-                        onClick={onHandleReset}>
-                           <b>Reset</b> 
-                        </Button>
-                    </CardContent>
-                </Card>
+                        <CardContent style={{ paddingLeft: 50 }}>
+                            <Typography
+                                variant="body2"
+                                style={{ padding: "1%" }}
+                                align="left">
+                                {`Name : Linda George`}
+                            </Typography>
+                            <Typography
+                                variant="body2"
+                                style={{ padding: "1%" }}
+                                align="left">
+                                {`Email : linda.geroge@gmail.com`}
+                            </Typography>
+                            <Typography
+                                variant="body2"
+                                style={{ padding: "1%" }}
+                                align="left">
+                                {`Phone Number : +1 (904) 748 8787`}
+                            </Typography>
+
+                            <TextField style={{ backgroundColor: "#fff", width: "40%" }}
+                                variant="filled"
+                                size="small"
+                                margin="normal"
+                                name="password"
+                                label="Password"
+                                type="password"
+                                value={newPassword}
+                                onChange={onHandlePassword}
+                                required />
+                            <FormHelperText style={{ color: "red", whiteSpace: "pre-line" }}>
+                                {newPasswordError}
+                            </FormHelperText>
+                            <TextField style={{ backgroundColor: "#fff", width: "40%" }}
+                                variant="filled"
+                                size="small"
+                                margin="normal"
+                                name="confirmpassword"
+                                label="Confirm Password"
+                                type="password"
+                                value={confirmNewPassword}
+                                onChange={onHandleConfirmPassword}
+                                required />
+                            <FormHelperText style={{ color: "red" }}>
+                                {confirmNewPasswordError}
+                            </FormHelperText>
+                            <br />
+                            <Button variant="contained" color="success"
+                                onClick={() => onHandleSubmit()} style={{ border: "5px", marginBottom: "4%", backgroundColor: "#FFBB38" }}>
+                                <b>Change Password</b>
+                            </Button>
+                            <Snackbar style={{ backgroundColor: "green", color: "white" }}
+                                open={openSnackBar}
+                                message={`password changed successfully`}
+                                action={<Button variant="contained" size="small" onClick={onHandleReset}>
+                                    close
+                                </Button>}
+                                anchorOrigin={{ vertical, horizontal }}
+                                key={vertical + horizontal}
+                            />
+                            <Button variant="contained" style={{ backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom: "4%", width: "15%" }}
+                                onClick={onHandleReset}>
+                                <b>Reset</b>
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
             </Grid>
-            </Grid> 
         </div>
     );
 }

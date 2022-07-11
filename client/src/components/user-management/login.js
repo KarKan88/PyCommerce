@@ -56,6 +56,7 @@ function Login() {
         if(!(success && ((emailAddress && password) !== ""))) {
             setLoginError("Email address and password fields are mandatory");
         } else {
+            localStorage.setItem("login","loginSuccess");
             navigate.push('/');
         }
     }
@@ -82,7 +83,7 @@ function Login() {
                         <FormHelperText style = {{color:"red"}}>
                         {loginError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -96,7 +97,7 @@ function Login() {
                         <FormHelperText style={{color:"red"}}>
                         {emailAddressError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"

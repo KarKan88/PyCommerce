@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Box, makeStyles, Typography, Grid, Button, Card, SubCategory } from "@material-ui/core";
+import { Box, makeStyles, Typography, Grid, Button } from "@material-ui/core";
 import CartItem from "../components/cart/CartItem";
 import TotalView from "../components/cart/TotalView";
 import Carousel from "react-material-ui-carousel";
-import BoughtTogether from '../recommendation/BoughtTogether'
+import ProductRow from "../components/product/product-grid";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import { useHistory } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   component: {
-    marginTop: 55,
-    padding: "10px 10%",
+    marginTop: 65,
     display: "flex",
   },
   RightComponent: {
@@ -36,15 +36,29 @@ const useStyle = makeStyles((theme) => ({
     width: 250,
     height: 51,
   },
-  itemRow: {
-    padding: "15px 11px 8px 15px",
+  placeOrderViewAll: {
+    display: "flex",
     background: "#222",
-    width: 'calc(107% + 1px)',
+    color: "#fff",
+    borderRadius: 2,
+    width: 250,
+    height: 51,
+  },
+  banner: {
+    margin: "20px 10px 0px 10px",
+    minWidth: 960,
+    textAlign: "center",
+  },
+  banner_img: {
+    width: "70%",
+    height: 480,
+    cursor: "pointer",
   },
 }));
 
 function CartPage() {
   const classes = useStyle();
+  const history = useHistory();
 
   const cartItems = [
     {
@@ -109,71 +123,119 @@ function CartPage() {
     },
   ];
 
-
   const sliderItems = cartItems.length > 2 ? 2 : cartItems.length;
   const items = [];
 
   for (let i = 0; i < cartItems.length; i += sliderItems) {
     if (i % sliderItems === 0) {
       items.push(
-            <Grid container className="BannerGrid" key={i}>
-              {cartItems.slice(i, i + sliderItems).map((da, i) => {
-                return <CartItem key={i.toString()} item={da} />;
-              })}
-            </Grid>
-            )
-       }
+        <Grid container key={i}>
+          {cartItems.slice(i, i + sliderItems).map((da, i) => {
+            return <CartItem key={i.toString()} item={da} />;
+          })}
+        </Grid>
+      );
+    }
   }
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 7,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  const placeOrder = () =>{
+    history.push('/shipping')
+  }
   return (
     <>
-        <Grid container className={classes.component} >
-          <Grid style={{ paddingBottom: '30px'}}>
-            <Box className={classes.header} >
-              <Typography style={{ fontWeight: 600, fontSize: 18 }} >
-                My Cart ({cartItems?.length})
-              </Typography>
-            </Box>
+      <br />
+      <Grid container className={classes.component}>
+        <Grid
+          style={{ paddingBottom: "30px", paddingLeft: "20px", width: "75%" }}
+        >
+          <Box className={classes.header}>
+            <Typography style={{ fontWeight: 600, fontSize: 18 }}>
+              My Cart ({cartItems?.length})
+            </Typography>
+          </Box>
 
-            <Grid
-              container
-              style={{ padding:"5px 5px 5px 5px"}}>
-              <Carousel
-                animation="slide"
-                interval={10000}
-                navButtonsAlwaysVisible={true}
-                indicators={true}
-                navButtonsProps={{
-                  style: {
-                    backgroundColor: "#ffffff",
-                    borderRadius: 0,
-                    color: "#222",
-                  },
-                }}
-              >
-                {items}
-              </Carousel>
-            </Grid>
-
-            <Box className={classes.bottom} >
-              <Button
-                // onClick={placeOrder}
-                variant="contained"
-                className={classes.placeOrder}
-                style={{ backgroundColor: "#222" }}
-              >
-                Place Order
-              </Button>
-            </Box>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{
+              backgroundColor: "#fff",
+            }}
+          >
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              showDots={false}
+              responsive={responsive}
+              ssr={true}
+              infinite={true}
+              autoPlay={false}
+              autoPlaySpeed={2500}
+              keyBoardControl={true}
+              customTransition="all 200ms"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={["mobile"]}
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {items}
+            </Carousel>
           </Grid>
-          <Grid style={{ paddingLeft:'10px'}} display='flex'>
-            <TotalView cartItems={cartItems} />
+
+          <Grid
+            container
+            style={{
+              backgroundColor: "#fff",
+              padding: "10px 10px 10px 10px",
+            }}
+          >
+              
+            <Button
+              variant="contained"
+              className={classes.placeOrder}
+              style={{
+                backgroundColor: "#EB853B",
+                color: "#222",
+                fontWeight: 600,
+              }}
+              onClick={placeOrder}
+            >
+              Place Order
+            </Button>
           </Grid>
         </Grid>
-        <Grid>
-          <BoughtTogether/>
+        <Grid style={{ paddingLeft: "2em" }} display="flex">
+          <TotalView cartItems={cartItems} />
         </Grid>
-      
+      </Grid>
+      <Grid>
+        <ProductRow
+          title="Frequently bought together"
+          categoryName="electronics"
+        />
+      </Grid>
     </>
   );
 }

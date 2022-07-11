@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import { Button, Box, makeStyles } from "@material-ui/core";
@@ -109,19 +109,23 @@ const ProductImageSlider = ({ product }) => {
         />
       </Box>
       <br />
-      <Button
-        className={clsx(classes.button, classes.addToCart)}
-        style={{ marginRight: 10, backgroundColor: "#FFC046", color: "#222", fontWeight: 600 }}
-        variant="contained">
-        <Cart />
-        Add to Cart
-      </Button>
-      <Button
-        className={clsx(classes.button, classes.buyNow)}
-        variant="contained"
-        style={{ backgroundColor: "#EB853B", fontWeight: 600, color: "#222", }}>
-        <Flash /> Buy Now
-      </Button>
+      <Link to="/cart">
+        <Button
+          className={clsx(classes.button, classes.addToCart)}
+          style={{ marginRight: 10, backgroundColor: "#FFC046", color: "#222", fontWeight: 600 }}
+          variant="contained">
+          <Cart />
+          Add to Cart
+        </Button>
+      </Link>
+      <Link to="/cart">
+        <Button
+          className={clsx(classes.button, classes.buyNow)}
+          variant="contained"
+          style={{ backgroundColor: "#EB853B", fontWeight: 600, color: "#222", }}>
+          <Flash /> Buy Now
+        </Button>
+      </Link>
     </Box>
   );
 };

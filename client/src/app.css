@@ -40,3 +40,9 @@
   text-align: center;
   width: 50%;
 }
+.sidebar{
+  margin-top: 55;
+    padding: 30px 6%;
+    display: flex
+}
+
