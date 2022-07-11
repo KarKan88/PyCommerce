@@ -92,9 +92,6 @@ function App() {
         <Route exact path="/view-product">
           <Viewproduct />
         </Route>
-        /** 
-        Start of Routing for coupon-management
-         */
         <Route exact path="/add-coupon">
           <Addcoupon />
         </Route>
@@ -104,9 +101,6 @@ function App() {
         <Route exact path="/edit-coupon/:id">
           <Addcoupon />
         </Route>
-        /** 
-        End of Routing for coupon-management
-         */
         <Route component={ErrorPage} />
       </Switch>
     </div>

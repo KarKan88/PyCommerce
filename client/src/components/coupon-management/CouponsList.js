@@ -22,7 +22,7 @@ const CouponsList = () => {
     setCoupons(coupons.filter((coupon) => coupon.id !== id));
   };
 /**
- * Return the remaining coupons available, otherwise put a message to show No coupons are available.
+ *  The remaining coupons will be returned and rendered, otherwise put a message to show No coupons are available.
  */
   return (
     <React.Fragment>
@@ -47,6 +47,6 @@ const CouponsList = () => {
   );
 };
 /**
- * Export the component as CouponsList
+ * The function above is exported as CouponsList component
  */
 export default CouponsList;

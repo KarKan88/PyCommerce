@@ -2,9 +2,6 @@
  * Author: Hemanth Nadipineni
  * Banner ID: B00899473
  */
-/*
-Referenced from the tutorial on freecodecamp: https://www.freecodecamp.org/news/react-crud-app-how-to-create-a-book-management-app-from-scratch/
-*/
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
@@ -46,14 +43,15 @@ const CouponForm = (props) => {
     maxdiscount: maxdiscount,
   } = coupon;
   /**
-   * Declaration if variable to handle events on submission of the form
+   * Function to handle form submission event. 
    */
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const values = [couponcode, condition, discountpercentage, maxdiscount];
     let errorMsg = "";
     /**
-     * Check if all the fields are filled
+     * The values passed will be trimmed off and checkes for 
+   * empty and zero values. 
      */
     const allFieldsFilled = values.every((field) => {
       const value = `${field}`.trim();
@@ -76,7 +74,7 @@ const CouponForm = (props) => {
     setErrorMsg(errorMsg);
   };
 /**
- * Handling input changes when the user edits details of a coupon.
+ * Function to Handle input changes when the user edits details of a coupon.
  */
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -105,7 +103,7 @@ const CouponForm = (props) => {
     }
   };
   /**
-   * Return form to the component where a user can fill all the details.
+   * The form will be rendered and returned to the component where a user can fill all the details.
    */
 
   return (
@@ -165,6 +163,6 @@ const CouponForm = (props) => {
   );
 };
 /**
- * Export the component as CouponForm
+ * The function above is exported as CouponForm component
  */
 export default CouponForm;

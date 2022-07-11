@@ -13,7 +13,9 @@ const AddCoupon = ({ history }) => {
   const { coupons, setCoupons } = useContext(CouponsContext);
 
   /**
-   * Handling on submit event and initializing coupon variable. 
+   * Handling on submit event when the form from coupon component has been filled
+   * and the coupons variable will be initialized.
+   * Th function will redirect to coupons list page. 
    */
   const handleOnSubmit = (coupon) => {
     setCoupons([coupon, ...coupons]);
@@ -28,6 +30,6 @@ const AddCoupon = ({ history }) => {
 };
 
 /**
- * Export the component as AddCoupon
+ * The function is exported as AddCoupon component
  */
 export default AddCoupon;

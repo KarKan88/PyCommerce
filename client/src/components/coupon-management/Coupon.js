@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 
 
 /**
- * Initialzing a variable useStyles to create a styling for the Coupon Component
+ * The useStyles variable will make styles for the button used in the card body below.
  */
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -32,9 +32,6 @@ const useStyles = makeStyles((theme) => ({
 Component of a coupon on list page.
 Referenced from the tutorial on https://medium.com/free-code-camp/crud-using-react-41d047224e26
 */
-/**
- * Declaration of a Coupon variable with all the required fields
- */
 const Coupon = ({
   id,
   couponcode,
@@ -48,7 +45,7 @@ const Coupon = ({
   const history = useHistory();
 
   /**
-   * Return the Title card with details of coupon + Edit and Delete options
+   *  The Title card with details of coupon + Edit and Delete options are rendered and returned.
    */
   return (
     <Card style={{ width: "18rem" }} className="coupon">
@@ -74,6 +71,6 @@ const Coupon = ({
   );
 };
 /**
- * Export the component as Coupon
+ * The function above is exported as Coupon component
  */
 export default Coupon;
