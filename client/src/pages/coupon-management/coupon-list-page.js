@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core";
 import CouponsList from "../../components/coupon-management/CouponsList";
 import ToastMessageContainer from "../../components/toast";
 /**
- * Initialzing a variable useStyles to create a styling for the Coupon Listing Page
+ * The useStyles variable will make styles for spaces around the coupons list component rendered.
  */
 const useStyles = makeStyles((theme) => ({
   couponslist: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /**
- * Function to show the CouponsListPage component from components
+ * Function to render the component usig the styles above and the Coupons List component from the components page.
  */
 function CouponsListPage() {
   const classes = useStyles();
@@ -30,6 +30,6 @@ function CouponsListPage() {
   );
 }
 /**
- * Export the page as CouponListPage
+ * The function above is exported to list coupons page
  */
 export default CouponsListPage;

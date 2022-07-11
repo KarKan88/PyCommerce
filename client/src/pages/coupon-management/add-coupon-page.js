@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core";
 import AddCoupon from "../../components/coupon-management/AddCoupon";
 import ToastMessageContainer from "../../components/toast";
 /**
- * Initialzing a variable useStyles to create a styling for the Coupon Page
+ * The useStyles variable will make styles for spaces around the coupon component rendered.
  */
 const useStyles = makeStyles((theme) => ({
   addcoupon: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /**
- * Function to show the AddCoupon component from components
+ * Function to render the component usig the styles above and the Addcoupon component from the components page.
  */
 function AddCouponPage() {
   const classes = useStyles();
@@ -30,6 +30,6 @@ function AddCouponPage() {
   );
 }
 /**
- * Export the page as AddCouponPage
+ * The function above is exported as add coupon page
  */
 export default AddCouponPage;

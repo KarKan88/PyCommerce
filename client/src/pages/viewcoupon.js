@@ -17,7 +17,7 @@ import { red } from "@material-ui/core/colors";
 import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
 /**
- * Initialzing a variable useStyles to create a styling for the Coupon View Page
+ * The useStyles variable will make styles for spaces around the coupons listing rendered.
  */
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /**
- * Funtion to view the coupons extracted from the storage
+ * Funtion to view the coupons extracted from the storage. This function will have all the variables required 
+ * and the functions required to perfrom when edit or delete button is pressed.
  */
 function ViewCoupon(props) {
   const [data, setData] = useState([]);
@@ -64,7 +65,7 @@ function ViewCoupon(props) {
 
   const navigate = useHistory();
 /**
- * Get the coupon data from the storage using useEffect.
+ * This function will fetch all the coupons from the storage.
  */
   useEffect(() => {
     if (localStorage.getItem("couponData")) {
@@ -99,7 +100,7 @@ function ViewCoupon(props) {
   };
 
   /**
-   * Return the Card items with coupon data on each card.
+   * The Card items with coupon data on each card will be rendered.
    */
   return (
     <Grid container className={classes.component}>
@@ -219,6 +220,6 @@ function ViewCoupon(props) {
   );
 }
 /**
- * Export the page as ViewCoupon
+ * The function above is exported as view coupons page
  */
 export default ViewCoupon;

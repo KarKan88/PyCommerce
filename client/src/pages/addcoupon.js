@@ -16,7 +16,7 @@ import {
   Button,
 } from "@material-ui/core";
 /**
- * Initialzing a variable useStyles to create a styling for the Add Coupon Page
+ * The useStyles variable will make styles for spaces around the add coupon component rendered.
  */
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /**
- * Declaration of AddCoupon function to create a form and its functionalities 
+ * The AddCoupon function is to create a form and its functionalities.
  */
 function AddCoupon() {
   const navigate = useHistory();
@@ -50,7 +50,7 @@ function AddCoupon() {
 
   const { id } = useParams("");
   /**
-   * Initialize the variables for coupon details declared above into localStorage as couponData
+   *  The variables for coupon details declared above into localStorage as couponData using useEffect function.
    */
   useEffect(() => {
     if (id) {
@@ -71,7 +71,7 @@ function AddCoupon() {
     }
   });
   /**
-   * Initialize the variable of coupon details from the form inputs.
+   *  The variable of coupon details from the form inputs are set below.
    */
   const onChange = (ev) => {
     setCategory("Mobile");
@@ -86,7 +86,7 @@ function AddCoupon() {
     }
   };
 /**
- * Check for the errors in form input.
+ * The isValid Function will check for any errors in the inputs submitted through forms.
  */
   const isValid = () => {
     const { errors, isValid } = validateInput({
@@ -102,7 +102,8 @@ function AddCoupon() {
     return isValid;
   };
   /**
-   * Function to handle the events on submission of the form
+   * The events like validations, initilization of variables will be performed on submission of the form
+   * using hadleSubmit function.
    */
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,7 +116,8 @@ function AddCoupon() {
       id: id ? id : Math.round(Math.random() * 100000),
     };
     /**
-     * Check if the inputs filled in the form are valid and then store it in localStorage
+     * The conditions to check if the inputs filled in the form are valid. If they are valid,
+     *  then store it in localStorage. Else show the errors. 
      */
     if (isValid(data)) {
       if (id) {
@@ -142,7 +144,7 @@ function AddCoupon() {
   };
 
   /**
-   * The page returns the form for the user to give inputs for the coupon data
+   * The page renders the form for the user to give inputs for the coupon data.
    */
   return (
     <Grid container className={classes.component}>
@@ -257,6 +259,6 @@ function AddCoupon() {
   );
 }
 /**
- * Export the page as AddCoupon
+ * The function above is exported as add coupons page
  */
 export default AddCoupon;
