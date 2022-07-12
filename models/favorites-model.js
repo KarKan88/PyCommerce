@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Favorites: Mapping between user-id and product-id
+*/
+
 const mongoose = require("mongoose");
 
 const favoritesSchema = mongoose.Schema({

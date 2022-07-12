@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import React, { useState } from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import "react-multi-carousel/lib/styles.css";

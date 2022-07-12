@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Home page banner carousel component.
+*/
+
 import React from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";

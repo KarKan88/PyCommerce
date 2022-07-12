@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Common sticky sub-menu component of the application
+*/
+
 import React from "react";
 import {
   makeStyles,

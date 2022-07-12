@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Common sticky search bar component of the application (in header)
+*/
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles, InputBase, List, ListItemAvatar, ListItem, ListItemText, Box, Typography } from "@material-ui/core";

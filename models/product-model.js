@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Product details schema
+*/
+
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({

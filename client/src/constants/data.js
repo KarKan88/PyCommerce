@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* All constants used in the application in one place.
+*/
+
 export const navData = [
   {
     url: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100",

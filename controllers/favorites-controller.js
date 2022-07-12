@@ -5,6 +5,11 @@
 const mongoose = require("mongoose");
 const Favorites = require("../models/favorites-model");
 
+/**
+ * Add items to favorites for a given user-id and product-id
+ * @param {*} req 
+ * @param {*} res 
+ */
 const addItemToFavorites = async (req, res) => {
   try {
     const favorites = new Favorites(req.body);
@@ -16,6 +21,11 @@ const addItemToFavorites = async (req, res) => {
   }
 };
 
+/**
+ * Remove item from favorites for a given user-id and product-id
+ * @param {*} req 
+ * @param {*} res 
+ */
 const removeItemFromFavorites = async (req, res) => {
   try {
     const userId = mongoose.Types.ObjectId(req.body.userId);
@@ -28,6 +38,11 @@ const removeItemFromFavorites = async (req, res) => {
   }
 };
 
+/**
+ * Get all products in favorites for a given user-id.
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getFavoritesItems = async (req, res) => {
   try {
     const uId = mongoose.Types.ObjectId(req.params.id);
