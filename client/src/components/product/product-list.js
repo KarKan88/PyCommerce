@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import { LocalOffer as Badge } from "@material-ui/icons";
 
 import { useEffect } from "react";
 import { getProductsByCategory } from "../../actions/product-action";
@@ -22,6 +23,11 @@ const useStyle = makeStyles({
     },
     products: {
         backgroundColor: "#fff"
+    },
+    badge: {
+        marginRight: 10,
+        color: "#222",
+        fontSize: 15,
     },
     itemWrapper: {
         display: "flex",
@@ -124,12 +130,21 @@ function ProductList({ categoryName }) {
                                             {item.price.discount}% off
                                         </span>
                                     </Typography>
-                                    <Typography style={{ margin: "15px 0" }}>
-                                        <span>• Lorem ipsum dolor sit amet, consectetur adipiscing elit, </span><br/>
-                                        <span>• sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span><br/>
-                                        <span>• Ut enim ad minim veniam</span><br/>
-                                        <span>• Sed ut perspiciatis unde omnis iste natus error sit voluptatem</span>
-                                    </Typography>
+                                    <Box>
+                                        <Typography style={{ fontSize: "14px" }}>
+                                            <Badge className={classes.badge} />
+                                            Offer of {item.price.discount}% off valid for the next 48 hours
+                                        </Typography>
+                                        <Typography style={{ fontSize: "14px" }}>
+                                            <Badge className={classes.badge} />
+                                            Bank Offer {item.price.discount}% Unlimited Cashback on PyCommerce Scotia Bank Credit Card
+                                        </Typography>
+                                        <Typography style={{ fontSize: "14px" }}>
+                                            <Badge className={classes.badge} />
+                                            Bank Offer {item.price.discount/2}% Off on TD bank Mastercard debit card first time
+                                            transaction, Terms and Condition apply
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Box>
                         </Link>

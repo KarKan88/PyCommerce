@@ -71,7 +71,7 @@ function App() {
         <Route exact path="/forgotpassword">
           <ForgotPassword />
         </Route>
-        <Route exact path="/products">
+        <Route exact path="/products/:category">
           <ProductsPage />
         </Route>
         <Route exact path="/sellerregistration">

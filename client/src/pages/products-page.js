@@ -3,6 +3,7 @@
 */
 
 import React from "react";
+import { useParams } from "react-router";
 import {
   Box,
   Divider,
@@ -69,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductsPage() {
   const classes = useStyles();
+  const { category } = useParams();
 
   return (
     <div>
@@ -92,13 +94,7 @@ function ProductsPage() {
                 value="checkedA"/> 4 ★ & above
               <br />
               <Checkbox
-                value="checkedA"/> 4 ★ & above
-              <br />
-              <Checkbox
-                value="checkedA"/> 4 ★ & above
-              <br />
-              <Checkbox
-                value="checkedA"/> 4 ★ & above
+                value="checkedA"/> 3.9 ★ & below
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.subMenu}>
@@ -132,7 +128,7 @@ function ProductsPage() {
         </Grid>
         <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
           <div>
-            <ProductList categoryName="" />
+            <ProductList categoryName={category} />
             <ToastMessageContainer />
           </div>
         </Grid>

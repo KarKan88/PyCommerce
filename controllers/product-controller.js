@@ -27,7 +27,7 @@ const getProductsByCategory = async (req, res) => {
   const cName = req.params.categoryName;
   try {
     if (cName === "top_deals") {
-      const result = await Product.find({}).skip(15);
+      const result = await Product.find({}).skip(3);
       res.json(result);
     } else if (cName === "top_offers") {
       const result = await Product.find({}).skip(5);
