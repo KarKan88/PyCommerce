@@ -2,6 +2,7 @@ import React from "react";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
   headerMenu: {
@@ -54,13 +55,14 @@ function Menu() {
     </Link>
     
     
-    <Link to="/favorites">
+    <Link to="/profileinformation">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Profile</Typography>
+        <ExpandMoreIcon />
       </Box>
     </Link>
 
-    <Link to="/">
+    <Link to="/sellerregistration">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Become a Seller</Typography>
       </Box>

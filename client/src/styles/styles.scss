@@ -1,3 +1,5 @@
+// Author: Hemanth Nadipineni
+// Banner ID: B00899473
 body {
   background: linear-gradient(141deg, #000000 0%, #000000 51%, #000000 75%);
   font-family: Noto Sans, Helvetica, sans-serif;
@@ -5,7 +7,6 @@ body {
   letter-spacing: 1px;
   padding: 10px;
   min-height: 100vh;
-
 }
 
 header {
@@ -77,7 +78,6 @@ header {
   }
 }
 
-
 h1 {
   text-shadow: 0 0 20px #000000, 10px -10px 30px #feec85,
     -20px -20px 40px #ffae34, 20px -40px 50px #ec760c, -20px -60px 60px #cd4606,
@@ -85,7 +85,7 @@ h1 {
   display: inline-block;
 }
 
-h6{
+h6 {
   text-align: center;
 }
 
@@ -94,7 +94,7 @@ h2,
 h6 {
   color: rgb(255, 255, 255);
 }
-hr{
+hr {
   height: 1px;
   background-color: #ccc;
   border: none;
