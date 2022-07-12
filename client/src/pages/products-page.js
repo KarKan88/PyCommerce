@@ -93,21 +93,6 @@ function ProductsPage() {
               <Checkbox
                 value="checkedA"/> 4 ★ & above
               <br />
-              <Checkbox
-                value="checkedA"/> 3.9 ★ & below
-            </Box>
-            <Divider className={classes.divider} />
-            <Box className={classes.subMenu}>
-              <h4>Offers</h4>
-              <br />
-              <Checkbox
-                value="checkedA"/> No Cost EMI
-              <br />
-              <Checkbox
-                value="checkedA"/> Special Price
-              <br />
-              <Checkbox
-                value="checkedA"/> Buy More, Save more
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.subMenu}>
