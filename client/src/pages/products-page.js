@@ -91,23 +91,23 @@ function ProductsPage() {
               <h4>Customer Ratings</h4>
               <br />
               <Checkbox
-                value="checkedA"/> 4 ★ & above
+                value="checkedA" /> 4 ★ & above
               <br />
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.subMenu}>
-            <Box className={classes.subMenu}>
-              <h4>Budget</h4>
-              <br />
-              <Checkbox
-                value="checkedA"/> $500 to $1500
-              <br />
-              <Checkbox
-                value="checkedA"/> $1500 and above
-              <br />
-              <Checkbox
-                value="checkedA"/> $500 and below
-            </Box>
+              <Box className={classes.subMenu}>
+                <h4>Budget</h4>
+                <br />
+                <Checkbox
+                  value="checkedA" /> $500 to $1500
+                <br />
+                <Checkbox
+                  value="checkedA" /> $1500 and above
+                <br />
+                <Checkbox
+                  value="checkedA" /> $500 and below
+              </Box>
             </Box>
           </Box>
         </Grid>
