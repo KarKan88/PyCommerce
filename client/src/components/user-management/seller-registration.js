@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 function SellerRegistration() {
 
@@ -72,7 +73,19 @@ function SellerRegistration() {
 
     function onHandleSubmit() {
         if((cNameSuccess && regSuccess && locSuccess) && ((companyName && companyRegistrationNumber && location) !== "")) {
-            setOpenDialog(true);
+            axios.post("/sellerregistration", {
+                emailAddress: localStorage.getItem('emailAddress'),
+                companyName : companyName,
+                companyRegistrationNumber : companyRegistrationNumber,
+                location : location}, { headers : {'token' : localStorage.getItem('jwtoken')}}).
+            then(response => {
+                if(response.status === 201) {
+                    localStorage.setItem("seller",true);
+                    setOpenDialog(true);
+                }
+            }).catch(err => {
+                setRegisterError("Seller registration failed");
+            });
         } else {
             setRegisterError("All fields are mandatory");
         }
@@ -91,6 +104,7 @@ function SellerRegistration() {
         setLocSuccess(false);
         setLocationError("");
         navigate.push("/add-product"); 
+        window.location.reload();
     }
 
     function onHandleReset() {

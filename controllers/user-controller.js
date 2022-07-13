@@ -69,9 +69,12 @@ const userLogin = async(req,res) => {
         const getUser = await userModel.find({emailAddress: emailAddress})
         if(getUser.length !==0 && getUser[0].password === password) {
             const isSeller = getUser[0].seller;
+            const id = getUser[0]._id;
+            console.log("id is ",id);
             res.status(200).json({
                 "message" : "User Login Successfully",
                 "jwtoken" : createJWT.createJWT(emailAddress),
+                id,
                 emailAddress,
                 isSeller
             })
