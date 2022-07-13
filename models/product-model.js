@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Product details schema
+*/
+
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
@@ -12,10 +17,9 @@ const productSchema = mongoose.Schema({
   },
   qty:Number,
   category:String,
-  discount: String,
   tagline: String,
   url: String,
-  detailUrl: String,
+  description: String
 });
 
 const Product = new mongoose.model("product", productSchema);

@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Generic product details component.
+*/
+
 import React from "react";
 import {
   Box,

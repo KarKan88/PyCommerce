@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import { toast } from "react-toastify";
 
 const toastStyle = {
