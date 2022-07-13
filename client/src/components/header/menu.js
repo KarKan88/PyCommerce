@@ -3,7 +3,7 @@
 * Common sticky menu component of the application
 */
 
-import { React } from "react";
+import React from "react";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";

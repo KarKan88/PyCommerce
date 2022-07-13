@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Common sticky header component of the application
+*/
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./search-box";

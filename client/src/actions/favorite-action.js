@@ -1,8 +1,17 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import * as actionType from "../action-type/favorites-action-type";
 import axios from "axios";
 
 const user_id = "629698a83e746c2eb31e8207"
 
+/**
+ * API call to add item favorites for a user-id
+ * @param {*} item 
+ * @returns 
+ */
 export const addToFavorites = (item) => async (dispatch, getState) => {
   try {
     await axios.post("/favorites/add-item", {
@@ -18,6 +27,11 @@ export const addToFavorites = (item) => async (dispatch, getState) => {
   });
 };
 
+/**
+ * Api Call to remove item from favorites for a user-id
+ * @param {*} id 
+ * @returns 
+ */
 export const removeFromFavorites = (id) => async (dispatch, getState) => {
   try {
     await axios.delete("/favorites/remove-item", {
@@ -35,6 +49,10 @@ export const removeFromFavorites = (id) => async (dispatch, getState) => {
   });
 };
 
+/**
+ * API call to get all favorites for a user-id
+ * @returns 
+ */
 export const getFavoritesItems = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`/favorites/get-items/${user_id}`);

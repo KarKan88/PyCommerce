@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Firebase configuration details.
+*/
+
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
