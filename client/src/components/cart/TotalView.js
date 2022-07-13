@@ -68,7 +68,7 @@ const TotalView = ({ cartItems }) => {
           FREE
         </span>
       </Typography>
-      <Typography className={classes.totalAmount} style={{paddingTop: '30px'}}>
+      <Typography className={classes.totalAmount} style={{paddingTop: '22px'}}>
         Total Payable
         <span className={classes.price}>
           ${totalCost}
@@ -76,8 +76,7 @@ const TotalView = ({ cartItems }) => {
       </Typography>
       <Typography style={{
         fontSize: 16,
-        color: "green",
-       paddingTop: '25px'}}>
+        color: "green"}}>
         Total saving on this order is ${discount}.
       </Typography>
     </Box>

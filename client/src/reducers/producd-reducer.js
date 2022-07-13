@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import * as actionType from "../action-type/product-action-type";
 
 const initialState = {

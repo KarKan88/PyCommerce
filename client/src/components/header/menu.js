@@ -1,7 +1,13 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Common sticky menu component of the application
+*/
+
 import React from "react";
 import { Button, makeStyles, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
   headerMenu: {
@@ -57,6 +63,7 @@ function Menu() {
     <Link to="/profileinformation">
       <Box className={classes.menu_link}>
         <Typography className={classes.menu_more}>Profile</Typography>
+        <ExpandMoreIcon />
       </Box>
     </Link>
 

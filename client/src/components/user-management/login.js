@@ -83,7 +83,7 @@ function Login() {
                         <FormHelperText style = {{color:"red"}}>
                         {loginError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"
@@ -97,7 +97,7 @@ function Login() {
                         <FormHelperText style={{color:"red"}}>
                         {emailAddressError}
                         </FormHelperText>
-                        <TextField style ={{backgroundColor: "#eeeeee"}}
+                        <TextField style ={{backgroundColor: "#fff"}}
                         fullWidth
                         variant="filled"
                         size="small"

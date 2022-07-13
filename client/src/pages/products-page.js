@@ -1,4 +1,9 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import React from "react";
+import { useParams } from "react-router";
 import {
   Box,
   Divider,
@@ -65,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductsPage() {
   const classes = useStyles();
+  const { category } = useParams();
 
   return (
     <div>
@@ -85,50 +91,29 @@ function ProductsPage() {
               <h4>Customer Ratings</h4>
               <br />
               <Checkbox
-                value="checkedA"/> 4 ★ & above
+                value="checkedA" /> 4 ★ & above
               <br />
-              <Checkbox
-                value="checkedA"/> 4 ★ & above
-              <br />
-              <Checkbox
-                value="checkedA"/> 4 ★ & above
-              <br />
-              <Checkbox
-                value="checkedA"/> 4 ★ & above
             </Box>
             <Divider className={classes.divider} />
             <Box className={classes.subMenu}>
-              <h4>Offers</h4>
-              <br />
-              <Checkbox
-                value="checkedA"/> No Cost EMI
-              <br />
-              <Checkbox
-                value="checkedA"/> Special Price
-              <br />
-              <Checkbox
-                value="checkedA"/> Buy More, Save more
-            </Box>
-            <Divider className={classes.divider} />
-            <Box className={classes.subMenu}>
-            <Box className={classes.subMenu}>
-              <h4>Budget</h4>
-              <br />
-              <Checkbox
-                value="checkedA"/> $500 to $1500
-              <br />
-              <Checkbox
-                value="checkedA"/> $1500 and above
-              <br />
-              <Checkbox
-                value="checkedA"/> $500 and below
-            </Box>
+              <Box className={classes.subMenu}>
+                <h4>Budget</h4>
+                <br />
+                <Checkbox
+                  value="checkedA" /> $500 to $1500
+                <br />
+                <Checkbox
+                  value="checkedA" /> $1500 and above
+                <br />
+                <Checkbox
+                  value="checkedA" /> $500 and below
+              </Box>
             </Box>
           </Box>
         </Grid>
         <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
           <div>
-            <ProductList categoryName="" />
+            <ProductList categoryName={category} />
             <ToastMessageContainer />
           </div>
         </Grid>

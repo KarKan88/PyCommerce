@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import { Divider, Paper, Container, makeStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
+
 import ListItemText from '@material-ui/core/ListItemText';
-// import DefaultImage from process.env.PUBLIC_URL+'/images/default.jpg'
-import Divider from '@material-ui/core/Divider';
-import { Container, Paper } from '@material-ui/core';
 
 const products = [
     {
@@ -31,13 +30,23 @@ const products = [
 ];
 
 export default function OrderSummary() {
+    const useStyles = makeStyles((theme) => ({
+        header: {
+            padding: "20px 40px",
+            fontSize: 18,
+            fontWeight: 500,
+            borderBottom: "1px solid #e0e0e0",
+        }
+    }));
+    const classes = useStyles();
+    
     return (
         <React.Fragment>
             <Container component="main" maxWidth="sm" style={{ marginBottom: 40 }}>
-                <Paper variant="outlined" style={{ padding: 25, marginTop: 30, marginBottom: 30 }}>
+                <Paper variant="outlined" style={{ marginTop: 30, marginBottom: 30 }}>
 
-                    <Typography variant="h6" gutterBottom>
-                        Order summary
+                <Typography className={classes.header}>
+                        Order Summary
                     </Typography>
                     <List disablePadding
                         sx={{
@@ -71,7 +80,7 @@ export default function OrderSummary() {
                     <Divider />
                     <List>
                         <ListItem>
-                            <ListItemText primary="Sub Total" />
+                            <ListItemText primary="Total" />
                             <Typography variant="body2" fontWeight={600}>
                                 $34.06
                             </Typography>

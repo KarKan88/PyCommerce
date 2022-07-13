@@ -1,7 +1,13 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import React, { useState } from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import { LocalOffer as Badge } from "@material-ui/icons";
+import { emptyFavorites } from "../../constants/data";
 
 import { useEffect } from "react";
 import { getProductsByCategory } from "../../actions/product-action";
@@ -18,6 +24,19 @@ const useStyle = makeStyles({
     },
     products: {
         backgroundColor: "#fff"
+    },
+    emptyContainer: {
+        height: 500,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+    },
+    badge: {
+        marginRight: 10,
+        color: "#222",
+        fontSize: 15,
     },
     itemWrapper: {
         display: "flex",
@@ -92,45 +111,58 @@ function ProductList({ categoryName }) {
     return (
         <>
             <div className={classes.products}>
-                {loadedProducts?.map((item, index) => (
-                    <Box className={classes.component} key={index}>
-                        <Link to={`/product/${item._id}`}>
-                            <Box className={classes.itemWrapper}>
-                                <img src={item.url} className={classes.image} />
-                                <Box className={classes.itemInfo}>
-                                    <Typography className={classes.itemTitle}>
-                                        {item.title.longTitle && item.title.longTitle}
-                                    </Typography>
-                                    <Box style={{ display: "flex", alignItems: "center" }}>
-                                        <Typography className={classes.rate}>
-                                            {rate} <StarIcon style={{ fontSize: 12, marginLeft: 3 }} />
+                {loadedProducts?.length > 0 ? (
+                    loadedProducts?.map((item, index) => (
+                        <Box className={classes.component} key={index}>
+                            <Link to={`/product/${item._id}`}>
+                                <Box className={classes.itemWrapper}>
+                                    <img src={item.url} className={classes.image} />
+                                    <Box className={classes.itemInfo}>
+                                        <Typography className={classes.itemTitle}>
+                                            {item.title.longTitle && item.title.longTitle}
                                         </Typography>
-                                        <Typography className={classes.greyTextColor}>
-                                            ({reviewCount})
+                                        <Box style={{ display: "flex", alignItems: "center" }}>
+                                            <Typography className={classes.rate}>
+                                                {rate} <StarIcon style={{ fontSize: 12, marginLeft: 3 }} />
+                                            </Typography>
+                                            <Typography className={classes.greyTextColor}>
+                                                ({reviewCount})
+                                            </Typography>
+                                        </Box>
+                                        <Typography style={{ margin: "15px 0" }}>
+                                            <span className={classes.price}>${item.price.cost}</span>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <span className={classes.greyTextColor}>
+                                                <strike>${item.price.mrp}</strike>
+                                            </span>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <span style={{ color: "#222" }}>
+                                                {item.price.discount}% off
+                                            </span>
                                         </Typography>
+                                        <Box>
+                                            <Typography style={{ fontSize: "14px" }}>
+                                                <Badge className={classes.badge} />
+                                                Offer of {item.price.discount}% off valid for the next 48 hours
+                                            </Typography>
+                                            <Typography style={{ fontSize: "14px" }}>
+                                                <Badge className={classes.badge} />
+                                                Bank Offer {item.price.discount}% Unlimited Cashback on PyCommerce Scotia Bank Credit Card
+                                            </Typography>
+                                            <Typography style={{ fontSize: "14px" }}>
+                                                <Badge className={classes.badge} />
+                                                Bank Offer {item.price.discount / 2}% Off on TD bank Mastercard debit card first time
+                                                transaction, Terms and Condition apply
+                                            </Typography>
+                                        </Box>
                                     </Box>
-                                    <Typography style={{ margin: "15px 0" }}>
-                                        <span className={classes.price}>${item.price.cost}</span>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <span className={classes.greyTextColor}>
-                                            <strike>${item.price.mrp}</strike>
-                                        </span>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <span style={{ color: "#222" }}>
-                                            {item.price.discount}% off
-                                        </span>
-                                    </Typography>
-                                    <Typography style={{ margin: "15px 0" }}>
-                                        <span>• Lorem ipsum dolor sit amet, consectetur adipiscing elit, </span><br/>
-                                        <span>• sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span><br/>
-                                        <span>• Ut enim ad minim veniam</span><br/>
-                                        <span>• Sed ut perspiciatis unde omnis iste natus error sit voluptatem</span>
-                                    </Typography>
                                 </Box>
-                            </Box>
-                        </Link>
-                    </Box>
-                ))}
+                            </Link>
+                        </Box>
+                    ))) : (<Box className={classes.emptyContainer}>
+                        <img src={emptyFavorites} alt="Empty" />
+                        <Typography className={classes.heading}>No products under <b>{categoryName}</b> yet!</Typography>
+                    </Box>)}
             </div>
         </>
     );

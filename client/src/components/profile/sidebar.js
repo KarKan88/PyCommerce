@@ -112,7 +112,15 @@ export default function Sidebar() {
               Favorites
             </Typography>
           </Link>
-          
+        </Box>
+        <Box className={classes.subMenu}>
+          <Link to="/orderHistory">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/orderHistory" ? activeStyle : {}}>
+              Order History
+            </Typography>
+          </Link>
         </Box>
         <Divider className={classes.divider} />
         <Box onClick={onHandleLogout}

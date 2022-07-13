@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bottom: {
-    minHeight: "500px",
+    minHeight: "650px",
     padding: "16px 22px",
     background: "#fff"
   },
@@ -81,6 +81,9 @@ export default function Sidebar() {
           <p>Menu</p>
         </Box>
         <Box className={classes.subMenu}>
+          <Box className={classes.sideBarLink}>
+            <p>Products</p>
+          </Box>
           <Link to="/add-product">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
@@ -95,6 +98,26 @@ export default function Sidebar() {
               View Products
             </Typography>
           </Link>
+          <Divider />
+          <br />
+          <Box className={classes.sideBarLink}>
+            <p>Coupons</p>
+          </Box>
+          <Link to="/add-coupon">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/add-coupon" ? activeStyle : {}}>
+              Add Coupons
+            </Typography>
+          </Link>
+          <Link to="/view-coupon">
+            <Typography
+              className={clsx(classes.subLink, classes.hoverTab)}
+              style={currentPath === "/view-coupon" ? activeStyle : {}}>
+              View Coupons
+            </Typography>
+          </Link>
+
           {/* <Link to="/editproduct">
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
@@ -108,15 +131,15 @@ export default function Sidebar() {
         <Box
           className={clsx(classes.sideBarLink, classes.hoverTab)}
           style={{ cursor: "pointer" }}>
-          
-            {/* <div className="d-flex"> */}
-            <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />
-            <Link to="/">
-            <p style={{ color:"black"}}>Logout</p>
-            </Link>
-            {/* </div> */}
-            
-          
+
+          {/* <div className="d-flex"> */}
+          <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />
+          <Link to="/">
+            <p style={{ color: "black" }}>Logout</p>
+          </Link>
+          {/* </div> */}
+
+
         </Box>
       </Box>
     </>

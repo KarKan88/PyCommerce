@@ -5,6 +5,8 @@ import { Route, Switch } from "react-router";
 import Favorites from "../components/favorites/favorites";
 import ToastMessageContainer from "../components/toast";
 import Sidebar from "../components/profile/sidebar";
+import OrderHistory from "./order-history";
+import DeliveryStatus from "./delivery-status";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -40,6 +42,12 @@ function ProfilePage() {
           <Switch>
             <Route exact path="/favorites">
               <Favorites />
+            </Route>
+            <Route exact path="/orderHistory">
+              <OrderHistory />
+            </Route>
+            <Route exact path="/deliveryStatus">
+              <DeliveryStatus />
             </Route>
           </Switch>
         </Grid>

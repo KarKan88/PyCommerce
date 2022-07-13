@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import React from "react";
 
 import { Box, makeStyles } from "@material-ui/core";
@@ -25,7 +29,7 @@ function HomePage() {
       <HomeBanner />
       <div>
         <ProductRow
-          categoryName=""
+          categoryName="top_deals"
           title="Top deals"
         />
       </div>
@@ -39,7 +43,7 @@ function HomePage() {
       <PosterRow
         imgUrls={posterLinks.links3}
       />
-      <ProductRow title="Trending" categoryName="" />
+      <ProductRow title="Trending" categoryName="top_offers" />
       <PosterRow
         imgUrls={posterLinks.links4}
       />

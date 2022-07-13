@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -104,7 +108,7 @@ function ProductRow({ categoryName, title }) {
       <Box className={classes.row_container}>
         <Box className={classes.leftContainer}>
           <h2 className={classes.row_title}>{title}</h2>
-          <Link to="/products">
+          <Link to={`products/${categoryName}`}>
           <Button
             style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600 }}
             variant="contained"

@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Common sticky footer of the application
+*/
+
 import React from "react";
 import { Box, makeStyles, Typography } from "@material-ui/core";
 

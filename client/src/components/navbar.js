@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* Sticky Navbar component
+*/
+
 import React from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";

@@ -155,17 +155,28 @@ function AddProduct() {
         <Sidebar />
       </Grid>
       <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ padding: 40 }}>
           <div className="box">
             <div className="border-bottom py-3 text-center">
               <h2>{id ? "Update " : "ADD "} Product</h2>
+              <br />
             </div>
             <div className="p-5">
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
+              <FormControl fullWidth style={{ backgroundColor: "#fff", width: 500 }}>
+                <InputLabel id="demo-simple-select-label"
+                  style={{ backgroundColor: "#fff" }}
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal">
+
                   Product Category
                 </InputLabel>
                 <Select
+                  fullWidth
+                  variant="standard"
+                  size="small"
+                  margin="normal"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={category ?? ""}
@@ -188,24 +199,32 @@ function AddProduct() {
                 </Select>
               </FormControl>
 
-              <FormControl fullWidth>
-                <TextField
+              <FormControl >
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   error={errors.name ? true : false}
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal"
                   helperText={errors.name}
                   id="standard-basic"
                   label="Product Name"
                   value={name}
-                  // value={name}
 
                   onChange={(e) => onChange(e)}
                   name="name"
-                  variant="standard"
+
                 />
+
               </FormControl>
 
-              <FormControl fullWidth>
-                <TextField
+              <FormControl fullWidth className="w-50">
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal"
                   error={errors.serialNo ? true : false}
                   helperText={errors.serialNo}
                   label="Serial Number"
@@ -214,13 +233,17 @@ function AddProduct() {
 
                   name="serialNo"
                   onChange={(e) => onChange(e)}
-                  variant="standard"
+
                 />
               </FormControl>
 
               <FormControl fullWidth>
-                <TextField
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal"
                   label="Price"
                   error={errors.price ? true : false}
                   helperText={errors.price}
@@ -229,14 +252,18 @@ function AddProduct() {
                   // value={price}
                   name="price"
                   onChange={(e) => onChange(e)}
-                  variant="standard"
+
+
                 />
               </FormControl>
 
               {!image ? (
                 <FormControl fullWidth>
-                  <TextField
-                    id="image"
+                  <TextField style={{ backgroundColor: "#fff", width: 500 }}
+                    fullWidth
+                    //variant="filled"
+                    size="small"
+                    margin="normal"
                     label="Image"
                     type="file"
                     value={image}
@@ -246,18 +273,22 @@ function AddProduct() {
                     helperText={errors.image}
                     onChange={(e) => onChangeFile(e)}
                     name="image"
-                    variant="standard"
+
                   />
                 </FormControl>
               ) : (
                 <label>
-                  <img src={image} width="150" height="150" onClick={()=>setImage('')}></img>
+                  <img src={image} width="150" height="150" onClick={() => setImage('')}></img>
                 </label>
               )}
 
               <FormControl fullWidth>
-                <TextField
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal"
                   label="Discount"
                   value={discount}
                   // value={discount}
@@ -265,13 +296,17 @@ function AddProduct() {
                   error={errors.discount ? true : false}
                   helperText={errors.discount}
                   onChange={(e) => onChange(e)}
-                  variant="standard"
+
                 />
               </FormControl>
 
               <FormControl fullWidth>
-                <TextField
+                <TextField style={{ backgroundColor: "#fff", width: 500 }}
                   id="standard-basic"
+                  fullWidth
+                  variant="filled"
+                  size="small"
+                  margin="normal"
                   label="Quantity"
                   value={quantity}
                   // value={quantity}
@@ -280,114 +315,20 @@ function AddProduct() {
                   helperText={errors.quantity}
                   onChange={(e) => onChange(e)}
                   name="quantity"
-                  variant="standard"
+
                 />
               </FormControl>
 
               <div className="mt-5 w-100">
-                <Button style={{ backgroundColor: "#FFBB38", marginTop: 20, color: "#222", fontWeight: 600, marginRight:10 }}
+                <Button style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 }}
                   variant="contained"
                   type="submit"
                   color="primary"
                   className="w-100"
                 >
-                  Submit
+                  Add Product
                 </Button>
               </div>
-              {/* <form onSubmit={this.handleSubmit}>
-              <div>
-                <div className="label1 fs14">Select Product Category</div>
-                <select
-                  className="form-control inpTyp1"
-                  onChange={this.onChange}
-                  value={this.state.productCategory}
-                  name="productCategory"
-                >
-                  <option value="">Product Category</option>
-                  <option value="Fashion">Fashion</option>
-                  <option value="Shoes">IT</option>
-                  <option value="Clothing">Clothing</option>
-                  <option value="Electronics">Electronics</option>
-                </select>
-                <div className="text-danger fs12">{errors.productCategory}</div>
-              </div>
-              <div>
-                <div className="label1 fs14">Enter Product Name</div>
-                <input
-                  type="text"
-                  onChange={this.onChange}
-                  value={this.state.productName}
-                  name="productName"
-                  className="form-control inpTyp1"
-                  placeholder="Product Name"
-                ></input>
-                <div className="text-danger fs12">{errors.productName}</div>
-              </div>
-              <div>
-                <div className="label1 fs14">Upload Image</div>
-                {!this.state.image ? (
-                  <label for="image">
-                    Upload
-                  </label>
-                ) : (
-                  <label for="image">
-                    <img src={this.state.image} width="150" height="150"></img>
-                  </label>
-                )}
-
-                <input
-                  id="image"
-                  onChange={this.onChangeFile}
-                  value={this.state.image}
-                  name="image"
-                  type="file"
-                  className="form-control inpTyp1 d-none"
-                  placeholder="Serial Number"
-                ></input>
-                <div className="text-danger fs12">{errors.image}</div>
-              </div>
-              <div>
-                <div className="label1 fs14">Assign Serial Number</div>
-                <input
-                  type="text"
-                  className="form-control inpTyp1"
-                  onChange={this.onChange}
-                  value={this.state.serialNumber}
-                  name="serialNumber"
-                  placeholder="Serial Number"
-                ></input>
-                <div className="text-danger fs12">{errors.serialNumber}</div>
-              </div>
-              <div>
-                <div className="label1 fs14">Enter Product Quantity</div>
-                <input
-                  type="text"
-                  onChange={this.onChange}
-                  value={this.state.quantity}
-                  name="quantity"
-                  className="form-control inpTyp1"
-                  placeholder="Product Quantity"
-                ></input>
-                <div className="text-danger fs12">{errors.quantity}</div>
-              </div>
-              <div>
-                <div className="label1 fs14">Price</div>
-                <input
-                  type="number"
-                  className="form-control inpTyp1"
-                  placeholder="Price"
-                  onChange={this.onChange}
-                  value={this.state.price}
-                  name="price"
-                ></input>
-                <div className="text-danger fs12">{errors.price}</div>
-              </div>
-              <div>
-                <button type="submit" className="btn btn-success w-100 mt-5">
-                  Continue With Details
-                </button>
-              </div>
-            </form> */}
             </div>
           </div>
         </form>

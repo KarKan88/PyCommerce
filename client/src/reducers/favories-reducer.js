@@ -1,3 +1,7 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+*/
+
 import * as actionType from "../action-type/favorites-action-type";
 
 const initialState = {
