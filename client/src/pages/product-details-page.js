@@ -1,5 +1,6 @@
 /*
 * @author: Adesh Nalpet Adimurthy
+* Products details page with additional inetgrations to add to cart and favorites.
 */
 
 import React, { useEffect, useState } from "react";
