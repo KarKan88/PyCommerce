@@ -1,15 +1,13 @@
 /*
 * @author: Adesh Nalpet Adimurthy
+* List of products under a category.
 */
 
 import React from "react";
 import { useParams } from "react-router";
 import {
-  Box,
-  Divider,
   makeStyles,
   Grid,
-  Checkbox
 } from "@material-ui/core";
 
 import ToastMessageContainer from "../components/toast";
@@ -75,43 +73,7 @@ function ProductsPage() {
   return (
     <div>
       <Grid container className={classes.component}>
-        <Grid
-          item
-          lg={3}
-          md={3}
-          sm={12}
-          xs={12}
-          className={classes.leftComponent}>
-          <Box className={classes.bottom}>
-            <Box className={classes.sideBarLink}>
-              <p>Filters</p>
-            </Box>
-            <Divider className={classes.divider} />
-            <Box className={classes.subMenu}>
-              <h4>Customer Ratings</h4>
-              <br />
-              <Checkbox
-                value="checkedA" /> 4 ★ & above
-              <br />
-            </Box>
-            <Divider className={classes.divider} />
-            <Box className={classes.subMenu}>
-              <Box className={classes.subMenu}>
-                <h4>Budget</h4>
-                <br />
-                <Checkbox
-                  value="checkedA" /> $500 to $1500
-                <br />
-                <Checkbox
-                  value="checkedA" /> $1500 and above
-                <br />
-                <Checkbox
-                  value="checkedA" /> $500 and below
-              </Box>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
+        <Grid style={{ background: "#fff" }} item lg={12} md={9} sm={12} xs={12}>
           <div>
             <ProductList categoryName={category} />
             <ToastMessageContainer />

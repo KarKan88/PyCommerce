@@ -1,3 +1,8 @@
+/*
+* @author: Adesh Nalpet Adimurthy
+* MongoDB Database connection details.
+*/
+
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./.env" });
 const _DBUrl = process.env.DB;
