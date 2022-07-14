@@ -5,7 +5,7 @@
 import * as actionType from "../action-type/favorites-action-type";
 import axios from "axios";
 
-const user_id = "629698a83e746c2eb31e8207"
+const user_id = localStorage.getItem('id')
 
 /**
  * API call to add item favorites for a user-id
