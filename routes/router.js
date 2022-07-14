@@ -9,7 +9,7 @@ const {
 const {
   addItemToFavorites,
   removeItemFromFavorites,
-  getFavoritesItems
+  getFavoritesItems,
 } = require("../controllers/favorites-controller");
 
 const {
@@ -17,17 +17,19 @@ const {
   userRegistration,
   userLogin,
   forgotPassword,
-  sellerRegistration
+  sellerRegistration,
 } = require("../controllers/user-controller");
 
 const {
- listCoupons,
- addCoupon,
- deleteCouponById,
- updateCouponById
+  listCoupons,
+  addCoupon,
+  deleteCouponById,
+  updateCouponById,
+  listCouponById,
+  listCouponByCouponCode,
 } = require("../controllers/coupon-controller");
 
-const {verifyJWT} = require("../authentication/authentication");
+const { verifyJWT } = require("../authentication/authentication");
 
 const router = express.Router();
 
@@ -47,6 +49,8 @@ router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
 
 router.get("/coupons/list-coupons", listCoupons);
+router.get("/coupons/list-coupon/:id", listCouponById);
+router.get("/coupons/list-coupon/:couponCode", listCouponByCouponCode);
 router.post("/coupons/add-coupon", addCoupon);
 router.put("/coupons/update-coupon/:id", updateCouponById);
 router.delete("/coupons/delete-coupon/:id", deleteCouponById);
