@@ -5,7 +5,7 @@
 import * as actionType from "../action-type/favorites-action-type";
 import axios from "axios";
 
-const user_id = "629698a83e746c2eb31e8207"
+const user_id = localStorage.getItem('id')
 
 /**
  * API call to add item favorites for a user-id
@@ -55,17 +55,20 @@ export const removeFromFavorites = (id) => async (dispatch, getState) => {
  */
 export const getFavoritesItems = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(`/favorites/get-items/${user_id}`);
-    const favoritesItems = [];
+    if(localStorage.getItem('id') !== null) {
+      const { data } = await axios.get(`/favorites/get-items/${user_id}`);
+      const favoritesItems = [];
 
-    data?.map((value) => {
-      favoritesItems.push(value.productDetails[0]);
-    });
-    dispatch({
-      type: actionType.SET_FAVORITES,
-      payload: {
-        favoritesItems: favoritesItems,
-      },
-    });
+      data?.map((value) => {
+        favoritesItems.push(value.productDetails[0]);
+      });
+      dispatch({
+        type: actionType.SET_FAVORITES,
+        payload: {
+          favoritesItems: favoritesItems,
+        },
+      });
+    }
+    
   } catch (error) { }
 };

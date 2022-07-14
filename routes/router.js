@@ -31,6 +31,13 @@ const {
   addCost
 } = require("../controllers/checkout-controller");
 
+const {
+ listCoupons,
+ addCoupon,
+ deleteCouponById,
+ updateCouponById
+} = require("../controllers/coupon-controller");
+
 const {verifyJWT} = require("../authentication/authentication");
 
 const router = express.Router();
@@ -56,5 +63,10 @@ router.get("/cart/get-items/:id", getCartItems);
 router.patch("/cart/item/updatequantity", updateQuantity);
 
 router.post("/checkout", addCost);
+
+router.get("/coupons/list-coupons", listCoupons);
+router.post("/coupons/add-coupon", addCoupon);
+router.put("/coupons/update-coupon/:id", updateCouponById);
+router.delete("/coupons/delete-coupon/:id", deleteCouponById);
 
 module.exports = router;
