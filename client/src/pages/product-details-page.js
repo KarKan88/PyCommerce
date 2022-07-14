@@ -1,6 +1,6 @@
 /*
-* @author: Adesh Nalpet Adimurthy
-*/
+ * @author: Adesh Nalpet Adimurthy
+ */
 
 import React, { useEffect, useState } from "react";
 import { Box, Typography, makeStyles, Grid } from "@material-ui/core";
@@ -127,7 +127,7 @@ function ProductPage() {
       )}
       <ToastMessageContainer />
       <Grid>
-        <CommentComponent></CommentComponent>
+        <CommentComponent product={product} />
       </Grid>
     </Box>
   );

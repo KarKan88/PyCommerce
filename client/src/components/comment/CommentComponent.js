@@ -52,7 +52,7 @@ const state = {
 
 const handleChange = (event) => {};
 
-function CommentComponent() {
+function CommentComponent({ product }) {
   const [CompleteData, setCompleteData] = React.useState(data);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -91,8 +91,9 @@ function CommentComponent() {
         style={{ paddingTop: "2%", marginTop: "1%" }}
         justifyContent="flex-end"
       >
-        <Grid item xs={12} md={8} sm={12}>
+        <Grid item xs={12} md={8}>
           <h2> REVIEWS AND RATINGS</h2>
+          {console.log(product)}
         </Grid>
         <Grid item xs={12} md={2} sm={6}>
           <Button
