@@ -20,6 +20,17 @@ const {
   sellerRegistration
 } = require("../controllers/user-controller");
 
+const {
+  addItem,
+  removeItem,
+  getCartItems,
+  updateQuantity
+} = require("../controllers/cart-controller");
+
+const {
+  addCost
+} = require("../controllers/checkout-controller");
+
 const {verifyJWT} = require("../authentication/authentication");
 
 const router = express.Router();
@@ -38,5 +49,12 @@ router.post("/products/add-product", addProduct);
 router.post("/favorites/add-item", addItemToFavorites);
 router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
+
+router.post("/cart/add-item", addItem);
+router.delete("/cart/remove-item", removeItem);
+router.get("/cart/get-items/:id", getCartItems);
+router.patch("/cart/item/updatequantity", updateQuantity);
+
+router.post("/checkout", addCost);
 
 module.exports = router;

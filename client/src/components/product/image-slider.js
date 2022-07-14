@@ -12,6 +12,7 @@ import { ShoppingCart as Cart, FlashOn as Flash } from "@material-ui/icons";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import toastMessage from "../../utils/toast-message";
 import { addToFavorites, getFavoritesItems, removeFromFavorites } from "../../actions/favorite-action";
+import { addToCart } from "../../actions/cart-action";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -86,6 +87,14 @@ const ProductImageSlider = ({ product }) => {
     });
   }, [favoritesItems]);
 
+  const [cartButton, setCartButton] = useState("ADD TO CART")
+
+  const addItemToCart = () => {
+    dispatch(addToCart(product));
+    setCartButton("ADDED")
+    // history.push("/cart");
+  };
+
   const handleFavorites = () => {
     if (isFavorite) {
       dispatch(removeFromFavorites(product._id));
@@ -114,15 +123,15 @@ const ProductImageSlider = ({ product }) => {
         />
       </Box>
       <br />
-      <Link to="/cart">
         <Button
           className={clsx(classes.button, classes.addToCart)}
           style={{ marginRight: 10, backgroundColor: "#FFC046", color: "#222", fontWeight: 600 }}
-          variant="contained">
+          variant="contained"
+          onClick={() => addItemToCart()}>
           <Cart />
-          Add to Cart
+          {cartButton}
         </Button>
-      </Link>
+      
       <Link to="/cart">
         <Button
           className={clsx(classes.button, classes.buyNow)}
