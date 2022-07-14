@@ -77,8 +77,12 @@ export default function Sidebar() {
   };
   function onHandleLogout()
   {
-    localStorage.removeItem("login");
+    localStorage.removeItem("id");
+    localStorage.removeItem("jwtoken");
+    localStorage.removeItem("emailAddress");
+    localStorage.removeItem("seller");
     navigate.push("/");
+    window.location.reload();
   }
   return (
     <>

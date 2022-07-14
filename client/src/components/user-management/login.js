@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
 
@@ -56,8 +57,23 @@ function Login() {
         if(!(success && ((emailAddress && password) !== ""))) {
             setLoginError("Email address and password fields are mandatory");
         } else {
-            localStorage.setItem("login","loginSuccess");
-            navigate.push('/');
+            axios.post("/login", {
+                emailAddress: emailAddress,
+                password : password}).
+            then(response => {
+                if(response.status === 200) {
+                    localStorage.setItem("id",response.data.id);
+                    localStorage.setItem("jwtoken",response.data.jwtoken);
+                    localStorage.setItem("emailAddress",response.data.emailAddress);
+                    localStorage.setItem("seller",response.data.isSeller);
+                    navigate.push('/');
+                    window.location.reload();
+                } else {
+                    setLoginError(response.data.message);
+                }
+            }).catch(err => {
+                setLoginError("Email address/Password is incorrect");
+            });
         }
     }
 

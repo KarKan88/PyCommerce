@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import axios from 'axios';
 
 function ForgotPassword() {
 
@@ -134,7 +134,20 @@ function ForgotPassword() {
     function onHandleSubmit() {
         if((emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success) 
             && ((emailAddress && newPassword && confirmNewPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
-            setOpenDialog(true);
+                axios.post("/forgotpassword", {
+                    emailAddress: emailAddress,
+                    password : newPassword,
+                    securityQuestionOne : securityQuestionOne,
+                    securityQuestionTwo : securityQuestionTwo}).
+                then(response => {
+                    if(response.status === 201) {
+                        setOpenDialog(true);
+                    } else {
+                        setPasswordError(response.date.message);
+                    }
+                }).catch(err => {
+                    setPasswordError("Email or Security questions are wrong");
+                });
         } else {
             setPasswordError("All fields are mandatory");
         }
