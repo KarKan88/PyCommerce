@@ -51,35 +51,45 @@ const useStyles = makeStyles(theme => ({
 function Menu() {
   const classes = useStyles();
 
-  return <Box className={classes.headerMenu}>
+    if(localStorage.getItem('id') === null) {
+      return <Box className={classes.headerMenu}>
+        <Link to="/login">
+          <Button variant="contained" style={{backgroundColor: "#FFBB38"}} className={classes.login_btn}>
+            Login
+          </Button>
+        </Link>
+      </Box> 
+    } else {
+      return (<Box className={classes.headerMenu}>
+        <Link to="/profileinformation">
+          <Box className={classes.menu_link}>
+            <Typography className={classes.menu_more}>Profile</Typography>
+            <ExpandMoreIcon />
+          </Box>
+        </Link>
 
-    <Link to="/login">
-      <Button variant="contained" style={{backgroundColor: "#FFBB38"}} className={classes.login_btn}>
-        Login
-      </Button>
-    </Link>
+      { (localStorage.getItem('seller') === "false") ? 
+        <Link to="/sellerregistration">
+          <Box className={classes.menu_link}>
+            <Typography className={classes.menu_more}>Become a Seller</Typography>
+          </Box>
+        </Link>
+      :
+        <Link to="/add-product">
+          <Box className={classes.menu_link}>
+            <Typography className={classes.menu_more}>Seller Dashboard</Typography>
+          </Box>
+        </Link>
+      } 
+      <Link to="/cart">
+        <Box className={classes.menu_link}>
+          <ShoppingCartIcon />
+          <Typography className={classes.menu_cart}>Cart</Typography>
+        </Box>
+      </Link>
+      </Box>)
     
-    
-    <Link to="/profileinformation">
-      <Box className={classes.menu_link}>
-        <Typography className={classes.menu_more}>Profile</Typography>
-        <ExpandMoreIcon />
-      </Box>
-    </Link>
-
-    <Link to="/sellerregistration">
-      <Box className={classes.menu_link}>
-        <Typography className={classes.menu_more}>Become a Seller</Typography>
-      </Box>
-    </Link>
-    
-    <Link to="/cart">
-      <Box className={classes.menu_link}>
-        <ShoppingCartIcon />
-        <Typography className={classes.menu_cart}>Cart</Typography>
-      </Box>
-    </Link>
-  </Box>;
+    }
 }
 
 export default Menu;

@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 function Registration() {
 
@@ -200,10 +201,34 @@ function Registration() {
         setSecurityQuestionTwoError(err);
     }
 
-    function onHandleSubmit() {
-        if((fNameSuccess && lNameSuccess && emailSuccess && passwordSuccess && conPasswordSuccess && phnNumSuccess && q1Success && q2Success) && 
+    async function onHandleSubmit() {
+        if((fNameSuccess && lNameSuccess && emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success) && 
         ((firstName && lastName && emailAddress && password && confirmPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
-            setOpenDialog(true);
+            axios.post("/verifyemail", {emailAddress: emailAddress}).
+            then(response => {
+                if(response.status === 200) {
+                    axios.post("/register", {
+                        firstName : firstName,
+                        lastName : lastName,
+                        emailAddress : emailAddress,
+                        password : password,
+                        phoneNumber : phoneNumber,
+                        address : address,
+                        securityQuestionOne : securityQuestionOne,
+                        securityQuestionTwo : securityQuestionTwo
+                    }).then(userResponse => {
+                        if(userResponse.status === 201) {
+                            setOpenDialog(true);
+                        }
+                    }).catch(err => {
+                        setRegisterError("Registration failed");
+                    })
+                } else {
+                    setRegisterError("Email Already Exists");
+                }
+            }).catch(err => {
+                setRegisterError("Email Already Exists");
+            });
         } else {
             setRegisterError("All mandatory fields with * should be filled");
         }
