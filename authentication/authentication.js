@@ -26,7 +26,7 @@ const verifyJWT = (req,res,next) => {
 
 const createJWT = (emailAddress) => {
     const token = jwt.sign(
-        {emailAddress}, "WEBGROUP16", { expiresIn: 600}
+        {emailAddress}, "WEBGROUP16"
     );
     return token;
 }

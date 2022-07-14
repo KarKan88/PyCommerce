@@ -21,6 +21,13 @@ const {
 } = require("../controllers/user-controller");
 
 const {
+  listCoupons,
+  addCoupon,
+  deleteCouponById,
+  updateCouponById,
+} = require("../controllers/coupon-controller");
+
+const {
   addComment,
   getCommentByProductId,
 } = require("../controllers/comment-controller");
@@ -46,5 +53,10 @@ router.get("/favorites/get-items/:id", getFavoritesItems);
 
 router.post("/addcomment", addComment);
 router.get("/getcomment", getCommentByProductId);
+
+router.get("/coupons/list-coupons", listCoupons);
+router.post("/coupons/add-coupon", addCoupon);
+router.put("/coupons/update-coupon/:id", updateCouponById);
+router.delete("/coupons/delete-coupon/:id", deleteCouponById);
 
 module.exports = router;

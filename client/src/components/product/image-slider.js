@@ -87,15 +87,20 @@ const ProductImageSlider = ({ product }) => {
   }, [favoritesItems]);
 
   const handleFavorites = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavorites(product._id));
-      setIsFavorite(false);
-      toastMessage("Removed from favorites", "success");
+    if(localStorage.getItem('id') === null) {
+      toastMessage("Login to add!", "error");
     } else {
-      dispatch(addToFavorites(product));
-      setIsFavorite(true);
-      toastMessage("Added to favorites", "success");
+      if (isFavorite) {
+        dispatch(removeFromFavorites(product._id));
+        setIsFavorite(false);
+        toastMessage("Removed from favorites", "success");
+      } else {
+        dispatch(addToFavorites(product));
+        setIsFavorite(true);
+        toastMessage("Added to favorites", "success");
+      }
     }
+    
   };
 
   return (
