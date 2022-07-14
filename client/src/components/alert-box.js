@@ -7,6 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core";
+import { removeFromCart } from "../actions/cart-action";
 import { removeFromFavorites } from "../actions/favorite-action";
 
 import toastMessage from "../utils/toast-message";
@@ -34,7 +35,16 @@ function AlertDialogBox({ itemId, isOpenDialog = false, handleClose, type }) {
   const classes = useStyles();
 
   const removeItem = () => {
-    dispatch(removeFromFavorites(itemId));
+    switch (type) {
+      case "cart":
+        dispatch(removeFromCart(itemId));
+        break;
+      case "favorites":
+        dispatch(removeFromFavorites(itemId));
+        break;
+      default:
+        break;
+    }
     toastMessage("Item Removed", "success");
     handleClose();
   };

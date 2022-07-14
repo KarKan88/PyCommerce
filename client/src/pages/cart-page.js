@@ -1,10 +1,16 @@
-import React from "react";
+/*
+ * @author: Dhruvrajsinh Omkarsinh Vansia
+ */
+
+import React, { useEffect } from "react";
 
 import { Box, makeStyles, Typography, Grid, Button } from "@material-ui/core";
 import CartItem from "../components/cart/CartItem";
 import TotalView from "../components/cart/TotalView";
 import Carousel from "react-material-ui-carousel";
 import ProductRow from "../components/product/product-grid";
+import { useSelector, useDispatch } from "react-redux";
+import { getCartItems } from "../actions/cart-action";
 
 import "../styles/home-page.css";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -60,71 +66,38 @@ function CartPage() {
   const classes = useStyle();
   const history = useHistory();
 
-  const cartItems = [
-    {
-      title: {
-        shortTitle: "Dell G3",
-        longTitle: "Dell G3 I7-9th gen",
-      },
-      price: {
-        mrp: 1000,
-        cost: 900,
-        discount: 10,
-      },
-      qty: 1,
-      category: "electronics",
-      tagline: "laptop",
-      url: "https://miro.medium.com/max/1400/1*2fAtste9D54C_0NgIBJbuA.jpeg",
-    },
-    {
-      title: {
-        shortTitle: "Dell G4",
-        longTitle: "Dell G4 I7-9th gen",
-      },
-      price: {
-        mrp: 1100,
-        cost: 910,
-        discount: 30,
-      },
-      qty: 1,
-      category: "electronics",
-      tagline: "laptop",
-      url: "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-3420/media-gallery/peripherals_laptop_latitude_3420nt_gallery_1.psd?fmt=pjpg&pscan=auto&scl=1&wid=3319&hei=2405&qlt=100,0&resMode=sharp2&size=3319,2405",
-    },
-    {
-      title: {
-        shortTitle: "Gaming chair",
-        longTitle: "Gaming chair",
-      },
-      price: {
-        mrp: 500,
-        cost: 400,
-        discount: 20,
-      },
-      qty: 1,
-      category: "furniture",
-      tagline: "chair",
-      url: "https://m.media-amazon.com/images/I/61ag4d3mKyL._AC_SX679_.jpg",
-    },
-    {
-      title: {
-        shortTitle: "LG moniter",
-        longTitle: "LG moniter",
-      },
-      price: {
-        mrp: 500,
-        cost: 399,
-        discount: 20,
-      },
-      qty: 1,
-      category: "electronics",
-      tagline: "moniter",
-      url: "https://m.media-amazon.com/images/I/61pI7loWpZS._AC_SX679_.jpg",
-    },
-  ];
+  const user = localStorage.getItem("id");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
+
+  const { cartItems } = useSelector((state) => state.cartReducer);
 
   const sliderItems = cartItems.length > 2 ? 2 : cartItems.length;
   const items = [];
+
+  let categories = {};
+
+  for (let i = 0; i < cartItems.length; i += 1) {
+    categories[cartItems[i].disc.category] = categories[
+      cartItems[i].disc.category
+    ]
+      ? categories[cartItems[i].disc.category] + cartItems[i].qty
+      : cartItems[i].qty;
+  }
+
+  let category,
+    maxValue = 0;
+
+  for (const [key, value] of Object.entries(categories)) {
+    if (value > maxValue) {
+      maxValue = value;
+      category = key;
+    }
+  }
 
   for (let i = 0; i < cartItems.length; i += sliderItems) {
     if (i % sliderItems === 0) {
@@ -157,84 +130,91 @@ function CartPage() {
     },
   };
 
-  const placeOrder = () =>{
-    history.push('/shipping')
+  let title = "";
+
+  if (cartItems?.length == 0) {
+    title = "Top deals";
+    category = "top_deals";
+  } else {
+    title = "Frequently bought together";
   }
+
   return (
     <>
       <br />
-      <Grid container className={classes.component}>
-        <Grid
-          style={{ paddingBottom: "30px", paddingLeft: "20px", width: "75%" }}
-        >
-          <Box className={classes.header}>
-            <Typography style={{ fontWeight: 600, fontSize: 18 }}>
-              My Cart ({cartItems?.length})
-            </Typography>
-          </Box>
-
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{
-              backgroundColor: "#fff",
-            }}
-          >
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              showDots={false}
-              responsive={responsive}
-              ssr={true}
-              infinite={true}
-              autoPlay={false}
-              autoPlaySpeed={2500}
-              keyBoardControl={true}
-              customTransition="all 200ms"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={["mobile"]}
-              dotListClass="custom-dot-list-style"
-              itemClass="carousel-item-padding-40-px"
-            >
-              {items}
-            </Carousel>
-          </Grid>
-
-          <Grid
-            container
-            style={{
-              backgroundColor: "#fff",
-              padding: "10px 10px 10px 10px",
-            }}
-          >
-              
-            <Button
-              variant="contained"
-              className={classes.placeOrder}
+      {cartItems?.length == 0 ? (
+        <>
+          <br />
+          <br />
+          <Box>
+            <Typography
               style={{
-                backgroundColor: "#EB853B",
-                color: "#222",
                 fontWeight: 600,
+                fontSize: 24,
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                paddingLeft: "20px",
+                width: "75%",
               }}
-              onClick={placeOrder}
             >
-              Place Order
-            </Button>
+              Your Cart is Empty.
+            </Typography>
+            <Grid>
+              <ProductRow title="Trending" categoryName="top_offers" />
+            </Grid>
+            <br/>
+            <br/>
+          </Box>
+        </>
+      ) : (
+        <Grid container className={classes.component}>
+          <Grid
+            style={{ paddingBottom: "30px", paddingLeft: "20px", width: "75%" }}
+          >
+            <Box className={classes.header}>
+              <Typography style={{ fontWeight: 600, fontSize: 18 }}>
+                My Cart
+              </Typography>
+            </Box>
+
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              style={{
+                backgroundColor: "#fff",
+              }}
+            >
+              <Carousel
+                swipeable={true}
+                draggable={false}
+                showDots={false}
+                responsive={responsive}
+                ssr={true}
+                infinite={true}
+                autoPlay={false}
+                autoPlaySpeed={2500}
+                keyBoardControl={true}
+                customTransition="all 200ms"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["mobile"]}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+              >
+                {items}
+              </Carousel>
+            </Grid>
+          </Grid>
+          <Grid style={{ paddingLeft: "2em" }} display="flex">
+            <TotalView cartItems={cartItems} />
           </Grid>
         </Grid>
-        <Grid style={{ paddingLeft: "2em" }} display="flex">
-          <TotalView cartItems={cartItems} />
-        </Grid>
-      </Grid>
+      )}
       <Grid>
-        <ProductRow
-          title="Frequently bought together"
-          categoryName="electronics"
-        />
+        <ProductRow title={title} categoryName={category} />
       </Grid>
     </>
   );

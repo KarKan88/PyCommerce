@@ -1,9 +1,12 @@
+/*
+ * @author: Dhruvrajsinh Omkarsinh Vansia
+ */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ButtonGroup, Button, makeStyles } from "@material-ui/core";
-// import { updateQuantity } from "../../actions/cart-action";
-import toastMessage from "../../utils/toast-message";
+import { updateQty, getCartItems } from "../../actions/cart-action";
+
 const useStyle = makeStyles({
   component: {
     marginTop: 30
@@ -13,19 +16,28 @@ const useStyle = makeStyles({
   }
 });
 
-const CounterButton = ({
-  product
-}) => {
+const CounterButton = ({product}) => {
   const classes = useStyle();
+  const dispatch = useDispatch();
+
   const [counter, setCounter] = useState(product.qty);
+
+  useEffect(() => {
+      dispatch(getCartItems());
+  }, []);
 
   const handleIncrement = () => {
       setCounter(counter => counter + 1);
+      let qty = counter + 1
+      dispatch(updateQty(product, qty ));
   };
 
   const handleDecrement = () => {
     setCounter(counter => counter - 1);
+    let qty = counter - 1
+    dispatch(updateQty(product, qty));
   };
+
 
   return <>
       <ButtonGroup className={classes.component}>

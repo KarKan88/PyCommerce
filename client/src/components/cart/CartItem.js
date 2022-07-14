@@ -1,3 +1,7 @@
+/*
+ * @author: Dhruvrajsinh Omkarsinh Vansia
+ */
+
 import {
   Card,
   makeStyles,
@@ -15,7 +19,6 @@ import { useState } from "react";
 const useStyle = makeStyles({
   component: {
     display: "flex",
-    // flexDirection: "column",
     justifyContent: "space-between",
     height: "100%",
     position: "relative",
@@ -66,18 +69,17 @@ const CartItem = ({ item }) => {
 
   return (
     <>
-      <Grid style={{paddingRight:'0px', paddingLeft:'10px', marginRight:'10px', paddingBottom:'10px', paddingTop: '10px'}} >
+    <Grid style={{paddingRight:'0px', paddingLeft:'10px', marginRight:'10px', paddingBottom:'10px', paddingTop: '10px'}} >
         <Card className={classes.component} raised elevation={5} style={{paddingLeft: '15px', paddingRight: '15px'}}>
           <Box className={classes.leftComponent}>
-            <img src={item.url} className={classes.image} />
+            <img src={item.disc.url} className={classes.image} />
             <CounterButton product={item} />
           </Box>
           <Box style={{marginRight:'20px'}} >
-            {/* <Link to={`/product/${item._id}`}> */}
               <Typography className={classes.itemTitle}  style={{
                   marginTop: '10px',
                 }}>
-                {item.title.longTitle && Shorten(item.title.longTitle)}
+                {item.disc.title.longTitle && Shorten(item.disc.title.longTitle)}
               </Typography>
               <Typography
                 className={clsx(classes.greyTextColor, classes.smallText)}
@@ -93,10 +95,10 @@ const CartItem = ({ item }) => {
                   color: "#000",
                 }}
               >
-                <span className={classes.price}>${item.price.cost}</span>
+                <span className={classes.price}>${item.disc.price.cost}</span>
                 &nbsp;&nbsp;
                 <span className={classes.greyTextColor}>
-                  <strike>${item.price.mrp}</strike>
+                  <strike>${item.disc.price.mrp}</strike>
                 </span>
                 &nbsp;&nbsp;
                 <span
@@ -104,10 +106,9 @@ const CartItem = ({ item }) => {
                     color: "#222",
                   }}
                 >
-                  {item.price.discount}% off
+                  {item.disc.price.discount}% off
                 </span>
               </Typography>
-            {/* </Link> */}
             <Button className={classes.remove} onClick={dialogOpen}>
               Remove
             </Button>
@@ -117,7 +118,7 @@ const CartItem = ({ item }) => {
       <AlertDialogBox
         isOpenDialog={isOpenDialog}
         handleClose={dialogClose}
-        itemId={item._id}
+        itemId={item.disc._id}
         type="cart"
       />
     </>

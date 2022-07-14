@@ -1,6 +1,13 @@
+/*
+ * @author: Dhruvrajsinh Omkarsinh Vansia
+ */
+
 import React from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, Typography, makeStyles, Grid, Button, Checkbox } from "@material-ui/core";
 import clsx from "clsx";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCost } from "../../actions/checkout-action";
 
 const useStyle = makeStyles({
   header: {
@@ -12,7 +19,7 @@ const useStyle = makeStyles({
   },
   container: {
     "& > *": {
-      marginBottom: 20,
+      marginBottom: 13,
       fontSize: 14
     }
   },
@@ -32,31 +39,39 @@ const useStyle = makeStyles({
 const TotalView = ({ cartItems }) => {
 
   const classes = useStyle();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   let totalCost = 0;
   let totalMrp = 0;
-  const tax = 15;
 
-  let totalSaving = 0;
+  let totalItems = 0
 
   for (let i = 0; i < cartItems.length; i += 1) {
-    totalCost += cartItems[i]["price"]["cost"];
-    totalMrp += cartItems[i]["price"]["mrp"];
+    totalItems += cartItems[i]["qty"] 
+    totalCost += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["cost"];
+    totalMrp +=  cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["mrp"];
   }
 
   const discount = totalMrp - totalCost;
 
+  const placeOrder = () =>{
+    dispatch(addCost(totalCost))
+    history.push('/shipping')
+  }
 
   return (
-  <Box>
+  <>
+  { totalCost == 0 ? (<> </>):(
+    <Box>
     <Box className={classes.header} style={{
-       paddingTop: '40px', paddingBottom: '40px'
+       paddingTop: '10px', paddingBottom: '10px'
     }}>
       <Typography className={classes.greyTextColor}>PRICE DETAILS</Typography>
     </Box>
-    <Box className={clsx(classes.header, classes.container)} style={{paddingTop: '10px'}}>
+    <Box className={clsx(classes.header, classes.container)} style={{paddingTop: '5px'}}>
       <Typography>
-        Price ({cartItems?.length} item)
+        Price ({totalItems} item)
         <span className={classes.price}>${totalMrp}</span>
       </Typography>
       <Typography>
@@ -68,7 +83,7 @@ const TotalView = ({ cartItems }) => {
           FREE
         </span>
       </Typography>
-      <Typography className={classes.totalAmount} style={{paddingTop: '22px'}}>
+      <Typography className={classes.totalAmount} style={{paddingTop: '5px'}}>
         Total Payable
         <span className={classes.price}>
           ${totalCost}
@@ -79,9 +94,33 @@ const TotalView = ({ cartItems }) => {
         color: "green"}}>
         Total saving on this order is ${discount}.
       </Typography>
+      <Grid
+            container
+            style={{
+              backgroundColor: "#fff",
+              padding: "2px 10px 2px 62px",
+            }}
+          >
+              
+            <Button
+              variant="contained"
+              className={classes.placeOrder}
+              style={{
+                backgroundColor: "#EB853B",
+                color: "#222",
+                fontWeight: 600,
+              }}
+              onClick={placeOrder}
+              
+            >
+              Place Order
+            </Button>
+          </Grid>
     </Box>
   </Box>
-  );
+  )}
+  </>
+    )
 };
 
 export default TotalView;
