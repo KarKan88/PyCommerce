@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const addInventoryProduct = async (item) => {
     try {
-        let result = await axios.post("http://localhost:5000/inventory/add-product", item)
+        let result = await axios.post("/inventory/add-product", item)
         return result
     }
     catch(er){
@@ -16,7 +16,7 @@ export const addInventoryProduct = async (item) => {
 
 export const listInventoryProduct = async() => {
     try {
-        let result = await axios.get("http://localhost:5000/inventory/products")
+        let result = await axios.get("/inventory/products")
         return result
     }
     catch(er){
@@ -25,7 +25,7 @@ export const listInventoryProduct = async() => {
 }
 export const deleteInventoryProductsById = async(id) => {
     try {
-        let result = await axios.delete("http://localhost:5000/inventory/delete-product/"+id)
+        let result = await axios.delete("/inventory/delete-product/"+id)
         return result
     }
     catch(er){
@@ -35,7 +35,7 @@ export const deleteInventoryProductsById = async(id) => {
 
 export const getInventoryProductById = async(id) => {
     try {
-        let result = await axios.get("http://localhost:5000/inventory/product/"+id)
+        let result = await axios.get("/inventory/product/"+id)
         return result
     }
     catch(er){
