@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import CreateArea from "./CreateArea";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -42,6 +42,21 @@ function createComment(object) {
   );
 }
 
+function createComment1(object) {
+  console.log(object._id);
+  // return (
+  //   <Comment
+  //     key={object.Name}
+  //     avatar={object.Avatar}
+  //     name={object.Name}
+  //     commnet={object.Comment}
+  //     rating={object.Rating}
+  //     date={object.CDate}
+  //     title={object.Title}
+  //   />
+  // );
+}
+
 const state = {
   FiveStar: true,
   FourStar: false,
@@ -50,10 +65,33 @@ const state = {
   OneStar: false,
 };
 
-const handleChange = (event) => {};
-
 function CommentComponent({ product }) {
   const [CompleteData, setCompleteData] = React.useState(data);
+  const [commentData, setcommentData] = React.useState([]);
+
+  const getProducts = async (id) => {
+    try {
+      const data = await axios.get(`/getcomment/${id}`);
+
+      var com = data.data;
+
+      for (var i = 0; i < Object.keys(com).length; i++) {
+        console.log(com[i]);
+        setcommentData((prevData) => {
+          return [...prevData, com[i]];
+        });
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProducts(product._id);
+  }, []);
+
+  console.log(commentData);
+
+  commentData.map(createComment1);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -93,7 +131,6 @@ function CommentComponent({ product }) {
       >
         <Grid item xs={12} md={8}>
           <h2> REVIEWS AND RATINGS</h2>
-          {console.log(product)}
         </Grid>
         <Grid item xs={12} md={2} sm={6}>
           <Button
@@ -119,7 +156,11 @@ function CommentComponent({ product }) {
           >
             <Fade in={open}>
               <Box sx={style}>
-                <CreateArea onAdd={addNote} />
+                <CreateArea
+                  onAdd={addNote}
+                  product_id={product._id}
+                  close={handleClose}
+                />
               </Box>
             </Fade>
           </Modal>

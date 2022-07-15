@@ -51,8 +51,9 @@ router.post("/favorites/add-item", addItemToFavorites);
 router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
 
+console.log("In routes");
 router.post("/addcomment", addComment);
-router.get("/getcomment", getCommentByProductId);
+router.get("/getcomment/:id", getCommentByProductId);
 
 router.get("/coupons/list-coupons", listCoupons);
 router.post("/coupons/add-coupon", addCoupon);

@@ -7,24 +7,19 @@ const mongoose = require("mongoose");
 
 const comments = mongoose.Schema({
   userId: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
+    type: String,
   },
   productId: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
+    type: String,
   },
   name: {
     type: String,
-    required: true,
   },
   rating: {
     type: Number,
-    required: true,
   },
   title: {
     type: String,
-    required: true,
   },
   comment: {
     type: String,
@@ -32,7 +27,6 @@ const comments = mongoose.Schema({
   cdate: {
     type: Date,
     default: Date.now,
-    required: true,
   },
 });
 
