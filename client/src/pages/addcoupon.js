@@ -121,6 +121,7 @@ function AddCoupon() {
      */
     if (isValid(data)) {
       if (id) {
+        console.log(id);
         let localData = JSON.parse(localStorage.getItem("couponData"));
         let value = localData.findIndex((x) => +x.id == +id);
         localData[value] = data;

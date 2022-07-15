@@ -16,6 +16,8 @@ import {
 import { red } from "@material-ui/core/colors";
 import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { listCoupons } from "../actions/coupon-action";
 /**
  * The useStyles variable will make styles for spaces around the coupons listing rendered.
  */
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /**
- * Funtion to view the coupons extracted from the storage. This function will have all the variables required 
+ * Funtion to view the coupons extracted from the storage. This function will have all the variables required
  * and the functions required to perfrom when edit or delete button is pressed.
  */
 function ViewCoupon(props) {
@@ -64,23 +66,24 @@ function ViewCoupon(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const navigate = useHistory();
-/**
- * This function will fetch all the coupons from the storage.
- */
+  /**
+   * This function will fetch all the coupons from the storage.
+   */
   useEffect(() => {
-    if (localStorage.getItem("couponData")) {
-      let values = JSON.parse(localStorage.getItem("couponData"));
-      if (values.length > 0) {
-        if (JSON.stringify(data) != JSON.stringify(values)) {
-          setData(values);
-          console.log(data);
-        }
-      }
-    }
+    fetch("http://localhost:5000/coupons/list-coupons", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result);
+      });
   });
 
   /**
-   * Funtion to handle the event when edit coupon is clicked 
+   * Funtion to handle the event when edit coupon is clicked
    */
   const editCoupon = (id) => {
     console.log(id);
@@ -89,14 +92,23 @@ function ViewCoupon(props) {
   /**
    * Function to handle the event when delete coupon is clicked
    */
-  const deleteCoupon = (index) => {
-    let deletedData = data;
-    deletedData.splice(index, 1);
+  const deleteCoupon = (id) => {
+    // let deletedData = data;
+    // deletedData.splice(index, 1);
 
-    setTimeout(() => {
-      localStorage.setItem("couponData", JSON.stringify(deletedData));
-      setData(JSON.parse(localStorage.getItem("couponData")));
-    }, 1000);
+    // setTimeout(() => {
+    //   localStorage.setItem("couponData", JSON.stringify(deletedData));
+    //   setData(JSON.parse(localStorage.getItem("couponData")));
+    // }, 1000);
+
+    fetch(`http://localhost:5000/coupons/delete-coupon/` + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => console.log(result));
   };
 
   /**
@@ -185,7 +197,7 @@ function ViewCoupon(props) {
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={() => deleteCoupon(index)}
+                        onClick={() => deleteCoupon(item._id)}
                       >
                         DELETE{" "}
                       </Button>{" "}

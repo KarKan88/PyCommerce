@@ -34,6 +34,8 @@ const {
 const {
  listCoupons,
  addCoupon,
+ listCouponById,
+ listCouponByCouponCode,
  deleteCouponById,
  updateCouponById
 } = require("../controllers/coupon-controller");

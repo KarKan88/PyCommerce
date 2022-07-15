@@ -11,6 +11,7 @@ const Coupon = require("../models/coupon-model");
 const listCoupons = async (req, res) => {
   try {
     const coupons = await Coupon.find({});
+    res.set('Access-Control-Allow-Origin', '*');
     res.json(coupons);
   } catch (error) {
     res.status(500).json({ error: error });
