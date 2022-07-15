@@ -20,19 +20,4 @@ export const listCoupons = () => async (dispatch) => {
   } catch (error) { }
 };
 
-// /**
-//  * API call to get coupon details
-//  */
-// export const getProductById = (id) => async (dispatch) => {
-//   try {
-//     const { data } = await axios.get(`/products/get-product/${id}`);
-//     dispatch({
-//       type: "actionType.GET_PRODUCT_BY_ID",
-//       payload: {
-//         product: data,
-//       },
-//     });
-//   } catch (error) { }
-// };
-
 

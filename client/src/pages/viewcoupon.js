@@ -9,15 +9,12 @@ import {
   Card,
   CardContent,
   CardActions,
-  colors,
   Button,
   Typography,
 } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import Sidebar from "../components/profile/seller-sidebar";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
-import { listCoupons } from "../actions/coupon-action";
 /**
  * The useStyles variable will make styles for spaces around the coupons listing rendered.
  */
@@ -216,7 +213,7 @@ function ViewCoupon(props) {
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={() => editCoupon(item.id)}
+                        onClick={() => editCoupon(item._id)}
                       >
                         MODIFY{" "}
                       </Button>{" "}

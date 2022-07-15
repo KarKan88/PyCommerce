@@ -3,15 +3,12 @@
  * Banner ID: B00899473
  */
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Form } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 import validateInput from "../validations/validationAddCoupon";
 import { useHistory, useParams } from "react-router-dom";
 import {
-  InputLabel,
   TextField,
-  MenuItem,
-  Select,
   FormControl,
   Button,
 } from "@material-ui/core";
@@ -42,7 +39,7 @@ function AddCoupon() {
 
   const [couponCode, setCouponCode] = useState("");
   const [couponCondition, setCouponCondition] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [couponDiscount, setDiscount] = useState("");
   const [maximumOff, setMaximumOff] = useState("");
 
   const [data, setData] = useState([]);
@@ -55,10 +52,10 @@ function AddCoupon() {
   useEffect(() => {
     if (id) {
       let localData = JSON.parse(localStorage.getItem("couponData"));
-      if (JSON.stringify(data) != JSON.stringify(localData)) {
+      if (JSON.stringify(data) !== JSON.stringify(localData)) {
         setData(localData);
       }
-      let value = localData.find((x) => +x.id == +id);
+      let value = localData.find((x) => +x.id === +id);
       if (!category) {
         setCategory(value?.category ?? "");
         setCouponCode(value?.couponCode ?? "");
@@ -75,13 +72,13 @@ function AddCoupon() {
    */
   const onChange = (ev) => {
     setCategory("Mobile");
-    if (ev.target.name == "couponCode") {
+    if (ev.target.name === "couponCode") {
       setCouponCode(ev.target.value);
-    } else if (ev.target.name == "couponCondition") {
+    } else if (ev.target.name === "couponCondition") {
       setCouponCondition(ev.target.value);
-    } else if (ev.target.name == "discount") {
+    } else if (ev.target.name === "discount") {
       setDiscount(ev.target.value);
-    } else if (ev.target.name == "maximumOff") {
+    } else if (ev.target.name === "maximumOff") {
       setMaximumOff(ev.target.value);
     }
   };
@@ -93,7 +90,7 @@ function AddCoupon() {
       category,
       couponCode,
       couponCondition,
-      discount,
+      discount: couponDiscount,
       maximumOff,
     });
     if (!isValid) {
@@ -111,7 +108,7 @@ function AddCoupon() {
       category,
       couponCode,
       couponCondition,
-      discount,
+      couponDiscount,
       maximumOff,
       id: id ? id : Math.round(Math.random() * 100000),
     };
@@ -122,21 +119,49 @@ function AddCoupon() {
     if (isValid(data)) {
       if (id) {
         console.log(id);
+
+
         let localData = JSON.parse(localStorage.getItem("couponData"));
-        let value = localData.findIndex((x) => +x.id == +id);
+
+        
+        let value = localData.findIndex((x) => +x.id === +id);
         localData[value] = data;
         setTimeout(() => {
           localStorage.setItem("couponData", JSON.stringify(localData));
           navigate.push("/view-coupon");
         }, 1000);
+
+
       } else {
-        if (localStorage.getItem("couponData")) {
-          let values = JSON.parse(localStorage.getItem("couponData"));
-          values.push(data);
-          localStorage.setItem("couponData", JSON.stringify(values));
-        } else {
-          localStorage.setItem("couponData", JSON.stringify([data]));
-        }
+
+
+      fetch("http://localhost:5000/coupons/add-coupon", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+      category,
+      couponCode,
+      couponCondition,
+      couponDiscount,
+      maximumOff,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      });
+
+        // if (localStorage.getItem("couponData")) {
+        //   let values = JSON.parse(localStorage.getItem("couponData"));
+        //   values.push(data);
+        //   localStorage.setItem("couponData", JSON.stringify(values));
+        // } else {
+        //   localStorage.setItem("couponData", JSON.stringify([data]));
+        // }
+
+
         navigate.push("/view-coupon");
       }
     } else {
@@ -210,7 +235,7 @@ function AddCoupon() {
                   size="small"
                   margin="normal"
                   label="Discount"
-                  value={discount}
+                  value={couponDiscount}
                   name="discount"
                   error={errors.discount ? true : false}
                   helperText={errors.discount}
