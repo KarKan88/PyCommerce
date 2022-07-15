@@ -9,7 +9,7 @@ const {
 const {
   addItemToFavorites,
   removeItemFromFavorites,
-  getFavoritesItems
+  getFavoritesItems,
 } = require("../controllers/favorites-controller");
 
 const {
@@ -17,28 +17,31 @@ const {
   userRegistration,
   userLogin,
   forgotPassword,
-  sellerRegistration
+  sellerRegistration,
 } = require("../controllers/user-controller");
 
 const {
   addItem,
   removeItem,
   getCartItems,
-  updateQuantity
+  updateQuantity,
 } = require("../controllers/cart-controller");
 
-const {
-  addCost
-} = require("../controllers/checkout-controller");
+const { addCost } = require("../controllers/checkout-controller");
 
 const {
- listCoupons,
- addCoupon,
- deleteCouponById,
- updateCouponById
+  listCoupons,
+  addCoupon,
+  deleteCouponById,
+  updateCouponById,
 } = require("../controllers/coupon-controller");
 
-const {verifyJWT} = require("../authentication/authentication");
+const {
+  addComment,
+  getCommentByProductId,
+} = require("../controllers/comment-controller");
+
+const { verifyJWT } = require("../authentication/authentication");
 
 const router = express.Router();
 
@@ -56,6 +59,10 @@ router.post("/products/add-product", addProduct);
 router.post("/favorites/add-item", addItemToFavorites);
 router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
+
+console.log("In routes");
+router.post("/addcomment", addComment);
+router.get("/getcomment/:id", getCommentByProductId);
 
 router.post("/cart/add-item", addItem);
 router.delete("/cart/remove-item", removeItem);

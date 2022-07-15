@@ -3,15 +3,16 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import toastMessage from "../../utils/toast-message";
+import axios from "axios";
 
 function CreateArea(props) {
   const [note, setNote] = useState({
-    Avatar: "CU",
-    Name: "CurrentUser",
-    Rating: "",
-    Title: "",
-    Comment: "",
-    CDate: Date.now,
+    avatar: "CU",
+    name: localStorage.getItem("emailAddress"),
+    rating: "",
+    title: "",
+    comment: "",
+    cdate: Date.now,
   });
 
   function handleChange(event) {
@@ -26,21 +27,45 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    if (note.Title === "") {
+    if (note.title === "") {
       toastMessage("Please have a title before submitting", "error");
-    } else if (note.Rating === "" || Number(note.Rating) === 0) {
+    } else if (note.rating === "" || Number(note.rating) === 0) {
       toastMessage("Please Rate before submitting", "error");
     } else {
-      props.onAdd(note);
-      setNote({
-        Avatar: "CU",
-        Name: "CurrentUser",
-        Rating: "",
-        Title: "",
-        Comment: "",
-        CDate: Date.now,
-      });
-      toastMessage("Review has been added Sucessfully", "success");
+      console.log("All set to add comment ");
+      console.log(localStorage.getItem("emailAddress"));
+      axios
+        .post("/addcomment", {
+          emailAddress: localStorage.getItem("emailAddress"),
+          userId: localStorage.getItem("id"),
+          productId: props.product_id,
+          name: note.name,
+          rating: note.rating,
+          title: note.title,
+          comment: note.comment,
+          cdate: note.cdate,
+        })
+        .then((response) => {
+          if (response.status === 201) {
+            console.log(note);
+            props.onAdd(note);
+
+            setNote({
+              avatar: "",
+              name: localStorage.getItem("emailAddress"),
+              rating: "",
+              title: "",
+              comment: "",
+              cdate: Date.now,
+            });
+            toastMessage("Review has been added Sucessfully", "success");
+          }
+        })
+        .catch((err) => {
+          toastMessage("Review failed internal server error", "error");
+          props.close();
+        });
+
       event.preventDefault();
     }
   }
@@ -52,9 +77,9 @@ function CreateArea(props) {
         <Stack spacing={1}>
           <h4 style={{ paddingTop: "10px" }}>Title</h4>
           <input
-            name="Title"
+            name="title"
             onChange={handleChange}
-            value={note.Title}
+            value={note.title}
             placeholder="Title"
             style={{
               color: "#646E78",
@@ -64,15 +89,15 @@ function CreateArea(props) {
           <h4 style={{ paddingTop: "10px" }}>Rate the product</h4>
           <Rating
             style={{ paddingBottom: "10px", paddingTop: "5px" }}
-            name="Rating"
-            value={Number(note.Rating)}
+            name="rating"
+            value={Number(note.rating)}
             onChange={handleChange}
           />
           <h4 style={{ paddingTop: "10px" }}>Your Experience </h4>
           <textarea
-            name="Comment"
+            name="comment"
             onChange={handleChange}
-            value={note.Comment}
+            value={note.comment}
             placeholder="Please add your experince about the product"
             rows="3"
             style={{
