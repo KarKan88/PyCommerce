@@ -1,3 +1,7 @@
+/*
+ * @author: Subash Narayanan
+ * Comments component page that listsouts comments
+ */
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Rating from "@mui/material/Rating";

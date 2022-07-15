@@ -1,3 +1,8 @@
+/*
+ * @author: Subash Narayanan
+ * Comment Area contains comments stores it and send it to backend to store
+ */
+
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
@@ -32,8 +37,6 @@ function CreateArea(props) {
     } else if (note.rating === "" || Number(note.rating) === 0) {
       toastMessage("Please Rate before submitting", "error");
     } else {
-      console.log("All set to add comment ");
-      console.log(localStorage.getItem("emailAddress"));
       axios
         .post("/addcomment", {
           emailAddress: localStorage.getItem("emailAddress"),
@@ -47,7 +50,6 @@ function CreateArea(props) {
         })
         .then((response) => {
           if (response.status === 201) {
-            console.log(note);
             props.onAdd(note);
 
             setNote({
