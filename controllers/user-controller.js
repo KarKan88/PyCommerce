@@ -32,7 +32,6 @@ const verifyEmailAddress = async (req, res) => {
 };
 
 const userRegistration = async (req, res) => {
-  console.log(req.body.emailAddress);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const emailAddress = req.body.emailAddress;
@@ -58,7 +57,6 @@ const userRegistration = async (req, res) => {
       message: "User Registered Successfully",
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       message: "Internal server error " + err,
     });
@@ -75,7 +73,6 @@ const userLogin = async (req, res) => {
     if (getUser.length !== 0 && getUser[0].password === password) {
       const isSeller = getUser[0].seller;
       const id = getUser[0]._id;
-      console.log("id is ", id);
       res.status(200).json({
         message: "User Login Successfully",
         jwtoken: createJWT.createJWT(emailAddress),

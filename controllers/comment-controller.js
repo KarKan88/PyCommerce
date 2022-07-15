@@ -1,5 +1,6 @@
 /*
  * @author: Subash Narayanan
+    comment controller to query and insert comments into the data base.
  */
 
 const mongoose = require("mongoose");
