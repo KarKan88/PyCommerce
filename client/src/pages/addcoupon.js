@@ -47,18 +47,29 @@ function AddCoupon() {
    */
   useEffect(() => {
     if (id) {
-      let localData = JSON.parse(localStorage.getItem("couponData"));
-      if (JSON.stringify(data) !== JSON.stringify(localData)) {
-        setData(localData);
-      }
-      let value = localData.find((x) => +x.id === +id);
-      if (!category) {
-        setCategory(value?.category ?? "");
-        setCouponCode(value?.couponCode ?? "");
-        setCouponCondition(value?.couponCondition ?? "");
-        setDiscount(value?.discount ?? "");
-        setMaximumOff(value?.maximumOff ?? "");
-      }
+      fetch("/coupons/list-coupon/" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (!category) {
+            setCategory(result?.category ?? "");
+            setCouponCode(result?.couponCode ?? "");
+            setCouponCondition(result?.couponCondition ?? "");
+            setDiscount(result?.couponDiscount ?? "");
+            setMaximumOff(result?.maximumOff ?? "");
+          }
+        });
+
+      // let localData = JSON.parse(localStorage.getItem("couponData"));
+      // if (JSON.stringify(data) !== JSON.stringify(localData)) {
+      //   setData(localData);
+      // }
+      // let value = localData.find((x) => +x.id === +id);
     } else {
     }
   });
@@ -66,7 +77,7 @@ function AddCoupon() {
    *  The variable of coupon details from the form inputs are set below.
    */
   const onChange = (ev) => {
-    setCategory("Mobile");
+    setCategory("Coupon");
     if (ev.target.name === "couponCode") {
       setCouponCode(ev.target.value);
     } else if (ev.target.name === "couponCondition") {
@@ -85,7 +96,7 @@ function AddCoupon() {
       category,
       couponCode,
       couponCondition,
-      discount: couponDiscount,
+      couponDiscount,
       maximumOff,
     });
     if (!isValid) {
@@ -111,18 +122,37 @@ function AddCoupon() {
      * The conditions to check if the inputs filled in the form are valid. If they are valid,
      *  then store it in localStorage. Else show the errors.
      */
+    console.log(isValid(data));
     if (isValid(data)) {
       if (id) {
-        console.log(id);
+        // console.log(id);
 
-        let localData = JSON.parse(localStorage.getItem("couponData"));
+        // let localData = JSON.parse(localStorage.getItem("couponData"));
 
-        let value = localData.findIndex((x) => +x.id === +id);
-        localData[value] = data;
-        setTimeout(() => {
-          localStorage.setItem("couponData", JSON.stringify(localData));
-          navigate.push("/view-coupon");
-        }, 1000);
+        // let value = localData.findIndex((x) => +x.id === +id);
+        // localData[value] = data;
+        // setTimeout(() => {
+        //   localStorage.setItem("couponData", JSON.stringify(localData));
+        //   navigate.push("/view-coupon");
+        // }, 1000);
+        fetch("/coupons/update-coupon/" + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            category,
+            couponCode,
+            couponCondition,
+            couponDiscount,
+            maximumOff,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
+        navigate.push("/view-coupon");
       } else {
         fetch("/coupons/add-coupon", {
           method: "POST",

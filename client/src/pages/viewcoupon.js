@@ -90,14 +90,6 @@ function ViewCoupon(props) {
    * Function to handle the event when delete coupon is clicked
    */
   const deleteCoupon = (id) => {
-    // let deletedData = data;
-    // deletedData.splice(index, 1);
-
-    // setTimeout(() => {
-    //   localStorage.setItem("couponData", JSON.stringify(deletedData));
-    //   setData(JSON.parse(localStorage.getItem("couponData")));
-    // }, 1000);
-
     fetch(`/coupons/delete-coupon/` + id, {
       method: "DELETE",
       headers: {
@@ -169,7 +161,7 @@ function ViewCoupon(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      Discount Percentage: {item.discount}{" "}
+                      Discount Percentage: {item.couponDiscount}{" "}
                     </Typography>{" "}
                     <Typography
                       variant="body2"

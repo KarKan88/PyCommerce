@@ -32,10 +32,10 @@ function validateInput(data) {
   /**
    * The condition to check if the discount is empty or not a number
    */
-  if (Validator.isEmpty(data.discount)) {
-    errors.discount = "This field is required";
-  } else if (!Validator.isNumeric(data.discount)) {
-    errors.discount = "Please enter a valid number";
+  if (Validator.isEmpty(data.couponDiscount)) {
+    errors.couponDiscount = "This field is required";
+  } else if (!Validator.isNumeric(data.couponDiscount)) {
+    errors.couponDiscount = "Please enter a valid number";
   }
 
   return {
