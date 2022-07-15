@@ -13,6 +13,7 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { Shorten } from "../../utils/string-util";
 import CounterButton from "./CounterButton";
@@ -73,12 +74,15 @@ const CartItem = ({ item }) => {
   return (
     <>
     <Grid style={{paddingRight:'0px', paddingLeft:'10px', marginRight:'10px', paddingBottom:'10px', paddingTop: '10px'}} >
+      
         <Card className={classes.component} raised elevation={5} style={{paddingLeft: '15px', paddingRight: '15px'}}>
           <Box className={classes.leftComponent}>
             <img src={item.disc.url} className={classes.image} />
             <CounterButton product={item} />
           </Box>
           <Box style={{marginRight:'20px'}} >
+            <Link to={`/product/${item.disc._id}`}>
+          
               <Typography className={classes.itemTitle}  style={{
                   marginTop: '10px',
                 }}>
@@ -112,6 +116,8 @@ const CartItem = ({ item }) => {
                   {item.disc.price.discount}% off
                 </span>
               </Typography>
+             </Link>
+          
             <Button className={classes.remove} onClick={dialogOpen}>
               Remove
             </Button>
