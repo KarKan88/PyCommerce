@@ -34,6 +34,20 @@ I have implemented the user authentication feature for the PyCommerce Web Applic
 - Forgot password - Registered users can click on forgot password and can change the password by filling in the correct email address and two security questions answered while registering with the website. This is to ensure two-way authentication.
 - Seller Registration: After login into the website, there is a button “Become a Seller”, clicking which seller can register by filling the required fields.
 
+## Product Dashboard
+
+- Backend APIs to add, get all products or by categories and get a specific product details.
+- Home page to show various products across categories.
+- Categories page to show all products that belong to a category.
+- Product details page to show specific details of a product.
+- Ability to search for a product by entering a few keywords.
+
+# Favorites 
+
+- Backend APIs to get all favorites and delete an item in favorites (a mapping between user-id and product-id).
+- Ability to add/remove product to/from favorites from product details page.
+- Ability to view all favorites from profile page and delete items from the same list.
+
 ## Getting Started
 
 ## Prerequisites
