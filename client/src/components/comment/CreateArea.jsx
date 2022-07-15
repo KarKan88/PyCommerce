@@ -8,7 +8,7 @@ import axios from "axios";
 function CreateArea(props) {
   const [note, setNote] = useState({
     avatar: "CU",
-    name: "current user",
+    name: localStorage.getItem("emailAddress"),
     rating: "",
     title: "",
     comment: "",
@@ -36,7 +36,8 @@ function CreateArea(props) {
       console.log(localStorage.getItem("emailAddress"));
       axios
         .post("/addcomment", {
-          userId: localStorage.getItem("emailAddress"),
+          emailAddress: localStorage.getItem("emailAddress"),
+          userId: localStorage.getItem("id"),
           productId: props.product_id,
           name: note.name,
           rating: note.rating,
@@ -51,7 +52,7 @@ function CreateArea(props) {
 
             setNote({
               avatar: "",
-              name: "",
+              name: localStorage.getItem("emailAddress"),
               rating: "",
               title: "",
               comment: "",

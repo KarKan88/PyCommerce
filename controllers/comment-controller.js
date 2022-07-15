@@ -7,24 +7,11 @@ const Comment = require("../models/comment-model");
 const userModel = require("../models/user-model");
 
 const addComment = async (req, res) => {
-  //var emailAddress = localStorage.getItem("emailAddress");
-  const getUser = await userModel.find({ emailAddress: req.body.userId });
-  console.log(getUser);
-  console.log(typeof getUser[0]);
-  console.log(getUser[0]);
-  user = getUser[0];
-  console.log(user);
-  console.log(user["fname"]);
-  console.log(user.fname);
-
-  const { fname: userName } = user;
-
-  console.log(userName);
-
+  const getUser = await userModel.find({ emailAddress: req.body.emailAddress });
   const com = {
     userId: req.body.userId,
     productId: req.body.productId,
-    name: user.fname,
+    name: req.body.emailAddress,
     rating: req.body.rating,
     title: req.body.title,
     comment: req.body.comment,

@@ -31,30 +31,15 @@ const style = {
 function createComment(object) {
   return (
     <Comment
-      key={object.Name}
-      avatar={object.Avatar}
-      name={object.Name}
-      commnet={object.Comment}
-      rating={object.Rating}
-      date={object.CDate}
-      title={object.Title}
+      key={object.name}
+      avatar=""
+      name={object.name}
+      commnet={object.comment}
+      rating={object.rating}
+      date={object.cdate}
+      title={object.title}
     />
   );
-}
-
-function createComment1(object) {
-  console.log(object._id);
-  // return (
-  //   <Comment
-  //     key={object.Name}
-  //     avatar={object.Avatar}
-  //     name={object.Name}
-  //     commnet={object.Comment}
-  //     rating={object.Rating}
-  //     date={object.CDate}
-  //     title={object.Title}
-  //   />
-  // );
 }
 
 const state = {
@@ -66,7 +51,6 @@ const state = {
 };
 
 function CommentComponent({ product }) {
-  const [CompleteData, setCompleteData] = React.useState(data);
   const [commentData, setcommentData] = React.useState([]);
 
   const getProducts = async (id) => {
@@ -87,10 +71,6 @@ function CommentComponent({ product }) {
   useEffect(() => {
     getProducts(product._id);
   }, []);
-
-  console.log(commentData);
-
-  commentData.map(createComment1);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -114,8 +94,9 @@ function CommentComponent({ product }) {
       </FormControl>
     );
   };
+
   function addNote(Data) {
-    setCompleteData((prevData) => {
+    setcommentData((prevData) => {
       return [...prevData, Data];
     });
     handleClose();
@@ -174,7 +155,7 @@ function CommentComponent({ product }) {
       <Grid container spacing={5} sm={12}>
         {/* <Grid item xs={2}></Grid> */}
         <Grid item xs={12}>
-          {CompleteData.map(createComment)}
+          {commentData.map(createComment)}
         </Grid>
       </Grid>
     </Box>

@@ -64,6 +64,7 @@ function ProductPage() {
   const { product } = useSelector((state) => state.productReducer);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const email = localStorage.getItem("emailAddress");
   var rate = (Math.random() * 5).toFixed(1);
   var reviewCount = Math.round(Math.random() * 10000 + 1);
   if (rate < 3) {
@@ -128,7 +129,7 @@ function ProductPage() {
       )}
       <ToastMessageContainer />
       <Grid>
-        <CommentComponent product={product} />
+        {email !== null ? <CommentComponent product={product} /> : false}
       </Grid>
     </Box>
   );
