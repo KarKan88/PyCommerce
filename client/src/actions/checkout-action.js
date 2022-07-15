@@ -1,5 +1,7 @@
-/*
- * @author: Dhruvrajsinh Omkarsinh Vansia
+/**
+ * @Author: Dhruvrajsinh Vansia
+ * Banner ID: B00891415
+ * Action of cart
  */
 
 import axios from "axios";
