@@ -1,4 +1,5 @@
 # PyCommerce
+
 The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
 
 Assignment 3 - Group Submission
@@ -16,7 +17,7 @@ Assignment 3 - Group Submission
 - [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
 - Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link]()
 - Meghdoot Ojha - Full Stack Developer [Individual git branch link]()
-- Subash Narayanan - Full Stack Developer [Individual git branch link]()
+- Subash Narayanan(sb742704@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00899481/)
 
 ## Overview
 
@@ -25,13 +26,13 @@ The eCommerce application is built on the MERN stack. The client is a react appl
 ## Features
 
 ## User Authentication
+
 I have implemented the user authentication feature for the PyCommerce Web Application. User Authentication offers the following features:
 
-* Login - Registered users can login into the website using an email address and password
-* Registration - Any user can register to the website by filling the required fields in the form
-* Forgot password - Registered users can click on forgot password and can change the password by filling in the correct email address and two security questions answered while registering with the website. This is to ensure two-way authentication.
-* Seller Registration: After login into the website, there is a button “Become a Seller”, clicking which seller can register by filling the required fields.
-
+- Login - Registered users can login into the website using an email address and password
+- Registration - Any user can register to the website by filling the required fields in the form
+- Forgot password - Registered users can click on forgot password and can change the password by filling in the correct email address and two security questions answered while registering with the website. This is to ensure two-way authentication.
+- Seller Registration: After login into the website, there is a button “Become a Seller”, clicking which seller can register by filling the required fields.
 
 ## Getting Started
 
@@ -540,6 +541,7 @@ localStorage.setItem("taskAdded", JSON.stringify([...tasks, newTask]));
 ### comment.jsx
 
 _Lines 12 - 51_
+
 ```
 
             <Card style={{ paddingTop: "10px" }}>
@@ -697,12 +699,11 @@ The code above was created by adapting the code in [MUI] components
 - <!---Why---> [Building a CRUD App with React and Local Storage](https://egghead.io/blog/building-a-crud-app-with-react-and-local-storage)'s Code was used because the local storage had to be used as we are not implementing the backend.
 - <!---How---> [Building a CRUD App with React and Local Storage](https://egghead.io/blog/building-a-crud-app-with-react-and-local-storage)'s Code was modified according to the requirements of the storage.
 
-
 ### Registration.js
 
 - Created by Indu Munagapati
 
-_Lines 317 - 327
+\_Lines 317 - 327
 
 ```
    <TextField style ={{backgroundColor: "#fff"}}
@@ -724,7 +725,7 @@ _Lines 317 - 327
 - It is modified according to the global design.
 - Additional elements like Form control and grids are used with the text fields.
 
-_Lines 450 - 469
+\_Lines 450 - 469
 
 ```
    <Dialog
@@ -753,7 +754,7 @@ _Lines 450 - 469
 - It is used to pop up the dialog box when user registers.
 - The code was modified to user clicks on submit buttion to show the dialog box.
 
-_Lines 113
+\_Lines 113
 
 ```
 let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -764,7 +765,7 @@ let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%
 - It is used to validate the password field.
 - The code was modified to user clicks on password and validates using this regex.
 
-_Lines 153
+\_Lines 153
 
 ```
 let phNumberRegex = /^[0-9]{10}$/;
@@ -787,7 +788,7 @@ const token = jwt.sign(
     );
 ```
 
-The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below: 
+The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below:
 
 ```
 const token = jwt.sign(
@@ -802,7 +803,7 @@ const token = jwt.sign(
 
 - The code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) was implemented by this https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/ website.
 - [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was used to create a JWT.
-- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to create a JWT while login. 
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to create a JWT while login.
 
 _Lines 12_
 
@@ -810,7 +811,7 @@ _Lines 12_
 jwt.verify(token, "WEBGROUP16", (err, decode) => {
 ```
 
-The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below: 
+The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below:
 
 ```
 const decoded = jwt.verify(token, config.TOKEN_KEY);
@@ -818,7 +819,7 @@ const decoded = jwt.verify(token, config.TOKEN_KEY);
 
 - The code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) was implemented by this https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/ website.
 - [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was used to verify the JWT.
-- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to verify the JWT while it is called. 
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to verify the JWT while it is called.
 
 ## References
 
@@ -864,4 +865,4 @@ const decoded = jwt.verify(token, config.TOKEN_KEY);
 
 [20] Authentication API with JWT Token - https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
 
-````
+```
