@@ -13,6 +13,8 @@ import { red } from "@material-ui/core/colors";
 
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { listInventoryProduct, deleteInventoryProductsById,getInventoryProductById } from "../actions/inventory-action.js"
+
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -60,33 +62,30 @@ function ViewProduct(props) {
   const navigate = useHistory();
 
 
-  useEffect(() => {
+  useEffect(async () => {
     // Update the document title using the browser API
-    if (localStorage.getItem("productData")) {
-      let values = JSON.parse(localStorage.getItem("productData"));
-      if (values.length > 0) {
-        if (JSON.stringify(data) != JSON.stringify(values)) {
-          setData(values);
-          console.log(data);
-        }
-      }
-    }
-  });
+    let result = await listInventoryProduct()
+    console.log(result)
+    setData(result.data.products)
+  }, []);
 
   const routeToEdit = (id) => {
     console.log(id)
-    navigate.push('/edit-product/'+id)
+    navigate.push('/edit-product/' + id)
 
   }
-  const deleteProduct = (index) => {
-    let deletedData = data;
-    deletedData.splice(index, 1);
-
-    setTimeout(() => {
-      localStorage.setItem("productData", JSON.stringify(deletedData));
-      setData(JSON.parse(localStorage.getItem("productData")));
-    }, 1000);
-  };
+  const deleteProduct = async (id) => {
+    console.log(id)
+    let result = await deleteInventoryProductsById(id)
+    if (result.status == 200) {
+      let result = await listInventoryProduct()
+      console.log(result)
+      setData(result.data.products)
+    }
+    else{
+      alert(result.data.error)
+    }
+  }
 
   return (
     <Grid container className={classes.component}>
@@ -125,14 +124,14 @@ function ViewProduct(props) {
                       color="textSecondary"
                       component="p"
                     >
-                      #{item.serialNo}
+                      #{item.productSerial}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      {item.name} ({item.category})
+                      {item.productName} ({item.productCategory})
                     </Typography>
                     <Typography
                       variant="body2"
@@ -158,26 +157,26 @@ function ViewProduct(props) {
                   </CardContent>
                   <CardActions disableSpacing className="">
                     <div className="mx-2">
-                      <Button style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600,marginRight:10 }}
+                      <Button style={{ backgroundColor: "#EB853B", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 }}
                         size="small"
-                        
+
                         variant="contained"
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={() => deleteProduct(index)}
+                        onClick={() => deleteProduct(item._id)}
                       >
                         Delete
                       </Button>
                     </div>
                     <div className="mx-2">
-                      <Button style={{ backgroundColor: "#FFBB38", marginTop: 20, color: "#222", fontWeight: 600, marginRight:10 }}
+                      <Button style={{ backgroundColor: "#FFBB38", marginTop: 20, color: "#222", fontWeight: 600, marginRight: 10 }}
                         size="small"
                         variant="contained"
                         type="submit"
                         color="primary"
                         className=""
-                        onClick={()=>routeToEdit(item.id)}
+                        onClick={() => routeToEdit(item._id)}
                       >
                         Edit
                       </Button>

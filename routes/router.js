@@ -32,13 +32,22 @@ const {
 } = require("../controllers/checkout-controller");
 
 const {
- listCoupons,
- addCoupon,
- deleteCouponById,
- updateCouponById
+  listCoupons,
+  addCoupon,
+  deleteCouponById,
+  updateCouponById
 } = require("../controllers/coupon-controller");
 
-const {verifyJWT} = require("../authentication/authentication");
+const {
+  addInventoryProduct,
+  viewInventoryProduct,
+  updateInventoryProductById,
+  deleteInventoryProductsById,
+  getInventoryProductById
+} = require("../controllers/inventory-controller");
+
+
+const { verifyJWT } = require("../authentication/authentication");
 
 const router = express.Router();
 
@@ -68,5 +77,14 @@ router.get("/coupons/list-coupons", listCoupons);
 router.post("/coupons/add-coupon", addCoupon);
 router.put("/coupons/update-coupon/:id", updateCouponById);
 router.delete("/coupons/delete-coupon/:id", deleteCouponById);
+
+router.post("/inventory/add-product", addInventoryProduct);
+router.put("/inventory/update-product/:id", updateInventoryProductById);
+router.delete("/inventory/delete-product/:id", deleteInventoryProductsById);
+router.get("/inventory/product/:id", getInventoryProductById);
+
+
+router.get("/inventory/products", viewInventoryProduct);
+
 
 module.exports = router;

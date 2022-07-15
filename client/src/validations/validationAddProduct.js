@@ -16,11 +16,11 @@ function validateInput(data) {
     errors.name = "This field is required";
   }
 
-  if (Validator.isEmpty(data.serialNo)) {
-    errors.serialNo = "This field is required";
-  } else if (!Validator.isNumeric(data.serialNo)) {
-    errors.serialNo = "Please enter a valid number";
-  }
+  // if (Validator.isEmpty(data.serialNo)) {
+  //   errors.serialNo = "This field is required";
+  // } else if (!Validator.isNumeric(data.serialNo)) {
+  //   errors.serialNo = "Please enter a valid number";
+  // }
 
   if (Validator.isEmpty(data.image)) {
     errors.image = "This field is required";

@@ -7,10 +7,15 @@ const useRouter = require("./routes/router");
 
 const app = express();
 
+var cors = require('cors')
+app.use(cors()) 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', useRouter);
+
+
 
 const port = process.env.PORT || 5000;
 
@@ -30,6 +35,7 @@ if (process.env.NODE_ENV == "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
 
 app.listen(port, () => {
   console.log('Listening on port: ', port);

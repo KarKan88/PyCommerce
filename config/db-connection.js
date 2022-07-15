@@ -5,7 +5,7 @@
 
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./.env" });
-const _DBUrl = process.env.DB;
+const _DBUrl = process.env.DB || 'mongodb+srv://meghdootojha:m12345@cluster0.rm5ca.mongodb.net/test';
 mongoose
     .connect(_DBUrl, {
         useNewUrlParser: true,
