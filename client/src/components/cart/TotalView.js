@@ -135,7 +135,7 @@ const TotalView = ({ cartItems }) => {
               }}
             >
                <>
-              <FormControl>
+              {/* <FormControl>
                 <TextField
                   style={{ backgroundColor: "#fff", width: 130 }}
                   variant="filled"
@@ -159,7 +159,7 @@ const TotalView = ({ cartItems }) => {
                 // onClick={() => ()}
               >
                 Apply
-              </Button>
+              </Button> */}
             
               <Button
                 variant="contained"
@@ -167,12 +167,13 @@ const TotalView = ({ cartItems }) => {
                   backgroundColor: "#EB853B",
                   color: "#222",
                   fontWeight: 600,
-                  marginLeft: '5px',
-                  width: 50
+                  marginTop: '10px',
+                  marginLeft: '60px',
+                  // width: 100
                 }}
                 onClick={placeOrder}
               >
-                Buy
+                Place Order
               </Button>
               </>
             </Grid>
