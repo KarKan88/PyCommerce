@@ -41,7 +41,7 @@ const addInventoryProduct = async (req, res) => {
 };
 
 /**
- * Method to add a coupon by Id
+ * Method to update product
  */
 const updateInventoryProductById = async (req, res) => {
     const inventoryData = {

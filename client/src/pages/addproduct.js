@@ -1,3 +1,6 @@
+/*
+* @author: Meghdoort Ojha
+*/
 import React, { useState, useEffect } from "react";
 import { Grid, makeStyles, Form } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";

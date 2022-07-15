@@ -1,3 +1,6 @@
+/*
+* @author: Meghdoort Ojha
+*/
 import Validator from "validator";
 import isEmpty from "lodash/isEmpty";
 
