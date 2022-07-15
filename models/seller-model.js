@@ -1,5 +1,6 @@
 /*
 * @author: Indu Munagapati
+* Seller details schema
 */
 
 const mongoose = require("mongoose");

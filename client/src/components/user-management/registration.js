@@ -1,3 +1,8 @@
+/*
+* @author: Indu Munagapati
+* Component of Registration page
+*/
+
 import {
     Typography,
     Grid,
