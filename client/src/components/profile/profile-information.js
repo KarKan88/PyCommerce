@@ -1,3 +1,8 @@
+/*
+* @author: Indu Munagapati
+* Component of Profile Information page
+*/
+
 import {
     Typography,
     Grid,

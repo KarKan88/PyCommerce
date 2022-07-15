@@ -1,3 +1,8 @@
+/*
+* @author: Indu Munagapati
+* Component of Forgot password page
+*/
+
 import {
     Typography,
     Grid,

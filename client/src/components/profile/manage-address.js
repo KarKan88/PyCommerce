@@ -1,11 +1,13 @@
+/*
+* @author: Indu Munagapati
+* Component of Manage Addresses page
+*/
+
 import {
   Typography,
   Grid,
   Card,
-  Button,
   CardContent,
-  FormHelperText,
-  TextField,
   makeStyles
 } from "@material-ui/core";
 import Sidebar from "./sidebar";

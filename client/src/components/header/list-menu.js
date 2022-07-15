@@ -20,6 +20,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import { Link } from "react-router-dom";
 import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
+import {useHistory} from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   list: {
@@ -48,6 +49,17 @@ const useStyle = makeStyles((theme) => ({
 
 const ListMenu = ({ handleClose }) => {
   const classes = useStyle();
+  const navigate = useHistory();
+
+  function onHandleLogout()
+  {
+    localStorage.removeItem("id");
+    localStorage.removeItem("jwtoken");
+    localStorage.removeItem("emailAddress");
+    localStorage.removeItem("seller");
+    navigate.push("/");
+    window.location.reload();
+  }
 
   return (
     <Box className={classes.list} onClick={handleClose}>
@@ -60,14 +72,16 @@ const ListMenu = ({ handleClose }) => {
             <ListItemText className={classes.text}>Home</ListItemText>
           </ListItem>
         </Link>
-        <Link to="/login">
-          <ListItem button className={classes.listItem}>
-            <ListItemIcon className={classes.icon}>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText className={classes.text}>Login</ListItemText>
-          </ListItem>
-        </Link>
+        { (localStorage.getItem('id') === null) ? 
+           <Link to="/login">
+            <ListItem button className={classes.listItem}>
+              <ListItemIcon className={classes.icon}>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText className={classes.text}>Login</ListItemText>
+            </ListItem>
+          </Link>
+        :
         <>
           <Link to="/profile">
             <ListItem button>
@@ -93,7 +107,26 @@ const ListMenu = ({ handleClose }) => {
               <ListItemText className={classes.text}>Favorites</ListItemText>
             </ListItem>
           </Link>
-        </>
+        
+        { (localStorage.getItem('seller') === "false") ? 
+          <Link to="/sellerregistration">
+            <ListItem button>
+              <ListItemIcon className={classes.icon}>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText className={classes.text}>Become a Seller</ListItemText>
+            </ListItem>
+          </Link>
+        :
+          <Link to="/add-product">
+            <ListItem button>
+              <ListItemIcon className={classes.icon}>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText className={classes.text}>Seller Dashboard</ListItemText>
+            </ListItem>
+          </Link>
+        } 
         <Link to="/cart">
           <ListItem button>
             <ListItemIcon className={classes.icon}>
@@ -104,13 +137,14 @@ const ListMenu = ({ handleClose }) => {
         </Link>
 
         <Link to="/">
-          <ListItem button>
+          <ListItem button onClick={onHandleLogout}>
             <ListItemIcon className={classes.icon}>
               <PowerSettingsNewIcon />
             </ListItemIcon>
             <ListItemText className={classes.text}>Logout</ListItemText>
           </ListItem>
         </Link>
+        </>}
       </List>
     </Box>
   );

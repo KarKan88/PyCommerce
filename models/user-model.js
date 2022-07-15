@@ -1,5 +1,6 @@
 /*
 * @author: Indu Munagapati
+* User details schema
 */
 
 const mongoose = require("mongoose");
