@@ -6,7 +6,6 @@ require("./config/db-connection");
 const useRouter = require("./routes/router");
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

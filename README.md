@@ -2,6 +2,8 @@
 
 The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
 
+The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
+
 Assignment 3 - Group Submission
 
 - _Date Created_: 15 July 2022
@@ -13,7 +15,7 @@ Assignment 3 - Group Submission
 
 - Adesh Nalpet Adimurthy - Full Stack Developer [Individual git branch link]()
 - Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link]()
-- Hemanth Nadipineni - Full Stack Developer [Individual git branch link]()
+- [Hemanth Nadipineni] (hemanth@dal.ca) - Full Stack Developer [Individual git branch link 1](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/develop/B00899473) [Individual git branch link 2](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev-hn) [Individual git branch link 3](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev2-hn) [Individual git branch link 4](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/server-hn)
 - [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
 - Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link]()
 - Meghdoot Ojha - Full Stack Developer [Individual git branch link]()
@@ -41,11 +43,23 @@ User Authentication offers the following features:
 - Product details page to show specific details of a product.
 - Ability to search for a product by entering a few keywords.
 
-# Favorites 
+# Favorites
 
 - Backend APIs to get all favorites and delete an item in favorites (a mapping between user-id and product-id).
 - Ability to add/remove product to/from favorites from product details page.
 - Ability to view all favorites from profile page and delete items from the same list.
+
+## Coupon Management - Hemanth
+
+By providing coupons and discounts to first-time online shoppers, this feature hopes to persuade users to use our platform. Seasonal coupons for the customers, such as Christmas specials, Black Friday promotions, etc. Idle shoppers, or those who haven't placed an order on our platform in about three months. Once a seller wants to create a coupon, he can click on the link provided in his dashboard, and it will get to the coupon management portal. The user can use the coupons the system will validate the code with the ones stored in the coupon management system. Following are the managing options available for the coupon system:
+
+- Add: A seller can use this system to access and add a new coupon to the system. All the required validation rules have to be presented. A customer doesn’t have access to use this section.
+
+- Edit: A seller can use this system to access and edit an existing coupon to the system. The same validation rules for adding the coupon implies to the edit section. A customer doesn’t have access to use this section.
+
+- Delete: A seller or an admin can use this system to access and delete a coupon from the system. A customer doesn’t have access to use this section.
+
+- Validate: A customer can provide a coupon while checking out and the system will validate the coupon that was added by any seller.
 
 ## Getting Started
 
@@ -878,4 +892,6 @@ const decoded = jwt.verify(token, config.TOKEN_KEY);
 
 [20] Authentication API with JWT Token - https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
 
+
+```
 ```
