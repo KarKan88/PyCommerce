@@ -21,6 +21,15 @@ const {
 } = require("../controllers/user-controller");
 
 const {
+  addItem,
+  removeItem,
+  getCartItems,
+  updateQuantity,
+} = require("../controllers/cart-controller");
+
+const { addCost } = require("../controllers/checkout-controller");
+
+const {
   listCoupons,
   addCoupon,
   deleteCouponById,
@@ -54,6 +63,13 @@ router.get("/favorites/get-items/:id", getFavoritesItems);
 console.log("In routes");
 router.post("/addcomment", addComment);
 router.get("/getcomment/:id", getCommentByProductId);
+
+router.post("/cart/add-item", addItem);
+router.delete("/cart/remove-item", removeItem);
+router.get("/cart/get-items/:id", getCartItems);
+router.patch("/cart/item/updatequantity", updateQuantity);
+
+router.post("/checkout", addCost);
 
 router.get("/coupons/list-coupons", listCoupons);
 router.post("/coupons/add-coupon", addCoupon);

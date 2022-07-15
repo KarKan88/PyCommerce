@@ -1,5 +1,6 @@
 /*
 * @author: Indu Munagapati
+* User authentication controller
 */
 
 const userModel = require("../models/user-model");

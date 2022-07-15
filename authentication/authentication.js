@@ -1,5 +1,6 @@
 /*
 * @author: Indu Munagapati
+* Creating and Verifying JWT
 */
 
 const jwt = require("jsonwebtoken")
