@@ -1,3 +1,8 @@
+/*
+ * @author: Subash Narayanan
+ * Comments component that performs adding comments sorting and rendring comments
+ */
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CreateArea from "./CreateArea";
@@ -77,7 +82,6 @@ function CommentComponent({ product }) {
       var com = data.data;
 
       for (var i = 0; i < Object.keys(com).length; i++) {
-        console.log(com[i]);
         setcommentData((prevData) => {
           return [...prevData, com[i]];
         });
@@ -95,7 +99,6 @@ function CommentComponent({ product }) {
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    console.log(event.target.value);
   };
 
   const form = () => {

@@ -39,9 +39,10 @@ function Registration() {
     const [conPasswordSuccess, setConPasswordSuccess] = useState(false);
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [phnNumSuccess, setPhnNumSuccess] = useState(false);
+    const [phnNumSuccess, setPhnNumSuccess] = useState(true);
     const [phoneNumberError, setPhoneNumberError] = useState("");
     const [address, setAddress] = useState("");
+    const [addressSuccess, setAddressSuccess] = useState(true);
     const [addressError, setAddressError] = useState("");
     const [securityQuestionOne, setSecurityQuestionOne] = useState("");
     const [q1Success, setQ1Success] = useState(false);
@@ -98,7 +99,7 @@ function Registration() {
             err = "Email Address cannot be empty";
             setEmailSuccess(false);
         } else if(!emailAddressRegex.test(emailAddressName)) {
-            err = "Email Address doesn't match criteria, ex: indu@outlook.com";
+            err = "Email Address doesn't match criteria, ex: xyz@outlook.com";
             setEmailSuccess(false);
         } else {
             setEmailSuccess(true);
@@ -166,6 +167,12 @@ function Registration() {
         setRegisterError("");
         let addressValue = event.target.value;
         let err = "";
+        if(addressValue.length <= 10) {
+            err = "Address is too short";
+            setAddressSuccess(false);
+        } else {
+            setAddressSuccess(true);
+        }
         setAddress(addressValue);
         setAddressError(err);
     }
@@ -207,7 +214,7 @@ function Registration() {
     }
 
     async function onHandleSubmit() {
-        if((fNameSuccess && lNameSuccess && emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success) && 
+        if((fNameSuccess && lNameSuccess && emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success && phnNumSuccess && addressSuccess) && 
         ((firstName && lastName && emailAddress && password && confirmPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
             axios.post("/verifyemail", {emailAddress: emailAddress}).
             then(response => {
@@ -235,7 +242,7 @@ function Registration() {
                 setRegisterError("Email Already Exists");
             });
         } else {
-            setRegisterError("All mandatory fields with * should be filled");
+            setRegisterError("All mandatory fields with * should be filled or resolve the errors displayed");
         }
     }
 

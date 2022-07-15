@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "./components/header/header";
 
 import HomePage from "./pages/home-page";
@@ -34,9 +34,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
-        </Route>
-        <Route exact path="/profile">
-          <ProfilePage />
         </Route>
         <Route exact path="/favorites">
           <ProfilePage />
@@ -74,23 +71,8 @@ function App() {
         <Route exact path="/products/:category">
           <ProductsPage />
         </Route>
-        <Route exact path="/sellerregistration">
-          <SellerRegistration />
-        </Route>
-        <Route exact path="/manageaddress">
-          <ManageAddress />
-        </Route>
-        <Route exact path="/profileinformation">
-          <ProfileInformation />
-        </Route>
         <Route exact path="/edit-product/:id">
           <Addproduct />
-        </Route>
-        <Route exact path="/add-product">
-          <Addproduct />
-        </Route>
-        <Route exact path="/view-product">
-          <Viewproduct />
         </Route>
         <Route exact path="/add-coupon">
           <Addcoupon />
@@ -101,6 +83,32 @@ function App() {
         <Route exact path="/edit-coupon/:id">
           <Addcoupon />
         </Route>
+        {(localStorage.getItem("jwtoken") != null) ?
+        <>
+          <Route exact path="/profile">
+            <ProfilePage />
+          </Route>
+          <Route exact path="/sellerregistration">
+            <SellerRegistration />
+          </Route>
+          <Route exact path="/manageaddress">
+            <ManageAddress />
+          </Route>
+          <Route exact path="/profileinformation">
+            <ProfileInformation />
+          </Route>
+          <Route exact path="/add-product">
+            <Addproduct />
+          </Route>
+          <Route exact path="/view-product">
+            <Viewproduct />
+          </Route>
+        </>
+        :
+          <Redirect exact path="/login">
+            <Login />
+          </Redirect>
+        }
         <Route component={ErrorPage} />
       </Switch>
     </div>
