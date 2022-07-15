@@ -1,3 +1,8 @@
+/*
+* @author: Indu Munagapati
+* Component of Seller Registration page
+*/
+
 import {
     Typography,
     Grid,
