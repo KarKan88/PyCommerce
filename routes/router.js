@@ -24,21 +24,24 @@ const {
   addItem,
   removeItem,
   getCartItems,
-  updateQuantity
+  updateQuantity,
 } = require("../controllers/cart-controller");
 
-const {
-  addCost
-} = require("../controllers/checkout-controller");
+const { addCost } = require("../controllers/checkout-controller");
 
 const {
- listCoupons,
- addCoupon,
- listCouponById,
- listCouponByCouponCode,
- deleteCouponById,
- updateCouponById
-} = require("../controllers/coupon-controller");
+  listCoupons,
+  addCoupon,
+  listCouponById,
+  listCouponByCouponCode,
+  deleteCouponById,
+  updateCouponById
+ } = require("../controllers/coupon-controller");
+
+const {
+  addComment,
+  getCommentByProductId,
+} = require("../controllers/comment-controller");
 
 const { verifyJWT } = require("../authentication/authentication");
 
@@ -58,6 +61,10 @@ router.post("/products/add-product", addProduct);
 router.post("/favorites/add-item", addItemToFavorites);
 router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
+
+console.log("In routes");
+router.post("/addcomment", addComment);
+router.get("/getcomment/:id", getCommentByProductId);
 
 router.post("/cart/add-item", addItem);
 router.delete("/cart/remove-item", removeItem);
