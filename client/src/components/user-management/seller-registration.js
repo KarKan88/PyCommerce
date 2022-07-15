@@ -23,11 +23,9 @@ function SellerRegistration() {
   const [companyName, setCompanyName] = useState("");
   const [cNameSuccess, setCNameSuccess] = useState(false);
   const [companyNameError, setCompanyNameError] = useState("");
-  const [companyRegistrationNumber, setCompanyRegistrationNumber] =
-    useState("");
+  const [companyRegistrationNumber, setCompanyRegistrationNumber] = useState("");
   const [regSuccess, setRegSuccess] = useState(false);
-  const [companyRegistrationNumberError, setCompanyRegistrationNumberError] =
-    useState("");
+  const [companyRegistrationNumberError, setCompanyRegistrationNumberError] = useState("");
   const [location, setLocation] = useState("");
   const [locSuccess, setLocSuccess] = useState(false);
   const [locationError, setLocationError] = useState("");
@@ -78,35 +76,28 @@ function SellerRegistration() {
   }
 
   function onHandleSubmit() {
-    if (
-      cNameSuccess &&
-      regSuccess &&
-      locSuccess &&
-      (companyName && companyRegistrationNumber && location) !== ""
-    ) {
-      axios
-        .post(
-          "/sellerregistration",
+    if (cNameSuccess && regSuccess && locSuccess && (companyName && companyRegistrationNumber && location) !== "") {
+      const jwt = localStorage.getItem("jwtoken");
+      if(jwt != null) {
+        axios.post("/sellerregistration",
           {
             emailAddress: localStorage.getItem("emailAddress"),
             companyName: companyName,
             companyRegistrationNumber: companyRegistrationNumber,
             location: location,
-          },
-          { headers: { token: localStorage.getItem("jwtoken") } }
-        )
-        .then((response) => {
-          if (response.status === 201) {
-            localStorage.setItem("seller", true);
-            setOpenDialog(true);
-          }
-        })
-        .catch((err) => {
-          setRegisterError("Seller registration failed");
-        });
-    } else {
-      setRegisterError("All fields are mandatory");
-    }
+          }, { headers: { token: localStorage.getItem("jwtoken") } })
+          .then((response) => {
+            if (response.status === 201) {
+              localStorage.setItem("seller", true);
+              setOpenDialog(true);
+            }
+          }).catch((err) => {
+            setRegisterError("Seller registration failed");
+          });
+      } else {
+        navigate.push("/login");
+      }
+    }   
   }
 
   function onHandleClose() {

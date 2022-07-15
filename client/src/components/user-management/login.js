@@ -34,7 +34,7 @@ function Login() {
       err = "Email Address cannot be empty";
       setSuccess(false);
     } else if (!emailAddressRegex.test(emailAddressName)) {
-      err = "Email Address format is not correct, ex: indu@outlook.com";
+      err = "Email Address format is not correct, ex: xyz@outlook.com";
       setSuccess(false);
     } else {
       setSuccess(true);

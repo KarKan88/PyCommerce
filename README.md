@@ -26,8 +26,7 @@ The eCommerce application is built on the MERN stack. The client is a react appl
 ## Features
 
 ## User Authentication
-
-I have implemented the user authentication feature for the PyCommerce Web Application. User Authentication offers the following features:
+User Authentication offers the following features:
 
 - Login - Registered users can login into the website using an email address and password
 - Registration - Any user can register to the website by filling the required fields in the form
@@ -717,7 +716,7 @@ The code above was created by adapting the code in [MUI] components
 
 - Created by Indu Munagapati
 
-\_Lines 317 - 327
+_Lines 317 - 327
 
 ```
    <TextField style ={{backgroundColor: "#fff"}}
@@ -739,7 +738,7 @@ The code above was created by adapting the code in [MUI] components
 - It is modified according to the global design.
 - Additional elements like Form control and grids are used with the text fields.
 
-\_Lines 450 - 469
+_Lines 450 - 469
 
 ```
    <Dialog
@@ -779,7 +778,7 @@ let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%
 - It is used to validate the password field.
 - The code was modified to user clicks on password and validates using this regex.
 
-\_Lines 153
+_Lines 153
 
 ```
 let phNumberRegex = /^[0-9]{10}$/;
