@@ -1,8 +1,12 @@
+/*
+* @author: Meghdoort Ojha
+*/
 import React, { useState, useEffect } from "react";
 import { Grid, makeStyles, Form } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 import validateInput from "../validations/validationAddProduct";
 import { useHistory, useParams } from "react-router-dom";
+import { addInventoryProduct, getInventoryProductById, updateProductById } from "../actions/inventory-action.js"
 
 import {
   InputLabel,
@@ -42,30 +46,45 @@ function AddProduct() {
   const [errors, setErrors] = useState("");
 
   const { id } = useParams("");
+  useEffect(async () => {
+if(!id){
+  setCategory("");
+  setName("");
+  setImage("");
+  setDiscount("");
+  setQuantity("");
+  setSerialNo("");
+  setPrice("");
+}
+  },[id])
 
-  useEffect(() => {
+  useEffect(async () => {
     // Update the document title using the browser API
 
     if (id) {
-      let localData = JSON.parse(localStorage.getItem("productData"));
-      if (JSON.stringify(data) != JSON.stringify(localData)) {
-        setData(localData);
-      }
+      // let localData = JSON.parse(localStorage.getItem("productData"));
+      // if (JSON.stringify(data) != JSON.stringify(localData)) {
+      //   setData(localData);
+      // }
 
-      let value = localData.find((x) => +x.id == +id);
+      // let value = localData.find((x) => +x.id == +id);
 
-      if (!category) {
-        setCategory(value?.category ?? "");
-        setName(value?.name ?? "");
-        setImage(value?.image ?? "");
-        setDiscount(value?.discount ?? "");
-        setQuantity(value?.quantity ?? "");
-        setSerialNo(value?.serialNo ?? "");
-        setPrice(value?.price ?? "");
-      }
+      // if (!category) {
+
+      // }
+      let result = await getInventoryProductById(id)
+      console.log(result)
+      setCategory(result.data.product?.productCategory);
+      setName(result.data.product?.productName);
+      setImage(result.data.product?.image);
+      setDiscount(result.data.product?.discount.toString());
+      setQuantity(result.data.product?.quantity.toString());
+      setSerialNo(result.data.product?.productSerial.toString());
+      setPrice(result.data.product?.price.toString());
     } else {
+      
     }
-  });
+  }, []);
 
   const onChange = (ev) => {
     if (ev.target.name == "category") {
@@ -105,39 +124,43 @@ function AddProduct() {
     }
     return isValid;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     let data = {
-      category,
-      name,
-      serialNo,
-      price,
-      discount,
-      quantity,
-      image,
-      id: id ? id : Math.round(Math.random() * 100000),
+      productCategory: category,
+      productName: name,
+      productSerial: serialNo.toString(),
+      price: price.toString(),
+      discount: discount.toString(),
+      quantity: quantity.toString(),
+      image: image,
     };
+
 
     if (isValid(data)) {
       if (id) {
-        let localData = JSON.parse(localStorage.getItem("productData"));
-        let value = localData.findIndex((x) => +x.id == +id);
-        localData[value] = data;
-        setTimeout(() => {
-          localStorage.setItem("productData", JSON.stringify(localData));
+        let result = await updateProductById(id, data)
+       
+        if (result.status == 200) {
           navigate.push("/view-product");
-        }, 1000);
-      } else {
-        if (localStorage.getItem("productData")) {
-          let values = JSON.parse(localStorage.getItem("productData"));
-          values.push(data);
-          localStorage.setItem("productData", JSON.stringify(values));
-        } else {
-          localStorage.setItem("productData", JSON.stringify([data]));
         }
-        navigate.push("/view-product");
+        else {
+          alert(result.data.error)
+        }
+      } else {
+        let result = await addInventoryProduct(data)
+        console.log(result)
+        if (result.status == 200) {
+          navigate.push("/view-product");
+        }
+        else {
+          alert(result.data.error)
+        }
+
       }
     } else {
+
       console.log("Errors");
     }
   };
@@ -326,7 +349,7 @@ function AddProduct() {
                   color="primary"
                   className="w-100"
                 >
-                  Add Product
+                  {id?'Update':'Add'} Product
                 </Button>
               </div>
             </div>

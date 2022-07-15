@@ -11,6 +11,31 @@ const Coupon = require("../models/coupon-model");
 const listCoupons = async (req, res) => {
   try {
     const coupons = await Coupon.find({});
+    res.set('Access-Control-Allow-Origin', '*');
+    res.json(coupons);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+/**
+ * Method to list a coupon by Id
+ */
+ const listCouponById = async (req, res) => {
+  try {
+    const coupons = await Coupon.findById(req.params.id);
+    res.json(coupons);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+/**
+ * Method to list a coupon by couponCode
+ */
+ const listCouponByCouponCode = async (req, res) => {
+  try {
+    const coupons = await Coupon.find({ couponCode: req.params.couponCode });
     res.json(coupons);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -79,6 +104,8 @@ const deleteCouponById = async (req, res) => {
 
 module.exports = {
   listCoupons,
+  listCouponById,
+  listCouponByCouponCode,
   addCoupon,
   updateCouponById,
   deleteCouponById,

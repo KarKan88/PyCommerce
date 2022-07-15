@@ -51,7 +51,7 @@ function ForgotPassword() {
             err = "Email Address cannot be empty";
             setEmailSuccess(false);
         } else if(!emailAddressRegex.test(emailAddressName)) {
-            err = "Email Address doesn't match criteria, ex: indu@outlook.com";
+            err = "Email Address doesn't match criteria, ex: xyz@outlook.com";
             setEmailSuccess(false);
         } else {
             setEmailSuccess(true);

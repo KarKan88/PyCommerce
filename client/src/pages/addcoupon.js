@@ -3,18 +3,11 @@
  * Banner ID: B00899473
  */
 import React, { useState, useEffect } from "react";
-import { Grid, makeStyles, Form } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 import validateInput from "../validations/validationAddCoupon";
 import { useHistory, useParams } from "react-router-dom";
-import {
-  InputLabel,
-  TextField,
-  MenuItem,
-  Select,
-  FormControl,
-  Button,
-} from "@material-ui/core";
+import { TextField, FormControl, Button } from "@material-ui/core";
 /**
  * The useStyles variable will make styles for spaces around the add coupon component rendered.
  */
@@ -42,7 +35,7 @@ function AddCoupon() {
 
   const [couponCode, setCouponCode] = useState("");
   const [couponCondition, setCouponCondition] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [couponDiscount, setDiscount] = useState("");
   const [maximumOff, setMaximumOff] = useState("");
 
   const [data, setData] = useState([]);
@@ -54,19 +47,24 @@ function AddCoupon() {
    */
   useEffect(() => {
     if (id) {
-      let localData = JSON.parse(localStorage.getItem("couponData"));
-      if (JSON.stringify(data) != JSON.stringify(localData)) {
-        setData(localData);
-      }
-      let value = localData.find((x) => +x.id == +id);
-      if (!category) {
-        setCategory(value?.category ?? "");
-        setCouponCode(value?.couponCode ?? "");
-        setCouponCondition(value?.couponCondition ?? "");
-        setDiscount(value?.discount ?? "");
-        setMaximumOff(value?.maximumOff ?? "");
-        
-      }
+      fetch("/coupons/list-coupon/" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (!category) {
+            setCategory(result?.category ?? "");
+            setCouponCode(result?.couponCode ?? "");
+            setCouponCondition(result?.couponCondition ?? "");
+            let couponDiscountNumeric = result?.couponDiscount ?? "";
+            let maximumOffNumeric = result?.maximumOff ?? "";
+            setDiscount(couponDiscountNumeric.toString());
+            setMaximumOff(maximumOffNumeric.toString());
+          }
+        });
     } else {
     }
   });
@@ -74,26 +72,26 @@ function AddCoupon() {
    *  The variable of coupon details from the form inputs are set below.
    */
   const onChange = (ev) => {
-    setCategory("Mobile");
-    if (ev.target.name == "couponCode") {
+    setCategory("Coupon");
+    if (ev.target.name === "couponCode") {
       setCouponCode(ev.target.value);
-    } else if (ev.target.name == "couponCondition") {
+    } else if (ev.target.name === "couponCondition") {
       setCouponCondition(ev.target.value);
-    } else if (ev.target.name == "discount") {
+    } else if (ev.target.name === "discount") {
       setDiscount(ev.target.value);
-    } else if (ev.target.name == "maximumOff") {
+    } else if (ev.target.name === "maximumOff") {
       setMaximumOff(ev.target.value);
     }
   };
-/**
- * The isValid Function will check for any errors in the inputs submitted through forms.
- */
+  /**
+   * The isValid Function will check for any errors in the inputs submitted through forms.
+   */
   const isValid = () => {
     const { errors, isValid } = validateInput({
       category,
       couponCode,
       couponCondition,
-      discount,
+      couponDiscount,
       maximumOff,
     });
     if (!isValid) {
@@ -111,31 +109,53 @@ function AddCoupon() {
       category,
       couponCode,
       couponCondition,
-      discount,
+      couponDiscount,
       maximumOff,
       id: id ? id : Math.round(Math.random() * 100000),
     };
     /**
      * The conditions to check if the inputs filled in the form are valid. If they are valid,
-     *  then store it in localStorage. Else show the errors. 
+     *  then store it in localStorage. Else show the errors.
      */
+    console.log(isValid(data));
     if (isValid(data)) {
       if (id) {
-        let localData = JSON.parse(localStorage.getItem("couponData"));
-        let value = localData.findIndex((x) => +x.id == +id);
-        localData[value] = data;
-        setTimeout(() => {
-          localStorage.setItem("couponData", JSON.stringify(localData));
-          navigate.push("/view-coupon");
-        }, 1000);
+        fetch("/coupons/update-coupon/" + id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            category,
+            couponCode,
+            couponCondition,
+            couponDiscount,
+            maximumOff,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
+        navigate.push("/view-coupon");
       } else {
-        if (localStorage.getItem("couponData")) {
-          let values = JSON.parse(localStorage.getItem("couponData"));
-          values.push(data);
-          localStorage.setItem("couponData", JSON.stringify(values));
-        } else {
-          localStorage.setItem("couponData", JSON.stringify([data]));
-        }
+        fetch("/coupons/add-coupon", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            category,
+            couponCode,
+            couponCondition,
+            couponDiscount,
+            maximumOff,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
         navigate.push("/view-coupon");
       }
     } else {
@@ -169,12 +189,12 @@ function AddCoupon() {
               <FormControl>
                 <TextField
                   style={{ backgroundColor: "#fff", width: 500 }}
-                  error={errors.name ? true : false}
+                  error={errors.couponCode ? true : false}
                   fullWidth
                   variant="filled"
                   size="small"
                   margin="normal"
-                  helperText={errors.name}
+                  helperText={errors.couponCode}
                   id="standard-basic"
                   label="Coupon Code"
                   value={couponCode}
@@ -209,10 +229,10 @@ function AddCoupon() {
                   size="small"
                   margin="normal"
                   label="Discount"
-                  value={discount}
+                  value={couponDiscount}
                   name="discount"
-                  error={errors.discount ? true : false}
-                  helperText={errors.discount}
+                  error={errors.couponDiscount ? true : false}
+                  helperText={errors.couponDiscount}
                   onChange={(e) => onChange(e)}
                 />
               </FormControl>
@@ -248,7 +268,7 @@ function AddCoupon() {
                   color="primary"
                   className="w-100"
                 >
-                  Add Coupon
+                  {id ? "Update " : "Add "} Coupon
                 </Button>
               </div>
             </div>

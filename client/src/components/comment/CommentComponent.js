@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
+/*
+ * @author: Subash Narayanan
+ * Comments component that performs adding comments sorting and rendring comments
+ */
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import CreateArea from "./CreateArea";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -31,13 +36,13 @@ const style = {
 function createComment(object) {
   return (
     <Comment
-      key={object.Name}
-      avatar={object.Avatar}
-      name={object.Name}
-      commnet={object.Comment}
-      rating={object.Rating}
-      date={object.CDate}
-      title={object.Title}
+      key={object.name + object.title}
+      avatar=""
+      name={object.name}
+      commnet={object.comment}
+      rating={object.rating}
+      date={object.cdate}
+      title={object.title}
     />
   );
 }
@@ -50,14 +55,47 @@ const state = {
   OneStar: false,
 };
 
-const handleChange = (event) => {};
+function CommentComponent({ product }) {
+  const [commentData, setcommentData] = React.useState([]);
+  const [sort, setAge] = React.useState(10);
 
-function CommentComponent() {
-  const [CompleteData, setCompleteData] = React.useState(data);
+  const renderComments = () => {
+    return commentData
+      .sort((a, b) => {
+        if (sort === 10) {
+          return a.cdate < b.cdate ? 1 : -1;
+        } else if (sort === 20) {
+          return a.cdate > b.cdate ? 1 : -1;
+        } else if (sort === 30) {
+          return a.rating > b.rating ? 1 : -1;
+        } else if (sort === 40) {
+          return a.rating < b.rating ? 1 : -1;
+        }
+      })
+      .map(createComment);
+  };
+
+  const getProducts = async (id) => {
+    try {
+      const data = await axios.get(`/getcomment/${id}`);
+
+      var com = data.data;
+
+      for (var i = 0; i < Object.keys(com).length; i++) {
+        setcommentData((prevData) => {
+          return [...prevData, com[i]];
+        });
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProducts(product._id);
+  }, []);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [sort, setAge] = React.useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -71,13 +109,14 @@ function CommentComponent() {
           <MenuItem value={10}>MOST RECENT</MenuItem>
           <MenuItem value={20}>OLDEST FIRST</MenuItem>
           <MenuItem value={30}>LOW TO HIGH</MenuItem>
-          <MenuItem value={30}>HIGH TO LOW</MenuItem>
+          <MenuItem value={40}>HIGH TO LOW</MenuItem>
         </Select>
       </FormControl>
     );
   };
+
   function addNote(Data) {
-    setCompleteData((prevData) => {
+    setcommentData((prevData) => {
       return [...prevData, Data];
     });
     handleClose();
@@ -91,7 +130,7 @@ function CommentComponent() {
         style={{ paddingTop: "2%", marginTop: "1%" }}
         justifyContent="flex-end"
       >
-        <Grid item xs={12} md={8} sm={12}>
+        <Grid item xs={12} md={8}>
           <h2> REVIEWS AND RATINGS</h2>
         </Grid>
         <Grid item xs={12} md={2} sm={6}>
@@ -118,7 +157,11 @@ function CommentComponent() {
           >
             <Fade in={open}>
               <Box sx={style}>
-                <CreateArea onAdd={addNote} />
+                <CreateArea
+                  onAdd={addNote}
+                  product_id={product._id}
+                  close={handleClose}
+                />
               </Box>
             </Fade>
           </Modal>
@@ -130,9 +173,8 @@ function CommentComponent() {
       </Grid>
 
       <Grid container spacing={5} sm={12}>
-        {/* <Grid item xs={2}></Grid> */}
         <Grid item xs={12}>
-          {CompleteData.map(createComment)}
+          {sort === 10 ? renderComments() : renderComments()}
         </Grid>
       </Grid>
     </Box>

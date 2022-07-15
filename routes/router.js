@@ -10,7 +10,7 @@ const {
 const {
   addItemToFavorites,
   removeItemFromFavorites,
-  getFavoritesItems
+  getFavoritesItems,
 } = require("../controllers/favorites-controller");
 
 const {
@@ -18,28 +18,41 @@ const {
   userRegistration,
   userLogin,
   forgotPassword,
-  sellerRegistration
+  sellerRegistration,
 } = require("../controllers/user-controller");
 
 const {
   addItem,
   removeItem,
   getCartItems,
-  updateQuantity
+  updateQuantity,
 } = require("../controllers/cart-controller");
 
-const {
-  addCost
-} = require("../controllers/checkout-controller");
+const { addCost } = require("../controllers/checkout-controller");
 
 const {
- listCoupons,
- addCoupon,
- deleteCouponById,
- updateCouponById
-} = require("../controllers/coupon-controller");
+  listCoupons,
+  addCoupon,
+  listCouponById,
+  listCouponByCouponCode,
+  deleteCouponById,
+  updateCouponById
+ } = require("../controllers/coupon-controller");
 
-const {verifyJWT} = require("../authentication/authentication");
+const {
+  addInventoryProduct,
+  viewInventoryProduct,
+  updateInventoryProductById,
+  deleteInventoryProductsById,
+  getInventoryProductById
+} = require("../controllers/inventory-controller");
+
+const {
+  addComment,
+  getCommentByProductId,
+} = require("../controllers/comment-controller");
+
+const { verifyJWT } = require("../authentication/authentication");
 
 const router = express.Router();
 
@@ -58,6 +71,9 @@ router.post("/favorites/add-item", addItemToFavorites);
 router.delete("/favorites/remove-item", removeItemFromFavorites);
 router.get("/favorites/get-items/:id", getFavoritesItems);
 
+router.post("/addcomment", addComment);
+router.get("/getcomment/:id", getCommentByProductId);
+
 router.post("/cart/add-item", addItem);
 router.delete("/cart/remove-item", removeItem);
 router.get("/cart/get-items/:id", getCartItems);
@@ -66,8 +82,19 @@ router.patch("/cart/item/updatequantity", updateQuantity);
 router.post("/checkout", addCost);
 
 router.get("/coupons/list-coupons", listCoupons);
+router.get("/coupons/list-coupon/:id", listCouponById);
+router.get("/coupons/list-coupon/:couponCode", listCouponByCouponCode);
 router.post("/coupons/add-coupon", addCoupon);
 router.put("/coupons/update-coupon/:id", updateCouponById);
 router.delete("/coupons/delete-coupon/:id", deleteCouponById);
+
+router.post("/inventory/add-product", addInventoryProduct);
+router.put("/inventory/update-product/:id", updateInventoryProductById);
+router.delete("/inventory/delete-product/:id", deleteInventoryProductsById);
+router.get("/inventory/product/:id", getInventoryProductById);
+
+
+router.get("/inventory/products", viewInventoryProduct);
+
 
 module.exports = router;

@@ -30,7 +30,7 @@ function ErrorPage() {
             marginBottom: "35px",
           }}
         >
-          Unfortunately the page you are looking for has been moved or deleted
+          Unfortunately the page you are looking for has been moved or deleted or else login to access.
         </div>
         <Button
           style={{ backgroundColor: "#222" }}
