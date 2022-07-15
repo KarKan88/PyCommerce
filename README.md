@@ -1,25 +1,49 @@
 # PyCommerce
+The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
 
-Project Proposal - Group Submission
+Assignment 3 - Group Submission
 
-- _Date Created_: 14 Jun 2022
-- _Last Modification Date_: 16 Jun 2022
+- _Date Created_: 15 July 2022
+- _Last Modification Date_: 15 July 2022
 - _Git URL Repository_: <https://git.cs.dal.ca/adimurthy/csci-5709-group-16>
 - _Deployed Application_: <https://pycommerce-16.herokuapp.com/>
 
 ## Author
 
-- Adesh Nalpet Adimurthy - Full Stack Development
-- Dhruvrajsinh Omkarsinh Vansia - Full Stack Development
-- Hemanth Nadipineni - Full Stack Development
-- Indu Munagapati - Full Stack Development
-- Karthik Kannan Nanthakumar - Full Stack Development
-- Meghdoot Ojha - Full Stack Development
-- Subash Narayanan - Full Stack Development
+- Adesh Nalpet Adimurthy - Full Stack Developer [Individual git branch link]()
+- Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link]()
+- [Hemanth Nadipineni] (hemanth@dal.ca) - Full Stack Developer [Individual git branch link 1](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/develop/B00899473) [Individual git branch link 2](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev-hn) [Individual git branch link 3](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev2-hn) [Individual git branch link 4](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/server-hn)
+- [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
+- Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link]()
+- Meghdoot Ojha - Full Stack Developer [Individual git branch link]()
+- Subash Narayanan - Full Stack Developer [Individual git branch link]()
 
 ## Overview
 
 The eCommerce application is built on the MERN stack. The client is a react application and heavily uses the Material UI component library. The server is a NodeJS + Express application with MongoDB as the NoSQL data store with mongoose to quickly model; the backend is for CRUD operations on all the models. On the other hand, the majority of the work was on the client-side. Ideally, most of the data is either configurable or dynamically loaded by calling the backend APIs. For early prototyping, the products and adding products to the wishlist are dynamic. However, the banner, offers, deals, and featured brands on the home page are static.
+
+## Features
+
+## User Authentication
+I have implemented the user authentication feature for the PyCommerce Web Application. User Authentication offers the following features:
+
+* Login - Registered users can login into the website using an email address and password
+* Registration - Any user can register to the website by filling the required fields in the form
+* Forgot password - Registered users can click on forgot password and can change the password by filling in the correct email address and two security questions answered while registering with the website. This is to ensure two-way authentication.
+* Seller Registration: After login into the website, there is a button “Become a Seller”, clicking which seller can register by filling the required fields.
+
+## Coupon Management - Hemanth
+
+By providing coupons and discounts to first-time online shoppers, this feature hopes to persuade users to use our platform. Seasonal coupons for the customers, such as Christmas specials, Black Friday promotions, etc. Idle shoppers, or those who haven't placed an order on our platform in about three months. Once a seller wants to create a coupon, he can click on the link provided in his dashboard, and it will get to the coupon management portal. The user can use the coupons the system will validate the code with the ones stored in the coupon management system. Following are the managing options available for the coupon system: 
+
+* Add: A seller can use this system to access and add a new coupon to the system. All the required validation rules have to be presented. A customer doesn’t have access to use this section. 
+
+* Edit: A seller can use this system to access and edit an existing coupon to the system. The same validation rules for adding the coupon implies to the edit section. A customer doesn’t have access to use this section. 
+
+* Delete: A seller or an admin can use this system to access and delete a coupon from the system. A customer doesn’t have access to use this section. 
+
+* Validate: A customer can provide a coupon while checking out and the system will validate the coupon that was added by any seller. 
+
 
 ## Getting Started
 
@@ -690,7 +714,7 @@ The code above was created by adapting the code in [MUI] components
 
 - Created by Indu Munagapati
 
-_Lines 273 - 283_
+_Lines 317 - 327
 
 ```
    <TextField style ={{backgroundColor: "#fff"}}
@@ -712,7 +736,7 @@ _Lines 273 - 283_
 - It is modified according to the global design.
 - Additional elements like Form control and grids are used with the text fields.
 
-_Lines 406 - 425
+_Lines 450 - 469
 
 ```
    <Dialog
@@ -741,18 +765,18 @@ _Lines 406 - 425
 - It is used to pop up the dialog box when user registers.
 - The code was modified to user clicks on submit buttion to show the dialog box.
 
-_Lines 100
+_Lines 113
 
 ```
 let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 ```
 
-- The password regex reference of code in `Registration.js` was taken from React Material UI site (https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a).
+- The password regex reference of code in `Registration.js` was taken from this site (https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a).
 - It is used to validate the password field.
 - The code was modified to user clicks on password and validates using this regex.
 
-_Lines 140
+_Lines 153
 
 ```
 let phNumberRegex = /^[0-9]{10}$/;
@@ -762,6 +786,51 @@ let phNumberRegex = /^[0-9]{10}$/;
 - The password regex reference of code in `Registration.js` was taken from React Material UI site (https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number).
 - It is used to validate the phone number field.
 - The code was modified to user clicks on phone number and validates using this regex.
+
+### authentication.js
+
+- Created by Indu Munagapati
+
+_Lines 29-31_
+
+```
+const token = jwt.sign(
+        {emailAddress}, "WEBGROUP16"
+    );
+```
+
+The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below: 
+
+```
+const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.TOKEN_KEY,
+      {
+        expiresIn: "2h",
+      }
+    );
+
+```
+
+- The code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) was implemented by this https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/ website.
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was used to create a JWT.
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to create a JWT while login. 
+
+_Lines 12_
+
+```
+jwt.verify(token, "WEBGROUP16", (err, decode) => {
+```
+
+The code above was created by adapting the code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) as shown below: 
+
+```
+const decoded = jwt.verify(token, config.TOKEN_KEY);
+```
+
+- The code in [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/) was implemented by this https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/ website.
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was used to verify the JWT.
+- [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to verify the JWT while it is called. 
 
 ## References
 
@@ -804,5 +873,7 @@ let phNumberRegex = /^[0-9]{10}$/;
 [18] Password - https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
 
 [19] Phone number - https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+
+[20] Authentication API with JWT Token - https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
 
 ````
