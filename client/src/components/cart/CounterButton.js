@@ -1,6 +1,9 @@
-/*
- * @author: Dhruvrajsinh Omkarsinh Vansia
+/**
+ * @Author: Dhruvrajsinh Vansia
+ * Banner ID: B00891415
+ * Counter functionality of the cart item
  */
+
 
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
