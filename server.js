@@ -4,10 +4,8 @@ require("dotenv").config({ path: "./config/.env" });
 
 require("./config/db-connection");
 const useRouter = require("./routes/router");
-var cors = require('cors')
 
 const app = express();
-app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
