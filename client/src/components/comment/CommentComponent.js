@@ -31,7 +31,7 @@ const style = {
 function createComment(object) {
   return (
     <Comment
-      key={object.name}
+      key={object.name + object.title}
       avatar=""
       name={object.name}
       commnet={object.comment}
@@ -52,6 +52,23 @@ const state = {
 
 function CommentComponent({ product }) {
   const [commentData, setcommentData] = React.useState([]);
+  const [sort, setAge] = React.useState(10);
+
+  const renderComments = () => {
+    return commentData
+      .sort((a, b) => {
+        if (sort === 10) {
+          return a.cdate < b.cdate ? 1 : -1;
+        } else if (sort === 20) {
+          return a.cdate > b.cdate ? 1 : -1;
+        } else if (sort === 30) {
+          return a.rating > b.rating ? 1 : -1;
+        } else if (sort === 40) {
+          return a.rating < b.rating ? 1 : -1;
+        }
+      })
+      .map(createComment);
+  };
 
   const getProducts = async (id) => {
     try {
@@ -75,10 +92,10 @@ function CommentComponent({ product }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [sort, setAge] = React.useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
+    console.log(event.target.value);
   };
 
   const form = () => {
@@ -89,7 +106,7 @@ function CommentComponent({ product }) {
           <MenuItem value={10}>MOST RECENT</MenuItem>
           <MenuItem value={20}>OLDEST FIRST</MenuItem>
           <MenuItem value={30}>LOW TO HIGH</MenuItem>
-          <MenuItem value={30}>HIGH TO LOW</MenuItem>
+          <MenuItem value={40}>HIGH TO LOW</MenuItem>
         </Select>
       </FormControl>
     );
@@ -153,9 +170,8 @@ function CommentComponent({ product }) {
       </Grid>
 
       <Grid container spacing={5} sm={12}>
-        {/* <Grid item xs={2}></Grid> */}
         <Grid item xs={12}>
-          {commentData.map(createComment)}
+          {sort === 10 ? renderComments() : renderComments()}
         </Grid>
       </Grid>
     </Box>
