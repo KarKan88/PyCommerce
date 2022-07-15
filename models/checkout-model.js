@@ -1,6 +1,9 @@
-/*
-* @author: Dhruvrajsinh Omkarsinh Vansia
-*/
+/**
+ * @Author: Dhruvrajsinh Vansia
+ * Banner ID: B00891415
+ * checkout controller
+ */
+
 const mongoose = require("mongoose");
 
 const checkOutSchema = mongoose.Schema({

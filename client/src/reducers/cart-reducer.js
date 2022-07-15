@@ -1,5 +1,7 @@
-/*
- * @author: Dhruvrajsinh Omkarsinh Vansia
+/**
+ * @Author: Dhruvrajsinh Vansia
+ * Banner ID: B00891415
+ * Cart reducer: add, update, delete, get functionality
  */
 
 import * as actionType from "../action-type/cart-action-type";
