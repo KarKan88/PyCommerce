@@ -7,11 +7,7 @@ import { Grid, makeStyles } from "@material-ui/core";
 import Sidebar from "../components/profile/seller-sidebar";
 import validateInput from "../validations/validationAddCoupon";
 import { useHistory, useParams } from "react-router-dom";
-import {
-  TextField,
-  FormControl,
-  Button,
-} from "@material-ui/core";
+import { TextField, FormControl, Button } from "@material-ui/core";
 /**
  * The useStyles variable will make styles for spaces around the add coupon component rendered.
  */
@@ -62,7 +58,6 @@ function AddCoupon() {
         setCouponCondition(value?.couponCondition ?? "");
         setDiscount(value?.discount ?? "");
         setMaximumOff(value?.maximumOff ?? "");
-        
       }
     } else {
     }
@@ -82,9 +77,9 @@ function AddCoupon() {
       setMaximumOff(ev.target.value);
     }
   };
-/**
- * The isValid Function will check for any errors in the inputs submitted through forms.
- */
+  /**
+   * The isValid Function will check for any errors in the inputs submitted through forms.
+   */
   const isValid = () => {
     const { errors, isValid } = validateInput({
       category,
@@ -114,44 +109,38 @@ function AddCoupon() {
     };
     /**
      * The conditions to check if the inputs filled in the form are valid. If they are valid,
-     *  then store it in localStorage. Else show the errors. 
+     *  then store it in localStorage. Else show the errors.
      */
     if (isValid(data)) {
       if (id) {
         console.log(id);
 
-
         let localData = JSON.parse(localStorage.getItem("couponData"));
 
-        
         let value = localData.findIndex((x) => +x.id === +id);
         localData[value] = data;
         setTimeout(() => {
           localStorage.setItem("couponData", JSON.stringify(localData));
           navigate.push("/view-coupon");
         }, 1000);
-
-
       } else {
-
-
-      fetch("http://localhost:5000/coupons/add-coupon", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-      category,
-      couponCode,
-      couponCondition,
-      couponDiscount,
-      maximumOff,
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+        fetch("/coupons/add-coupon", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            category,
+            couponCode,
+            couponCondition,
+            couponDiscount,
+            maximumOff,
+          }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+          });
 
         // if (localStorage.getItem("couponData")) {
         //   let values = JSON.parse(localStorage.getItem("couponData"));
@@ -160,7 +149,6 @@ function AddCoupon() {
         // } else {
         //   localStorage.setItem("couponData", JSON.stringify([data]));
         // }
-
 
         navigate.push("/view-coupon");
       }

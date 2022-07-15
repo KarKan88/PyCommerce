@@ -67,7 +67,7 @@ function ViewCoupon(props) {
    * This function will fetch all the coupons from the storage.
    */
   useEffect(() => {
-    fetch("http://localhost:5000/coupons/list-coupons", {
+    fetch("/coupons/list-coupons", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ function ViewCoupon(props) {
     //   setData(JSON.parse(localStorage.getItem("couponData")));
     // }, 1000);
 
-    fetch(`http://localhost:5000/coupons/delete-coupon/` + id, {
+    fetch(`/coupons/delete-coupon/` + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
