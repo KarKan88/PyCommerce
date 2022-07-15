@@ -55,21 +55,16 @@ function AddCoupon() {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
           if (!category) {
             setCategory(result?.category ?? "");
             setCouponCode(result?.couponCode ?? "");
             setCouponCondition(result?.couponCondition ?? "");
-            setDiscount(result?.couponDiscount ?? "");
-            setMaximumOff(result?.maximumOff ?? "");
+            let couponDiscountNumeric = result?.couponDiscount ?? "";
+            let maximumOffNumeric = result?.maximumOff ?? "";
+            setDiscount(couponDiscountNumeric.toString());
+            setMaximumOff(maximumOffNumeric.toString());
           }
         });
-
-      // let localData = JSON.parse(localStorage.getItem("couponData"));
-      // if (JSON.stringify(data) !== JSON.stringify(localData)) {
-      //   setData(localData);
-      // }
-      // let value = localData.find((x) => +x.id === +id);
     } else {
     }
   });
@@ -125,16 +120,6 @@ function AddCoupon() {
     console.log(isValid(data));
     if (isValid(data)) {
       if (id) {
-        // console.log(id);
-
-        // let localData = JSON.parse(localStorage.getItem("couponData"));
-
-        // let value = localData.findIndex((x) => +x.id === +id);
-        // localData[value] = data;
-        // setTimeout(() => {
-        //   localStorage.setItem("couponData", JSON.stringify(localData));
-        //   navigate.push("/view-coupon");
-        // }, 1000);
         fetch("/coupons/update-coupon/" + id, {
           method: "PUT",
           headers: {
@@ -171,15 +156,6 @@ function AddCoupon() {
           .then((result) => {
             console.log(result);
           });
-
-        // if (localStorage.getItem("couponData")) {
-        //   let values = JSON.parse(localStorage.getItem("couponData"));
-        //   values.push(data);
-        //   localStorage.setItem("couponData", JSON.stringify(values));
-        // } else {
-        //   localStorage.setItem("couponData", JSON.stringify([data]));
-        // }
-
         navigate.push("/view-coupon");
       }
     } else {
@@ -213,12 +189,12 @@ function AddCoupon() {
               <FormControl>
                 <TextField
                   style={{ backgroundColor: "#fff", width: 500 }}
-                  error={errors.name ? true : false}
+                  error={errors.couponCode ? true : false}
                   fullWidth
                   variant="filled"
                   size="small"
                   margin="normal"
-                  helperText={errors.name}
+                  helperText={errors.couponCode}
                   id="standard-basic"
                   label="Coupon Code"
                   value={couponCode}
@@ -255,8 +231,8 @@ function AddCoupon() {
                   label="Discount"
                   value={couponDiscount}
                   name="discount"
-                  error={errors.discount ? true : false}
-                  helperText={errors.discount}
+                  error={errors.couponDiscount ? true : false}
+                  helperText={errors.couponDiscount}
                   onChange={(e) => onChange(e)}
                 />
               </FormControl>
@@ -292,7 +268,7 @@ function AddCoupon() {
                   color="primary"
                   className="w-100"
                 >
-                  Add Coupon
+                  {id ? "Update " : "Add "} Coupon
                 </Button>
               </div>
             </div>
