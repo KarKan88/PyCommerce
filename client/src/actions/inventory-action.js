@@ -44,7 +44,7 @@ export const getInventoryProductById = async(id) => {
 }
 export const updateProductById = async(id,data) => {
     try {
-        let result = await axios.put("http://localhost:5000/inventory/update-product/"+id,data)
+        let result = await axios.put("/inventory/update-product/"+id,data)
         return result
     }
     catch(er){
