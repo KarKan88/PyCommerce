@@ -83,7 +83,7 @@ router.post("/checkout", addCost);
 
 router.get("/coupons/list-coupons", listCoupons);
 router.get("/coupons/list-coupon/:id", listCouponById);
-router.get("/coupons/list-coupon/:couponCode", listCouponByCouponCode);
+router.get("/coupons/list-couponcode/:couponCode", listCouponByCouponCode);
 router.post("/coupons/add-coupon", addCoupon);
 router.put("/coupons/update-coupon/:id", updateCouponById);
 router.delete("/coupons/delete-coupon/:id", deleteCouponById);

@@ -56,7 +56,9 @@ const TotalView = ({ cartItems }) => {
 
   let totalItems = 0;
 
+  const [finalCost, setFinalCost] = useState("");
   const [couponCode, setCouponCode] = useState("");
+  let couponDiscount = 0;
 
   const onChange = (ev) => {
     if (ev.target.name == "couponCode") {
@@ -71,6 +73,28 @@ const TotalView = ({ cartItems }) => {
   }
 
   const discount = totalMrp - totalCost;
+
+  const handleOnClick = (ev) => {
+    fetch("/coupons/list-couponcode/" + couponCode, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        couponDiscount = result[0].couponDiscount;
+        let maxOff = result[0].maximumOff;
+        // console.log(maxOff);
+        let x = (totalCost * couponDiscount) / 100;
+        if (x > maxOff) {
+          totalCost = totalCost - maxOff;
+        } else {
+          totalCost = totalCost - x;
+        }
+        console.log(totalCost);
+      });
+  };
 
   const placeOrder = () => {
     dispatch(addCost(totalCost));
@@ -110,8 +134,6 @@ const TotalView = ({ cartItems }) => {
               <span className={classes.price}>FREE</span>
             </Typography>
 
-           
-
             <Typography
               className={classes.totalAmount}
               style={{ paddingTop: "2px" }}
@@ -134,47 +156,47 @@ const TotalView = ({ cartItems }) => {
                 // padding: "2px 10px 2px 2px",
               }}
             >
-               <>
-              {/* <FormControl>
-                <TextField
-                  style={{ backgroundColor: "#fff", width: 130 }}
-                  variant="filled"
-                  size="small"
-                  label="Coupon"
-                  value={couponCode}
-                  onChange={(e) => onChange(e)}
-                  name="couponCode"
-                />
-              </FormControl>
-              
-              <Button
-                 variant="contained"
-                 style={{
-                   backgroundColor: "#EB853B",
-                   color: "#222",
-                   fontWeight: 600,
-                   width: 50,
-                   marginLeft: '6px'
-                 }}
-                // onClick={() => ()}
-              >
-                Apply
-              </Button> */}
-            
-              <Button
-                variant="contained"
-                style={{
-                  backgroundColor: "#EB853B",
-                  color: "#222",
-                  fontWeight: 600,
-                  marginTop: '10px',
-                  marginLeft: '60px',
-                  // width: 100
-                }}
-                onClick={placeOrder}
-              >
-                Place Order
-              </Button>
+              <>
+                <FormControl>
+                  <TextField
+                    style={{ backgroundColor: "#fff", width: 130 }}
+                    variant="filled"
+                    size="small"
+                    label="Coupon"
+                    value={couponCode}
+                    onChange={(e) => onChange(e)}
+                    name="couponCode"
+                  />
+                </FormControl>
+
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#EB853B",
+                    color: "#222",
+                    fontWeight: 600,
+                    width: 50,
+                    marginLeft: "6px",
+                  }}
+                  onClick={(ev) => handleOnClick(ev)}
+                >
+                  Apply
+                </Button>
+
+                <Button
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#EB853B",
+                    color: "#222",
+                    fontWeight: 600,
+                    marginTop: "10px",
+                    marginLeft: "60px",
+                    // width: 100
+                  }}
+                  onClick={placeOrder}
+                >
+                  Place Order
+                </Button>
               </>
             </Grid>
           </Box>
