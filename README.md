@@ -69,6 +69,20 @@ Implemented the Inventory Management feature for the PyCommerce Web Application,
 * Update Product - If seller wants to change any detail like image or serial number of the product, this feature provides the freedom to update it.
 * Delete Product: Inventory products can be deleted in a single click from the app and then it will no more appear in the search.
 
+## Review and feedback
+The product page contains a section of reviews and rating of other customers who has previously purchased the same product, and user will be provided with a list of features to add the review and comment if he needs to or if he is analysing the review, he can filter out lowest to highest, highest to lowest, oldest to latest, and filter out reviews based on stars, to add a review user has to go to my purchases/ orders and then visit particular product page to add the reviews. 
+
+Review and ratings offer the following features. 
+
+User rating form: User can add his review and rating to a particular product that they have purchased, provide a description on their experience about the product. 
+
+View reviews and Ratings: View other user review and rating about the product who has purchased the same product previously from the same seller. 
+
+Priority Sort review and ratings: User can sort reviews and ratings based on priority, lowest to highest, highest to lowest, oldest to latest, latest to oldest. 
+
+Filter out review and ratings: User can filter out ratings based on starts 5, 4 and can only see what 5- or 4-star ratings. 
+
+Review and feedback have a close relationship with product details/ description, for review and feedback component has a strong relation with user, user purchases and product in both backend and front end where the user can only write a review in the purchase products page
 
 ## Getting Started
 
