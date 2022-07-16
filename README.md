@@ -17,7 +17,7 @@ Assignment 3 - Group Submission
 - Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link]()
 - [Hemanth Nadipineni] (hemanth@dal.ca) - Full Stack Developer [Individual git branch link 1](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/develop/B00899473) [Individual git branch link 2](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev-hn) [Individual git branch link 3](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev2-hn) [Individual git branch link 4](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/server-hn)
 - [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
-- Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link]()
+- Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00854209)
 - Meghdoot Ojha - Full Stack Developer [Individual git branch link]()
 - Subash Narayanan(sb742704@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00899481/)
 
@@ -60,6 +60,15 @@ By providing coupons and discounts to first-time online shoppers, this feature h
 - Delete: A seller or an admin can use this system to access and delete a coupon from the system. A customer doesn’t have access to use this section.
 
 - Validate: A customer can provide a coupon while checking out and the system will validate the coupon that was added by any seller.
+
+## Inventory Management
+Implemented the Inventory Management feature for the PyCommerce Web Application, it offers the following features:
+
+* Add Product - Seller can add their products to the inventory with necessary details and image
+* View Product - Seller can see the added products in the previous step with the thumbnai of image already uploaded
+* Update Product - If seller wants to change any detail like image or serial number of the product, this feature provides the freedom to update it.
+* Delete Product: Inventory products can be deleted in a single click from the app and then it will no more appear in the search.
+
 
 ## Getting Started
 
