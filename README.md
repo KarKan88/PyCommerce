@@ -14,7 +14,7 @@ Assignment 3 - Group Submission
 ## Author
 
 - [Adesh Nalpet Adimurthy](adesh.nalpet@dal.ca) - Full Stack Developer [Initial Setup](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/main), [Proxy Individual Branch](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/b00886154).
-- Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link]()
+- Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/chore/design-cart)
 - [Hemanth Nadipineni] (hemanth@dal.ca) - Full Stack Developer [Individual git branch link 1](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/develop/B00899473) [Individual git branch link 2](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev-hn) [Individual git branch link 3](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev2-hn) [Individual git branch link 4](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/server-hn)
 - [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
 - Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/payment)
@@ -83,6 +83,7 @@ Priority Sort review and ratings: User can sort reviews and ratings based on pri
 Filter out review and ratings: User can filter out ratings based on starts 5, 4 and can only see what 5- or 4-star ratings. 
 
 Review and feedback have a close relationship with product details/ description, for review and feedback component has a strong relation with user, user purchases and product in both backend and front end where the user can only write a review in the purchase products page
+
 ## Payment and Delivery
 
 The users of eCommerce applications have various methods to pay for their online purchases. This is one of the main advantages of eCommerce applications. Customers will be able to make payments using credit/debit cards, Interac, PayPal, and various other methods. It also handles the state management of the delivery service provided by the e-commerce portal, via which the customer can track the status of the product after purchasing it.
@@ -96,6 +97,23 @@ The various actions that a user can perform in this feature bare as follows,
 3. Update Shipping Address: User can update the shipping address before the package is being dispatched.
 
 4. Delivery Update: User can track the order that was yet to be delivered.
+
+## Cart
+
+Customers can add and hold products in an e-commerce shopping cart until they finish the transaction. Shopping cart software is the backbone of an online store, allowing you to simply manage inventory, add and remove products, compute taxes, and do everything else that goes into running a website and fulfilling orders.
+Cart management offer the following features:
+1. Add product to cart: Customer can add products to the cart by clicking on the add product button on product page.
+2. Change quantity of product: Customers can change the product quantity from the cart.
+3. Remove product from cart: If customer wants to remove product from cart, then it can be done bey clicking on remove button.
+4. View product details: Customer can check product details by clicking on product grid.
+5. Place order: Customer can be able to place the order by clicking on buy button from cart.
+6. View total price of products including taxes: It is important to check the total payable price of all products. Cart displays the total billing amount, so it will be easy for customers to go ahead and do payments.
+
+
+## Recommendation
+
+In the world of e-commerce shopping, recommendation algorithms are a popular and effective paradigm. Customers can locate things they like with less effort thanks to a recommendation system. Customers are often presented with things that they would never consider purchasing yet
+are ideally suited to their needs. Collaborative filtering, which can manage large datasets and provide high-quality ideas, is frequently used by these e-companies. Based on prior data and the user's purchased, this technique provides a list of suggestions for its clients. For now, in our web application, I have frequently added bought-together product recommendations on the cart page. When cart is empty, it will show top deals and trending products.
 
 ## Getting Started
 
