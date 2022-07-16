@@ -49,6 +49,12 @@ const {
   getCommentByProductId,
 } = require("../controllers/comment-controller");
 
+const {
+  getUserDetails,
+  changePassword,
+  updatePhoneNumber
+} = require("../controllers/profile-info-controller");
+
 const { verifyJWT } = require("../authentication/authentication");
 
 const router = express.Router();
@@ -88,8 +94,10 @@ router.put("/inventory/update-product/:id", updateInventoryProductById);
 router.delete("/inventory/delete-product/:id", deleteInventoryProductsById);
 router.get("/inventory/product/:id", getInventoryProductById);
 
-
 router.get("/inventory/products", viewInventoryProduct);
 
+router.get("/userinfo/:id", getUserDetails);
+router.post("/changepassword", changePassword);
+router.post("/updatephonenumber", updatePhoneNumber);
 
 module.exports = router;
