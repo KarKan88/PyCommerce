@@ -1,6 +1,8 @@
 import { Box, Button, Container, CssBaseline, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { retrieveOrder, placeOrder, addDeliveryDetails, addPaymentDetails } from '../actions/order-action';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,11 +25,30 @@ const useStyles = makeStyles((theme) => ({
 function OrderConfirmed() {
     const classes = useStyles();
     const history = useHistory();
-    
+
     const goBack = () => {
         history.push('/')
     }
-    
+    const dispatch = useDispatch()
+    dispatch(retrieveOrder())
+    const { orderDetails } = useSelector((state) => state.orderReducer)
+
+    useEffect(() => {
+        return () => {
+            dispatch(addPaymentDetails({
+                amount: orderDetails.totalPrice,
+                currency: 'CAD',
+                paymentType: 'Stripe',
+                paymentStatus: 'Success'
+            }))
+            dispatch(addDeliveryDetails({
+                deliveryStatus: 'Order Placed'
+            }))
+            dispatch(placeOrder())
+        }
+    }, [])
+
+
     return (
         <div className={classes.root}>
             <CssBaseline />

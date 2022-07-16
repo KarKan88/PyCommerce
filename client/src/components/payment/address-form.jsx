@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Divider, Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container, makeStyles } from '@material-ui/core';
+import { Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container, makeStyles } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Close } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addShippingDetails } from '../../actions/order-action';
 
 export default function AddressForm() {
     const useStyles = makeStyles((theme) => ({
@@ -29,15 +31,101 @@ export default function AddressForm() {
     }));
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [msg, setMsg] = React.useState("Error Message");
     const history = useHistory();
+    const dispatch = useDispatch();
+
+
+    const [firstName, setFirstName] = React.useState("")
+    const [lastName, setLastName] = React.useState("")
+    const [email, setEmail] = React.useState("")
+    const [phone, setPhone] = React.useState("")
+    const [address1, setAddress1] = React.useState("")
+    const [address2, setAddress2] = React.useState("")
+    const [city, setCity] = React.useState("")
+    const [province, setProvince] = React.useState("")
+    const [zip, setZip] = React.useState("")
+    const [emailError, setEmailError] = React.useState("")
 
     const onCheckout = (event, formData) => {
-        history.push('/payment')
+        if (firstName && lastName && validateEmail(email) && address1 && city && validateZipCode(zip) && province) {
+            dispatch(addShippingDetails({
+                contactDetails: {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phone,
+                },
+                address: {
+                    addressLine1: address1,
+                    addressLine2: address2,
+                    city: city,
+                    state: province,
+                    zip: zip
+                }
+            }))
+            history.push('/payment');
+        } else {
+            alert("Invalid Form details")
+        }
     }
 
     const goBack = () => {
         history.push('/')
+    }
+
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    }
+
+    const validateZipCode = (zipcode) => {
+        return String(zipcode)
+            .toLowerCase()
+            .match(
+                /[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+            )
+    }
+
+    const handleChange = (e) => {
+        setOpen(false)
+        const { name, value } = e.target
+        if (name === 'firstName') {
+            const result = value.replace(/[^a-z]/i, '');
+            setFirstName(result);
+        }
+        if (name === 'lastName') {
+            const result = value.replace(/[^a-z]/i, '');
+            setLastName(result);
+        }
+        if (name === 'email') {
+            setEmail(value)
+            if (!value) {
+                setEmailError("Email is Required")
+                setOpen(true)
+            }
+            else if (!validateEmail(value)) {
+                setEmailError('Invalid Email')
+                setOpen(true)
+            } else {
+                setEmailError("")
+            }
+        }
+        if (name === 'zip') {
+            setZip(value)
+            if (!value) {
+                setEmailError("Zip/Postal Code is Required")
+                setOpen(true)
+            }
+            else if (!validateZipCode(value)) {
+                setEmailError('Invalid Zip/Postal Code')
+                setOpen(true)
+            } else {
+                setEmailError("")
+            }
+        }
     }
 
     return (
@@ -65,7 +153,7 @@ export default function AddressForm() {
                             }
                             sx={{ mb: 2 }}
                         >
-                            {msg}
+                            {emailError}
                         </Alert>
                     </Collapse>
                     <Box m={1} mb={3} style={{ paddingLeft: 25, paddingRight: 25 }}>
@@ -79,7 +167,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="email"
                                     variant="filled"
-                                />
+                                    error={email === ""}
+                                    helperText={email === "" ? "Email is Required" : ""}
+                                    value={email}
+                                    onChange={handleChange} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -90,7 +181,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="given-name"
                                     variant="filled"
-                                />
+                                    error={firstName === ""}
+                                    helperText={firstName === "" ? "First Name is Required" : ""}
+                                    value={firstName}
+                                    onChange={handleChange} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -101,7 +195,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="family-name"
                                     variant="filled"
-                                />
+                                    error={lastName === ""}
+                                    helperText={lastName === "" ? "Last Name is Required" : ""}
+                                    value={lastName}
+                                    onChange={handleChange} />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -112,7 +209,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="email"
                                     variant="filled"
-                                />
+                                    error={phone === ""}
+                                    helperText={phone === "" ? "Phone is Required" : ""}
+                                    value={phone}
+                                    onChange={e => setPhone(e.target.value)} />
                             </Grid>
                         </Grid>
                     </Box>
@@ -128,7 +228,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="shipping address-line1"
                                     variant="filled"
-                                />
+                                    error={address1.length === 0}
+                                    helperText={address1 === "" ? "Address is Required" : ""}
+                                    value={address1}
+                                    onChange={e => setAddress1(e.target.value)} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -138,7 +241,8 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="shipping address-line2"
                                     variant="filled"
-                                />
+                                    value={address2}
+                                    onChange={e => setAddress2(e.target.value)} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -149,7 +253,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="shipping address-level2"
                                     variant="filled"
-                                />
+                                    error={city.length === 0}
+                                    helperText={city === "" ? "City is Required" : ""}
+                                    value={city}
+                                    onChange={e => setCity(e.target.value)} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormControl required fullWidth>
@@ -159,6 +266,10 @@ export default function AddressForm() {
                                         labelId="demo-simple-select-required-label"
                                         id="demo-simple-select-required"
                                         required
+                                        value={province}
+                                        error={province.length === 0}
+                                        helperText={province === "" ? "State/Province/Region is Required" : ""}
+                                        onChange={e => setProvince(e.target.value)}
                                     >
                                         <MenuItem value={'Ontario'}>Ontario</MenuItem>
                                         <MenuItem value={'Quebec'}>Quebec</MenuItem>
@@ -185,7 +296,10 @@ export default function AddressForm() {
                                     fullWidth
                                     autoComplete="shipping postal-code"
                                     variant="filled"
-                                />
+                                    error={zip.length === 0}
+                                    helperText={zip === "" ? "Zip is Required" : ""}
+                                    value={zip}
+                                    onChange={e => handleChange(e)} />
                             </Grid>
                             <Grid item xs={12}
                                 display="flex"
