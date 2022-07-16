@@ -77,9 +77,6 @@ function App() {
         <Route exact path="/view-coupon">
           <Viewcoupon />
         </Route>
-        <Route exact path="/edit-coupon/:id">
-          <Addcoupon />
-        </Route>
         {(localStorage.getItem("jwtoken") != null) ?
         <>
           <Route exact path="/profile">

@@ -1,6 +1,8 @@
-/*
-* @author: Dhruvrajsinh Omkarsinh Vansia
-*/
+/**
+ * @Author: Dhruvrajsinh Vansia
+ * Banner ID: B00891415
+ * Cart controller
+ */
 
 const mongoose = require("mongoose");
 

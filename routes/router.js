@@ -1,4 +1,5 @@
 const express = require("express");
+
 const {
   getProducts,
   getProductById,
@@ -32,9 +33,11 @@ const { addCost } = require("../controllers/checkout-controller");
 const {
   listCoupons,
   addCoupon,
+  listCouponById,
+  listCouponByCouponCode,
   deleteCouponById,
   updateCouponById
-} = require("../controllers/coupon-controller");
+ } = require("../controllers/coupon-controller");
 
 const {
   addInventoryProduct,
@@ -56,6 +59,13 @@ const {
 } = require("../controllers/profile-info-controller");
 
 const { verifyJWT } = require("../authentication/authentication");
+const{
+  createPaymentIntent
+} = require("../controllers/payment-controller");
+
+const {
+  createOrderDetails, getOrderDetails
+} = require("../controllers/order-controller");
 
 const router = express.Router();
 
@@ -85,6 +95,8 @@ router.patch("/cart/item/updatequantity", updateQuantity);
 router.post("/checkout", addCost);
 
 router.get("/coupons/list-coupons", listCoupons);
+router.get("/coupons/list-coupon/:id", listCouponById);
+router.get("/coupons/list-coupon/:couponCode", listCouponByCouponCode);
 router.post("/coupons/add-coupon", addCoupon);
 router.put("/coupons/update-coupon/:id", updateCouponById);
 router.delete("/coupons/delete-coupon/:id", deleteCouponById);
@@ -96,8 +108,15 @@ router.get("/inventory/product/:id", getInventoryProductById);
 
 router.get("/inventory/products", viewInventoryProduct);
 
+<<<<<<< HEAD
 router.get("/userinfo/:id", getUserDetails);
 router.post("/changepassword", changePassword);
 router.post("/updatephonenumber", updatePhoneNumber);
+=======
+router.post("/payment/create-payment-intent", createPaymentIntent);
+
+router.post("/order/create-order", createOrderDetails);
+router.get("/order/get-order", getOrderDetails);
+>>>>>>> 94f79dac959456021fa3548c8e9452661c564ba9
 
 module.exports = router;
