@@ -15,8 +15,8 @@ const productSchema = mongoose.Schema({
     cost: Number,
     discount: String,
   },
-  qty:Number,
-  category:String,
+  qty: Number,
+  category: String,
   tagline: String,
   url: String,
   description: String
@@ -24,4 +24,4 @@ const productSchema = mongoose.Schema({
 
 const Product = new mongoose.model("product", productSchema);
 
-module.exports = Product;
+module.exports = { productSchema, Product };

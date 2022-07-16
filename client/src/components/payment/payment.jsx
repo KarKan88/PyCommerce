@@ -5,6 +5,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import Stripe from "./stripe";
 import './payment.css'
 import { Container, Paper, Typography } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { saveOrderDetails } from "../../actions/order-action";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -13,22 +15,24 @@ const stripePromise = loadStripe("pk_test_51LB9csLWgSkDs7S61k8vJMGrAlJ7H1fJLxAgP
 
 export default function MembershipPlan() {
   const [clientSecret, setClientSecret] = useState("");
+  const { orderDetails } = useSelector((state) => state.orderReducer)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('Origin', 'http://localhost:3000');
 
     // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
+    fetch("/payment/create-payment-intent", {
       method: "POST",
       headers: headers,
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+      body: JSON.stringify({ amount: orderDetails.totalPrice }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
+    dispatch(saveOrderDetails());
   }, []);
 
   const appearance = {

@@ -5,29 +5,9 @@ import { Divider, Paper, Container, makeStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 
 import ListItemText from '@material-ui/core/ListItemText';
-
-const products = [
-    {
-        name: 'Product 1',
-        desc: 'A nice thing',
-        price: '$9.99',
-    },
-    {
-        name: 'Product 2',
-        desc: 'Another thing',
-        price: '$3.45',
-    },
-    {
-        name: 'Product 3',
-        desc: 'Best thing of all',
-        price: '$14.11',
-    },
-    {
-        name: 'Product 4',
-        desc: 'Best thing of all',
-        price: '$14.11',
-    },
-];
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addProducts, addShippingDetails, addPaymentDetails, addDeliveryDetails } from '../../actions/order-action';
 
 export default function OrderSummary() {
     const useStyles = makeStyles((theme) => ({
@@ -39,7 +19,17 @@ export default function OrderSummary() {
         }
     }));
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const { cartItems } = useSelector((state) => state.cartReducer);
+    dispatch(addProducts(cartItems.map(item=>{ 
+        return { 
+            product: item.disc,
+            qty: item.qty
+        }
+    })));
     
+    const { orderDetails } = useSelector((state) => state.orderReducer)
+
     return (
         <React.Fragment>
             <Container component="main" maxWidth="sm" style={{ marginBottom: 40 }}>
@@ -54,26 +44,38 @@ export default function OrderSummary() {
                             overflow: 'auto',
                             maxHeight: 420,
                         }}>
-                        {products.map((product) => (
-                            <ListItem key={product.name} alignItems={'flex-start'} sx={{ py: 1, px: 0 }}>
-                                <img style={{ padding: 10 }} width={100} height={100} src="/images/default.jpg" alt="product" />
-                                <ListItemText primary={product.name} secondary={product.desc} />
-                                <Typography variant="body2">{product.price}</Typography>
+                        {orderDetails.products.map((product) => (
+                            <ListItem key={product.product._id} alignItems={'flex-start'} sx={{ py: 1, px: 0 }}>
+                                <img style={{ padding: 10 }} width={100} height={100} src={product.product.url ?? "/images/default.jpg"} alt="product" />
+                                <ListItemText primary={product.product.title.shortTitle} secondary={'Qty: '+product.qty} />
+                                <Typography variant="body2">${product.product.price.cost}</Typography>
                             </ListItem>
                         ))}
                     </List>
                     <Divider />
                     <List dense>
                         <ListItem>
-                            <ListItemText primary="Sub Total" />
+                            <ListItemText primary="Net Price" />
                             <Typography variant="body2">
-                                $34.06
+                                ${orderDetails.netPrice}
                             </Typography>
                         </ListItem>
                         <ListItem>
                             <ListItemText primary="Tax" />
                             <Typography variant="body2">
-                                $34.06
+                                ${orderDetails.tax}
+                            </Typography>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary="Discount" />
+                            <Typography variant="body2">
+                                -${orderDetails.discount}
+                            </Typography>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary="Shipping Charge" />
+                            <Typography variant="body2">
+                                ${orderDetails.shippingCharges}
                             </Typography>
                         </ListItem>
                     </List>
@@ -82,7 +84,7 @@ export default function OrderSummary() {
                         <ListItem>
                             <ListItemText primary="Total" />
                             <Typography variant="body2" fontWeight={600}>
-                                $34.06
+                                ${orderDetails.totalPrice}
                             </Typography>
                         </ListItem>
                     </List>

@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 
 import productReducer from "./producd-reducer";
 import favoritesReducer from "./favories-reducer";
+import orderReducer from './order-reducer';
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   productReducer,
   cartReducer,
   favoritesReducer,
+  orderReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

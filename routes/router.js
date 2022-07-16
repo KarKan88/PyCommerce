@@ -53,6 +53,13 @@ const {
 } = require("../controllers/comment-controller");
 
 const { verifyJWT } = require("../authentication/authentication");
+const{
+  createPaymentIntent
+} = require("../controllers/payment-controller");
+
+const {
+  createOrderDetails, getOrderDetails
+} = require("../controllers/order-controller");
 
 const router = express.Router();
 
@@ -96,5 +103,9 @@ router.get("/inventory/product/:id", getInventoryProductById);
 
 router.get("/inventory/products", viewInventoryProduct);
 
+router.post("/payment/create-payment-intent", createPaymentIntent);
+
+router.post("/order/create-order", createOrderDetails);
+router.get("/order/get-order", getOrderDetails);
 
 module.exports = router;
