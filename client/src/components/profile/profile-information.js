@@ -12,11 +12,15 @@ import {
     FormHelperText,
     TextField,
     Snackbar,
-    makeStyles
+    makeStyles,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
-
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     component: {
@@ -41,14 +45,46 @@ const useStyles = makeStyles((theme) => ({
 function ProfileInformation() {
 
     const classes = useStyles();
+    const emailAddress = localStorage.getItem('emailAddress');
+    const [name, setName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneNumberError, setPhoneNumberError] = useState("");
+    const [numError, setNumError] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [newPasswordError, setNewPasswordError] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [confirmNewPasswordError, setConfirmNewPasswordError] = useState("");
-    const [success, setSuccess] = useState(false);
+    const [passwordError, setPasswordError] = useState("");
     const [openSnackBar, setOpenSnackBar] = useState(false);
+    const [open, setOpen] = useState(false);
     const vertical = "bottom";
-    const horizontal = "center"
+    const horizontal = "center";
+    
+    function onHandlePhoneNumber(event) {
+        setNumError("");
+        let phNumber = event.target.value;
+        let phNumberRegex = /^[0-9]{10}$/;
+        let err = "";
+        if(!phNumberRegex.test(phNumber)) {
+            err = "Phone Number should only have ten digits";
+        }
+        setPhoneNumber(phNumber);
+        setPhoneNumberError(err);
+    }
+
+    function onHandleClose(event) {
+        event.preventDefault();
+        if (phoneNumberError === "" && phoneNumber) {
+            axios.post("/updatephonenumber", {phoneNumber: phoneNumber, emailAddress: emailAddress}).then(
+                (response) => {
+                    if(response.status === 201) { 
+                        setOpen(false);
+                        window.location.reload(); }
+            });
+        } else {
+            setNumError("Cannot update the phone number");
+        }
+    }
 
     function onHandlePassword(event) {
         let passwordValue = event.target.value;
@@ -56,7 +92,6 @@ function ProfileInformation() {
         let err = "";
         if (!passwordValue.trim()) {
             err = "Password cannot be empty";
-            setSuccess(false);
         } else if (!passwordRegex.test(passwordValue)) {
             err = "Password doesn't match the criteria, \n" +
                 "at least eight characters,\n" +
@@ -64,9 +99,6 @@ function ProfileInformation() {
                 "at least one lowercase letter,\n" +
                 "at least one uppercase letter, \n" +
                 "at least one special character ";
-            setSuccess(false);
-        } else {
-            setSuccess(true);
         }
         setNewPassword(passwordValue);
         setNewPasswordError(err);
@@ -77,25 +109,37 @@ function ProfileInformation() {
         let err = "";
         if (!cPassword.trim()) {
             err = "Confirm Password cannot be empty";
-            setSuccess(false);
         } else if (newPassword !== cPassword) {
             err = "Passwords doesn't match";
-            setSuccess(false);
-        } else {
-            setSuccess(true);
         }
         setConfirmNewPassword(cPassword);
         setConfirmNewPasswordError(err);
     }
 
     function onHandleSubmit() {
-        if (success && ((newPassword && confirmNewPassword) !== "")) {
-            setOpenSnackBar(true);
+        if ((newPasswordError === "" && confirmNewPasswordError === "") && ((newPassword && confirmNewPassword) !== "")) {
+            axios.post("/changepassword",{
+                emailAddress : emailAddress,
+                password : newPassword
+            }).then((response) => {
+                if(response.status === 201) {
+                    setOpenSnackBar(true);
+                    setNewPassword("");
+                    setNewPasswordError("");
+                    setConfirmNewPassword("");
+                    setConfirmNewPasswordError("");
+                    setPasswordError("");
+                }
+            }).catch(err => {
+                setPasswordError("Couldn't update the password");
+            })
+        } else {
+            setPasswordError("All fields are mandatory or resolve the errors displayed");
         }
-        setNewPassword("");
-        setNewPasswordError("");
-        setConfirmNewPassword("");
-        setConfirmNewPasswordError("");
+    }
+    
+    function onHandlePhoneNumberButton(){
+        setOpen(true);
     }
 
     function onHandleReset() {
@@ -104,18 +148,27 @@ function ProfileInformation() {
         setNewPasswordError("");
         setConfirmNewPassword("");
         setConfirmNewPasswordError("");
+        setPasswordError("");
+        setPhoneNumberError("");
+        setNumError("");
+        setOpen(false);
+        window.location.reload();
     }
+
+    useEffect(() => {
+        axios.get("/userinfo/" + emailAddress).then(
+            (response) => {
+                setName(response.data.name);
+                if(response.data?.phoneNumber != null && response.data?.phoneNumber != "undefined" ){
+                    setPhoneNumber(response.data?.phoneNumber);
+                }
+            })
+    },[]);
 
     return (
         <div>
             <Grid container className={classes.component}>
-                <Grid
-                    item
-                    lg={3}
-                    md={3}
-                    sm={12}
-                    xs={12}
-                    className={classes.leftComponent}>
+                <Grid item lg={3} md={3} sm={12} xs={12} className={classes.leftComponent}>
                     <Sidebar />
                 </Grid>
                 <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>
@@ -125,24 +178,31 @@ function ProfileInformation() {
                         </Typography>
                         <CardContent style={{ paddingLeft: 50 }}>
                             <Typography
-                                variant="body2"
+                                variant="h6"
                                 style={{ padding: "1%" }}
                                 align="left">
-                                {`Name : Linda George`}
+                                <b>{`Name : ${name}`}</b>
                             </Typography>
                             <Typography
-                                variant="body2"
+                                variant="h6"
                                 style={{ padding: "1%" }}
                                 align="left">
-                                {`Email : linda.geroge@gmail.com`}
+                                <b>{`Email : ${emailAddress}`}</b>
                             </Typography>
                             <Typography
-                                variant="body2"
+                                variant="h6"
                                 style={{ padding: "1%" }}
                                 align="left">
-                                {`Phone Number : +1 (904) 748 8787`}
+                                <b>{`Phone Number : ${phoneNumber}`}</b>
                             </Typography>
-
+                            <Button variant="contained" color="success"
+                                onClick={() => onHandlePhoneNumberButton()} style={{ border: "2px", marginBottom: "4%", backgroundColor: "#FFBB38", marginLeft:"18%" }}>
+                                <b>Edit Phone number</b> 
+                            </Button>
+                            <h3>Change Password</h3>
+                            <FormHelperText style={{ color: "red", whiteSpace: "pre-line" }}>
+                                {passwordError}
+                            </FormHelperText>
                             <TextField style={{ backgroundColor: "#fff", width: "40%" }}
                                 variant="filled"
                                 size="small"
@@ -191,6 +251,32 @@ function ProfileInformation() {
                     </Card>
                 </Grid>
             </Grid>
+            <Dialog open={open} onClose={onHandleClose}>
+                <DialogTitle>Phone Number</DialogTitle>
+                <DialogContent>
+                <FormHelperText style={{ color: "red", whiteSpace: "pre-line" }}>
+                    {numError}
+                </FormHelperText>
+                <TextField style={{ backgroundColor: "#fff", width: "90%", margin : "4%" }}
+                    autoFocus
+                    variant="filled"
+                    fullWidth
+                    size="small"
+                    margin="dense"
+                    label ="Phone Number"
+                    name= "phoneNumber"
+                    type="text"
+                    value={phoneNumber}
+                    onChange={onHandlePhoneNumber} />
+                <FormHelperText style={{ color: "red", whiteSpace: "pre-line" }}>
+                    {phoneNumberError}
+                </FormHelperText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="contained" style={{ backgroundColor: "#D3D3D3", marginLeft: "5%", marginBottom: "4%", width: "15%" }}onClick={onHandleReset}>Cancel</Button>
+                    <Button variant="contained" color="success" style={{ border: "5px", marginBottom: "4%", backgroundColor: "#FFBB38" }} onClick={onHandleClose}>Update</Button>
+                </DialogActions>
+            </Dialog>    
         </div>
     );
 }
