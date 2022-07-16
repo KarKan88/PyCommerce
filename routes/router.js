@@ -108,15 +108,13 @@ router.get("/inventory/product/:id", getInventoryProductById);
 
 router.get("/inventory/products", viewInventoryProduct);
 
-<<<<<<< HEAD
 router.get("/userinfo/:id", getUserDetails);
 router.post("/changepassword", changePassword);
 router.post("/updatephonenumber", updatePhoneNumber);
-=======
+
 router.post("/payment/create-payment-intent", createPaymentIntent);
 
 router.post("/order/create-order", createOrderDetails);
 router.get("/order/get-order", getOrderDetails);
->>>>>>> 94f79dac959456021fa3548c8e9452661c564ba9
 
 module.exports = router;
