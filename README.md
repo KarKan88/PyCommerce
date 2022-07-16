@@ -17,7 +17,7 @@ Assignment 3 - Group Submission
 - Dhruvrajsinh Omkarsinh Vansia - Full Stack Developer [Individual git branch link]()
 - [Hemanth Nadipineni] (hemanth@dal.ca) - Full Stack Developer [Individual git branch link 1](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/develop/B00899473) [Individual git branch link 2](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev-hn) [Individual git branch link 3](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/dev2-hn) [Individual git branch link 4](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/server-hn)
 - [Indu Munagapati](indu@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00903180)
-- Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00854209)
+- Karthik Kannan Nanthakumar - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/payment)
 - Meghdoot Ojha - Full Stack Developer [Individual git branch link]()
 - Subash Narayanan(sb742704@dal.ca) - Full Stack Developer [Individual git branch link](https://git.cs.dal.ca/adimurthy/csci-5709-group-16/-/tree/stage/B00899481/)
 
@@ -83,6 +83,19 @@ Priority Sort review and ratings: User can sort reviews and ratings based on pri
 Filter out review and ratings: User can filter out ratings based on starts 5, 4 and can only see what 5- or 4-star ratings. 
 
 Review and feedback have a close relationship with product details/ description, for review and feedback component has a strong relation with user, user purchases and product in both backend and front end where the user can only write a review in the purchase products page
+## Payment and Delivery
+
+The users of eCommerce applications have various methods to pay for their online purchases. This is one of the main advantages of eCommerce applications. Customers will be able to make payments using credit/debit cards, Interac, PayPal, and various other methods. It also handles the state management of the delivery service provided by the e-commerce portal, via which the customer can track the status of the product after purchasing it.
+
+The various actions that a user can perform in this feature bare as follows,
+
+1. Shipping Details Validation: The shipping details entered by the user are validated and the shipping charges are calculated.
+
+2. Payment Processing: Various payment methods are provided for the user to select and complete the transaction.
+
+3. Update Shipping Address: User can update the shipping address before the package is being dispatched.
+
+4. Delivery Update: User can track the order that was yet to be delivered.
 
 ## Getting Started
 
@@ -871,6 +884,403 @@ const decoded = jwt.verify(token, config.TOKEN_KEY);
 - [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was used to verify the JWT.
 - [Authentication API with JWT Token](https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/)'s Code was modified to verify the JWT while it is called.
 
+### AddressForm.jsx
+
+_Lines 14 - 20_
+
+```
+const validateEmail = (email: string) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+    }
+```
+
+The code above was created by adapting the code in [Stack overflow](https://stackoverflow.com/a/46181/8198691) as shown below:
+
+```
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+```
+
+- The code in [Stack overflow](https://stackoverflow.com/a/46181/8198691) was implemented by rnevius.
+- [Stack overflow](https://stackoverflow.com/a/46181/8198691)'s Code was used to validate email.
+- [Stack overflow](https://stackoverflow.com/a/46181/8198691)'s Code was modified by using it into out application.
+
+### AddressForm.jsx
+
+_Lines 21 - 27_
+
+```
+    const validateZipCode = (zipcode: string) => {
+        return String(zipcode)
+            .toLowerCase()
+            .match(
+                /[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+            )
+    }
+```
+
+The code above was created by adapting the code in [Stack overflow](https://stackoverflow.com/a/46761018/8198691) as shown below:
+
+```
+/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+```
+
+- The code in [Stack overflow](https://stackoverflow.com/a/46761018/8198691) was implemented by rnevius.
+- [Stack overflow](https://stackoverflow.com/a/46761018/8198691)'s Code was used to validate email.
+- [Stack overflow](https://stackoverflow.com/a/46761018/8198691)'s Code was modified by using it into out application.
+
+### AddressForm.jsx
+
+_Lines 66 - 196_
+
+```
+                <Typography variant="h6" gutterBottom>
+                    Contact details
+                </Typography>
+                <Box m={1} mb={3}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <TextFieldElement
+                                required
+                                id="email"
+                                name="email"
+                                label="Email"
+                                fullWidth
+                                autoComplete="email"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextFieldElement
+                                required
+                                id="firstName"
+                                name="firstName"
+                                label="First name"
+                                fullWidth
+                                autoComplete="given-name"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextFieldElement
+                                required
+                                id="lastName"
+                                name="lastName"
+                                label="Last name"
+                                fullWidth
+                                autoComplete="family-name"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextFieldElement
+                                id="phone"
+                                name="phone"
+                                label="Phone Number (xxx)xxx-xxx"
+                                type="number"
+                                fullWidth
+                                autoComplete="email"
+                                variant="standard"
+                            />
+                        </Grid>
+                    </Grid>
+                </Box>
+                <Divider />
+                <Box m={1}>
+                    <Typography variant="h6" gutterBottom>
+                        Shipping address
+                    </Typography>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <TextFieldElement
+                                required
+                                id="address1"
+                                name="address1"
+                                label="Address line 1"
+                                fullWidth
+                                autoComplete="shipping address-line1"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextFieldElement
+                                id="address2"
+                                name="address2"
+                                label="Address line 2"
+                                fullWidth
+                                autoComplete="shipping address-line2"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextFieldElement
+                                required
+                                id="city"
+                                name="city"
+                                label="City"
+                                fullWidth
+                                autoComplete="shipping address-level2"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <SelectElement
+                                fullWidth
+                                label="State/Province/Region"
+                                name="State/Province/Region"
+                                options={[
+                                    { id: 'Ontario', title: 'Ontario' },
+                                    { id: 'Quebec', title: 'Quebec' },
+                                    { id: 'Nova Scotia', title: 'Nova Scotia' },
+                                    { id: 'New Brunswick', title: 'New Brunswick' },
+                                    { id: 'Manitoba', title: 'Manitoba' },
+                                    { id: 'British Columbia', title: 'British Columbia' },
+                                    { id: 'Prince Edward Island', title: 'Prince Edward Island' },
+                                    { id: 'Saskatchewan', title: 'Saskatchewan' },
+                                    { id: 'Alberta', title: 'Alberta' },
+                                    { id: 'Newfoundland and Labrador', title: 'Newfoundland and Labrador' },
+                                    { id: 'Northwest Territories', title: 'Northwest Territories' },
+                                    { id: 'Yukon', title: 'Yukon' },
+                                    { id: 'Nunavut', title: 'Nunavut' },
+                                ]}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextFieldElement
+                                required
+                                id="zip"
+                                name="zip"
+                                label="Zip / Postal code"
+                                fullWidth
+                                autoComplete="shipping postal-code"
+                                variant="standard"
+                            />
+                        </Grid>
+                        <Grid item xs={12}
+                            display="flex"
+                            justifyContent="flex-end"
+                            alignItems="flex-end">
+                            <Button variant="outlined" type='submit'>Proceed to Checkout</Button>
+                        </Grid>
+                    </Grid>
+                </Box>
+```
+
+The code above was created by adapting the code in [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/AddressForm.tsx) as shown below:
+
+```
+<Typography variant="h6" gutterBottom>
+        Shipping address
+      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="firstName"
+            name="firstName"
+            label="First name"
+            fullWidth
+            autoComplete="given-name"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="lastName"
+            name="lastName"
+            label="Last name"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="address1"
+            name="address1"
+            label="Address line 1"
+            fullWidth
+            autoComplete="shipping address-line1"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="address2"
+            name="address2"
+            label="Address line 2"
+            fullWidth
+            autoComplete="shipping address-line2"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="City"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="state"
+            name="state"
+            label="State/Province/Region"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Zip / Postal code"
+            fullWidth
+            autoComplete="shipping postal-code"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Country"
+            fullWidth
+            autoComplete="shipping country"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+            label="Use this address for payment details"
+          />
+        </Grid>
+      </Grid>
+```
+
+- The code in [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/AddressForm.tsx) was implemented by Siriwat K
+- [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/AddressForm.tsx)'s Code was used to refer for creating the template of the shipping page.
+- [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/AddressForm.tsx)'s Code was modified by changing and adding field's based on my requirement.
+
+### OrderSummary.tsx
+
+_Lines 35 - 75_
+
+```
+       <Typography variant="h6" gutterBottom>
+                Order summary
+            </Typography>
+            <List disablePadding
+             sx={{
+                bgcolor: 'background.paper',
+                overflow: 'auto',
+                maxHeight: 420,
+              }}>
+                {products.map((product) => (
+                    <ListItem key={product.name} alignItems={'flex-start'} sx={{ py: 1, px: 0 }}>
+                        <img style={{ padding: 10 }} width={100} height={100} src={DefaultImage} alt="product" />
+                        <ListItemText primary={product.name} secondary={product.desc} />
+                        <Typography variant="body2">{product.price}</Typography>
+                    </ListItem>
+                ))}
+            </List>
+            <Divider/>
+            <List dense>
+                <ListItem>
+                    <ListItemText primary="Sub Total" />
+                    <Typography variant="body2">
+                        $34.06
+                    </Typography>
+                </ListItem>
+                <ListItem>
+                    <ListItemText primary="Tax" />
+                    <Typography variant="body2">
+                        $34.06
+                    </Typography>
+                </ListItem>
+            </List>
+            <Divider/>
+            <List>
+                <ListItem>
+                    <ListItemText primary="Sub Total" />
+                    <Typography variant="body2" fontWeight={600}>
+                        $34.06
+                    </Typography>
+                </ListItem>
+            </List>
+```
+
+The code above was created by adapting the code in [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/Review.tsx) as shown below:
+
+```
+ <Typography variant="h6" gutterBottom>
+        Order summary
+      </Typography>
+      <List disablePadding>
+        {products.map((product) => (
+          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={product.name} secondary={product.desc} />
+            <Typography variant="body2">{product.price}</Typography>
+          </ListItem>
+        ))}
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="Total" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+            $34.06
+          </Typography>
+        </ListItem>
+      </List>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Shipping
+          </Typography>
+          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Payment details
+          </Typography>
+          <Grid container>
+            {payments.map((payment) => (
+              <React.Fragment key={payment.name}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.name}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.detail}</Typography>
+                </Grid>
+              </React.Fragment>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
+```
+
+- The code in [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/Review.tsx) was implemented by Siriwat K
+- [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/Review.tsx)'s Code was used to refer for creating the template of the shipping page.
+- [React Material UI](https://github.com/mui/material-ui/blob/v5.8.2/docs/data/material/getting-started/templates/checkout/Review.tsx)'s Code was modified by changing and adding field's based on my requirement.
+
 ## References
 
 ```
@@ -914,7 +1324,3 @@ const decoded = jwt.verify(token, config.TOKEN_KEY);
 [19] Phone number - https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
 
 [20] Authentication API with JWT Token - https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
-
-
-```
-```
