@@ -78,6 +78,7 @@ function CartPage() {
 
   const { cartItems } = useSelector((state) => state.cartReducer);
 
+
   const sliderItems = cartItems.length > 2 ? 2 : cartItems.length;
   const items = [];
 

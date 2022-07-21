@@ -20,6 +20,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCost } from "../../actions/checkout-action";
 import { addDiscount } from "../../actions/order-action";
+import { getCartItems } from "../../actions/cart-action";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 
 const useStyle = makeStyles({
   header: {
@@ -52,12 +56,7 @@ const TotalView = ({ cartItems }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [couponApply, setCouponApply] = useState(false);
-  const [finalCost, setFinalCost] = useState(0);
-  const [totalMrpValue, setTotalMrpValue] = useState(0);
-  const [totalItemsValue, setTotalItemsValue] = useState(0);
-  const [discoutValue, setDiscountValue] = useState(0);
-  const [couponCode, setCouponCode] = useState("");
+
   let couponDiscount = 0;
 
   const onChange = (ev) => {
@@ -66,7 +65,12 @@ const TotalView = ({ cartItems }) => {
     }
   };
 
+  
   useEffect(() => {
+    dispatch(getCartItems());
+}, []);
+
+  
     let totalCost = 0;
     let totalMrp = 0;
     let totalItems = 0;
@@ -76,12 +80,21 @@ const TotalView = ({ cartItems }) => {
       totalMrp += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["mrp"];
     }
     const discount = totalMrp - totalCost;
-    // console.log(totalCost);
+ 
+    const [couponExist, setCouponExist] = useState(0);
+    const [couponApply, setCouponApply] = useState(false);
+    const [finalCost, setFinalCost] = useState(totalCost);
+    const [totalMrpValue, setTotalMrpValue] = useState(totalMrp);
+    const [totalItemsValue, setTotalItemsValue] = useState(totalItems);
+    const [discoutValue, setDiscountValue] = useState(discount);
+    const [couponCode, setCouponCode] = useState("");
+    
+  useEffect(() => {
     setTotalItemsValue(totalItems);
     setTotalMrpValue(totalMrp);
     setFinalCost(totalCost);
     setDiscountValue(discount);
-  }, []);
+  }, [totalCost, totalItems]);
 
   const handleOnClick = (ev) => {
     fetch("/coupons/list-couponcode/" + couponCode, {
@@ -92,20 +105,21 @@ const TotalView = ({ cartItems }) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        couponDiscount = result[0].couponDiscount;
+        if(result.length > 0){
+          couponDiscount = result[0].couponDiscount;
         let maxOff = result[0].maximumOff;
-        // console.log(maxOff);
-        console.log(finalCost);
-        console.log(couponDiscount);
         let x = (finalCost * couponDiscount) / 100;
         if (x > maxOff) {
           setFinalCost(finalCost - maxOff);
-          dispatch(addDiscount(maxOff));
+          dispatch(addDiscount(maxOff+discount));
         } else {
           setFinalCost(finalCost - x);
-          dispatch(addDiscount(x));
-        }
+          dispatch(addDiscount(x+discount));
+        } setCouponExist(0);
         setCouponApply(true);
+        }else{
+          setCouponExist(1);
+        }
       });
   };
 
@@ -116,9 +130,6 @@ const TotalView = ({ cartItems }) => {
 
   return (
     <>
-      {finalCost == 0 ? (
-        <> </>
-      ) : (
         <Box>
           <Box
             className={classes.header}
@@ -211,6 +222,7 @@ const TotalView = ({ cartItems }) => {
                     >
                       Apply
                     </Button>
+                    
                   </>
                 )}
                 <Button
@@ -229,9 +241,17 @@ const TotalView = ({ cartItems }) => {
                 </Button>
               </>
             </Grid>
+            
           </Box>
         </Box>
-      )}
+        <br/>
+        <>{ couponExist == 1 ? ( <Alert severity="error">
+        {/* <AlertTitle>Error</AlertTitle> */}
+         <strong>Coupon does not exist.</strong>
+      </Alert>) : (<></>)}
+                    </>
+                    <br/>
+
     </>
   );
 };
