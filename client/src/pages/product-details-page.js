@@ -129,8 +129,7 @@ function ProductPage() {
       )}
       <ToastMessageContainer />
       <Grid>
-        {/* {email !== null ? <CommentComponent product={product} /> : false} */}
-        <CommentComponent product={product} />
+        <CommentComponent product={product} userLogged={email} />
       </Grid>
     </Box>
   );
