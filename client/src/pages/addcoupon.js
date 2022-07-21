@@ -111,7 +111,7 @@ function AddCoupon() {
       couponCondition,
       couponDiscount,
       maximumOff,
-      id: id ? id : Math.round(Math.random() * 100000),
+      // id: id ? id : Math.round(Math.random() * 100000),
     };
     /**
      * The conditions to check if the inputs filled in the form are valid. If they are valid,
@@ -139,25 +139,21 @@ function AddCoupon() {
           });
         navigate.push("/view-coupon");
       } else {
-        fetch("/coupons/add-coupon", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            category,
-            couponCode,
-            couponCondition,
-            couponDiscount,
-            maximumOff,
-          }),
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            console.log(result);
-          });
-        navigate.push("/view-coupon");
-      }
+        console.log(data);
+
+
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+      };
+
+      fetch('/coupons/add-coupon', requestOptions)
+          .then(response => console.log(response))
+          .then(data => console.log(data));
+  }
+
+      navigate.push("/view-coupon");
     } else {
       console.log("Errors");
     }
