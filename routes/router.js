@@ -33,6 +33,7 @@ const {
   removeItem,
   getCartItems,
   updateQuantity,
+  removeAllItem
 } = require("../controllers/cart-controller");
 
 const { addCost } = require("../controllers/checkout-controller");
@@ -107,6 +108,7 @@ router.post("/cart/add-item", addItem);
 router.delete("/cart/remove-item", removeItem);
 router.get("/cart/get-items/:id", getCartItems);
 router.patch("/cart/item/updatequantity", updateQuantity);
+router.delete("/cart/removeall", removeAllItem);l
 
 router.post("/checkout", addCost);
 

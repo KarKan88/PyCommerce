@@ -111,3 +111,20 @@ export const updateQty = (product, qty) => async (dispatch, getState) => {
     console.log(error);
   }
 };
+
+export const clearCart = () => async (dispatch, getState) => {
+  const user = localStorage.getItem("id");
+
+    try {
+      await axios.delete("/cart/removeall", {
+        data: {
+          userId: user,
+        },
+      });
+    } catch (error) {}
+
+  dispatch({
+    type: actionType.REMOVE_ALL_ITEMS,
+    payload: {},
+  });
+};

@@ -67,4 +67,16 @@ const updateQuantity = async (req, res) => {
  }
 };
 
-module.exports = { addItem, getCartItems, removeItem, updateQuantity };
+const removeAllItem = async (req, res) => {
+  try {
+    const userId = mongoose.Types.ObjectId(req.body.userId);
+    await Cart.deleteMany({ userId: userId });
+    res.send();
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ error: "CLEAR_CART" });
+  }
+};
+
+
+module.exports = { addItem, getCartItems, removeItem, updateQuantity, removeAllItem };

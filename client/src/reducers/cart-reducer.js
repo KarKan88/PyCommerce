@@ -54,9 +54,18 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cartItems: action.payload.cartItems,
       };
+
+      case actionType.REMOVE_ALL_ITEMS:
+        return {
+          ...state,
+          cartItems: [],
+        };
     default:
       return state;
   }
+
+
+
 };
 
 export default cartReducer;
