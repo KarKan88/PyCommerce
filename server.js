@@ -1,5 +1,6 @@
 const express = require("express");
 var cookieParser = require("cookie-parser");
+const cors = require('cors');
 require("dotenv").config({ path: "./config/.env" });
 
 require("./config/db-connection");
@@ -7,11 +8,10 @@ const useRouter = require("./routes/router");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', useRouter);
-
-
 
 const port = process.env.PORT || 5000;
 
@@ -22,7 +22,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
 
@@ -31,7 +30,6 @@ if (process.env.NODE_ENV == "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
 
 app.listen(port, () => {
   console.log('Listening on port: ', port);

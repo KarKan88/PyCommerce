@@ -22,6 +22,13 @@ const {
 } = require("../controllers/user-controller");
 
 const {
+    addAddress,
+    modifyAddress,
+    viewAddresses,
+    deleteAddress,
+} = require("../controllers/user-addresses-controller");
+ 
+const {
   addItem,
   removeItem,
   getCartItems,
@@ -75,6 +82,15 @@ router.post("/login", userLogin);
 router.post("/forgotpassword", forgotPassword);
 router.post("/sellerregistration", verifyJWT, sellerRegistration);
 
+router.post("/add-address", verifyJWT, addAddress);
+router.post ("/modify-address", verifyJWT, modifyAddress);
+router.get("/view-addresses/:id", verifyJWT, viewAddresses );
+router.delete("/delete-address/:id", verifyJWT, deleteAddress);
+
+router.get("/userinfo/:id", verifyJWT, getUserDetails);
+router.post("/changepassword", verifyJWT, changePassword);
+router.post("/updatephonenumber", verifyJWT, updatePhoneNumber);
+
 router.get("/products/get-products", getProducts);
 router.get("/products/get-products/:categoryName", getProductsByCategory);
 router.get("/products/get-product/:id", getProductById);
@@ -107,10 +123,6 @@ router.delete("/inventory/delete-product/:id", deleteInventoryProductsById);
 router.get("/inventory/product/:id", getInventoryProductById);
 
 router.get("/inventory/products", viewInventoryProduct);
-
-router.get("/userinfo/:id", getUserDetails);
-router.post("/changepassword", changePassword);
-router.post("/updatephonenumber", updatePhoneNumber);
 
 router.post("/payment/create-payment-intent", createPaymentIntent);
 
