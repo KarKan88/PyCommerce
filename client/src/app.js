@@ -26,6 +26,7 @@ import ForgotPassword from "./components/user-management/forgot-password";
 import OrderConfirmed from "./pages/order-confirm-page";
 import OrderHistory from "./pages/order-history";
 import DeliveryStatus from "./pages/delivery-status";
+import SellerOrderHistory from "./pages/seller-order-history";
 
 function App() {
   return (
@@ -82,6 +83,9 @@ function App() {
         </Route>
         <Route exact path="/edit-coupon/:id">
           <Addcoupon />
+        </Route>
+        <Route exact path="/view-order">
+          <SellerOrderHistory />
         </Route>
         {(localStorage.getItem("jwtoken") != null) ?
         <>

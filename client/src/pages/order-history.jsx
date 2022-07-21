@@ -1,8 +1,9 @@
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, List, ListItem, ListItemText, makeStyles, Typography } from '@material-ui/core';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, FormControl, InputLabel, List, ListItem, ListItemText, makeStyles, MenuItem, Select, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
+import { prototype } from 'nodemailer/lib/mailer/mail-message';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,10 +26,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function OrderHistory() {
-
+function OrderHistory(props) {
+    console.log('props')
+    console.log(props.seller)
     const history = useHistory()
     const [orderDetails, setODs] = useState([])
+    const [orderStatus, setOrderStatus] = useState('')
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -44,9 +47,28 @@ function OrderHistory() {
     const onUpdateDelivery = (order) => {
         history.push({ pathname: '/updateDelivery', state: order })
     }
-    
+
+    const onUpdateStatus = (order) => {
+        if(orderStatus){
+        order.orderStatus = orderStatus
+        order.deliveryDetails.deliveryStatus = orderStatus
+        axios.post('/order/update-order', order).then(response=>{
+            history.push('/')
+        })
+    }else{
+        alert('Select Order Status')
+    }
+    }
+
     const onDeleteReturn = (order) => {
-        history.push({ pathname: '/deliveryStatus', state: order })
+        if (order.orderStatus === 'Order Placed') {
+            order.orderStatus = 'Order Cancelled'
+        } else {
+            order.orderStatus = 'Order Returned'
+        }
+        axios.post('/order/update-order', order).then(response => {
+            history.push('/')
+        })
     }
 
     useEffect(() => {
@@ -73,6 +95,7 @@ function OrderHistory() {
                         >
                             <Typography className={classes.heading}>
                                 <b>Order Placed</b>: {order.paymentDetails?.transactionTime} <b>Order Total</b>: $  {order.totalPrice}
+                                <br /><b>Order Status</b>:  {order.orderStatus}
                             </Typography>
                             <Typography className={classes.secondaryHeading}>Order ID: {order._id}</Typography>
                         </AccordionSummary>
@@ -95,15 +118,41 @@ function OrderHistory() {
                                 ))}
                             </List>
                         </AccordionDetails>
-                        <AccordionActions>
-                            <Button variant="contained" onClick={() => onDeleteReturn(order)} style={{ backgroundColor: "#EB853B", marginLeft: 10, fontWeight: 600 }} size="small"
-                                type='button' >Delete/Return Order</Button>
-                            <Button variant="contained" onClick={() => onUpdateDelivery(order)} style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }} size="small"
-                                type='button' >Update Shipping Address</Button>
-                            <Button variant="contained" onClick={() => onTrack(order)} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
-                                Track Package
-                            </Button>
-                        </AccordionActions>
+                        {(order.orderStatus != 'Order Cancelled' && order.orderStatus != 'Order Returned' && !props.seller) &&
+                            <AccordionActions>
+                                <Button variant="contained" onClick={() => onDeleteReturn(order)} style={{ backgroundColor: "#EB853B", marginLeft: 10, fontWeight: 600 }} size="small"
+                                    type='button' >
+                                    {order.orderStatus == 'Order Placed' ? 'Cancel Order' : 'Return Order'}
+                                </Button>
+                                <Button variant="contained" onClick={() => onUpdateDelivery(order)} style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }} size="small"
+                                    type='button' >Update Shipping Address</Button>
+                                <Button variant="contained" onClick={() => onTrack(order)} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
+                                    Track Package
+                                </Button>
+                            </AccordionActions>
+                        }
+                        {props.seller &&
+                            <AccordionActions>
+                                Order Status:
+                                <FormControl>
+                                    <InputLabel id="demo-simple-select-required-label">Order Status</InputLabel>
+                                    <Select
+                                        variant="filled"
+                                        labelId="demo-simple-select-required-label"
+                                        id="demo-simple-select-required"
+                                        value={orderStatus}
+                                        onChange={e => setOrderStatus(e.target.value)}
+                                    >
+                                        <MenuItem value={'Order Placed'}>Order Placed</MenuItem>
+                                        <MenuItem value={'Order Confirmed'}>Order Confirmed</MenuItem>
+                                        <MenuItem value={'Order in transit'}>Order in transit</MenuItem>
+                                        <MenuItem value={'Order Delivered'}>Order Delivered</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                <Button variant="contained" onClick={() => onUpdateStatus(order)} style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }} size="small"
+                                    type='button' >Update Shipping Address</Button>
+                            </AccordionActions>
+                        }
                     </Accordion>
                 )
             })}
