@@ -70,7 +70,7 @@ function OrderConfirmed() {
                         </Grid>
                         <Grid item xs={12} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                             <Box>
-                                <Button variant="contained" style={{ backgroundColor: "#FF5C5C", marginLeft: 10 }}
+                                <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10 }}
                                     onClick={goBack}>Continue Shopping</Button>
                             </Box>
                         </Grid>
