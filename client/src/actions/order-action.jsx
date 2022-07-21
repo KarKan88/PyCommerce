@@ -85,6 +85,7 @@ export const addPaymentDetails = (paymentDetails) => async (dispatch, getState) 
  */
  export const placeOrder = () => async (dispatch, getState) => {
     const { orderDetails } = getState().orderReducer;
+    orderDetails.orderStatus = 'Order Placed'
     axios.post('/order/create-order', orderDetails).then(response=>{
         console.log(response)
     })

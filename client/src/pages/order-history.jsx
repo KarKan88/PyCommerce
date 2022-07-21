@@ -38,12 +38,20 @@ function OrderHistory() {
     };
 
     const onTrack = (order) => {
-        history.push({pathname: '/deliveryStatus', state: order})
+        history.push({ pathname: '/deliveryStatus', state: order })
+    }
+
+    const onUpdateDelivery = (order) => {
+        history.push({ pathname: '/updateDelivery', state: order })
+    }
+    
+    const onDeleteReturn = (order) => {
+        history.push({ pathname: '/deliveryStatus', state: order })
     }
 
     useEffect(() => {
         const user_id = localStorage.getItem('id')
-        axios.get('/order/get-order?id=' + user_id).then((response)=>{
+        axios.get('/order/get-order?id=' + user_id).then((response) => {
             setODs(response.data)
         })
 
@@ -78,7 +86,7 @@ function OrderHistory() {
                                 {order.products.map((product) => (
                                     <ListItem key={product.product._id} style={{ paddingTop: 10, paddingBottom: 10 }}>
                                         <img style={{ padding: 10 }} width={70} height={70} src={product.product.url ?? "/images/default.jpg"} alt="product" />
-                                        <ListItemText primary={product.product[0].title.shortTitle} secondary={'Qty: '+product.qty} />
+                                        <ListItemText primary={product.product[0].title.shortTitle} secondary={'Qty: ' + product.qty} />
                                         <Box style={{ display: 'flex', justifyContent: "flex-end", alignItems: "flex-end" }}>
                                             <Box></Box>
                                             <Typography variant="body2">${product.product[0].price.cost}</Typography>
@@ -88,8 +96,10 @@ function OrderHistory() {
                             </List>
                         </AccordionDetails>
                         <AccordionActions>
-                            {/* <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10 }} size="small"
-                                type='button' >Update Shipping Address</Button> */}
+                            <Button variant="contained" onClick={() => onDeleteReturn(order)} style={{ backgroundColor: "#EB853B", marginLeft: 10, fontWeight: 600 }} size="small"
+                                type='button' >Delete/Return Order</Button>
+                            <Button variant="contained" onClick={() => onUpdateDelivery(order)} style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }} size="small"
+                                type='button' >Update Shipping Address</Button>
                             <Button variant="contained" onClick={() => onTrack(order)} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
                                 Track Package
                             </Button>

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { retrieveOrder, placeOrder, addDeliveryDetails, addPaymentDetails } from '../actions/order-action';
+import { clearCart } from '../actions/cart-action';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,6 +46,7 @@ function OrderConfirmed() {
                 deliveryStatus: 'Order Placed'
             }))
             dispatch(placeOrder())
+            dispatch(clearCart())
         }
     }, [])
 

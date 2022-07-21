@@ -7,6 +7,7 @@ import ToastMessageContainer from "../components/toast";
 import Sidebar from "../components/profile/sidebar";
 import OrderHistory from "./order-history";
 import DeliveryStatus from "./delivery-status";
+import AddressForm from "../components/payment/address-form";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -48,6 +49,9 @@ function ProfilePage() {
             </Route>
             <Route exact path="/deliveryStatus">
               <DeliveryStatus />
+            </Route>
+            <Route exact path="/updateDelivery">
+              <AddressForm />
             </Route>
           </Switch>
         </Grid>

@@ -1,3 +1,6 @@
+/**
+ * Order Action Types constant
+ */
 export const ADD_PRODUCTS = "addProducts";
 export const ADD_DISCOUNT = "addDiscount";
 export const ADD_PAYMENT_DETAILS = "addPaymentDetails";

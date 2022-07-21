@@ -72,7 +72,7 @@ const{
 } = require("../controllers/payment-controller");
 
 const {
-  createOrderDetails, getOrderDetails
+  createOrderDetails, getOrderDetails, updateOrderDetails
 } = require("../controllers/order-controller");
 
 const router = express.Router();
@@ -108,7 +108,7 @@ router.post("/cart/add-item", addItem);
 router.delete("/cart/remove-item", removeItem);
 router.get("/cart/get-items/:id", getCartItems);
 router.patch("/cart/item/updatequantity", updateQuantity);
-router.delete("/cart/removeall", removeAllItem);l
+router.delete("/cart/removeall", removeAllItem);
 
 router.post("/checkout", addCost);
 
@@ -130,5 +130,6 @@ router.post("/payment/create-payment-intent", createPaymentIntent);
 
 router.post("/order/create-order", createOrderDetails);
 router.get("/order/get-order", getOrderDetails);
+router.post("/order/update-order", updateOrderDetails);
 
 module.exports = router;

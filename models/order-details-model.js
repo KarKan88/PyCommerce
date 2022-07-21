@@ -15,6 +15,7 @@ const orderDetailsSchema = mongoose.Schema({
         product: { type: [productSchema] },
         qty: { type: Number, require: true },
     }],
+    orderStatus: {type: String},
     netPrice: { type: Number, require: true },
     tax: { type: Number, require: true },
     discount: { type: Number, require: true },

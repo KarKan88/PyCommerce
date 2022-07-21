@@ -8,10 +8,12 @@ const user_id = localStorage.getItem('id')
 
 const initialState = {
     orderDetails: {
+        _id: '',
         userId: user_id,
         products: [],
         netPrice: 0,
         tax: 0,
+        orderStatus: 'Order Drafted',
         discount: 0,
         shippingCharges: 30,
         totalPrice: 0,
@@ -25,6 +27,10 @@ const orderReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionType.ADD_PRODUCTS:
             state.orderDetails.products = action.payload.products;
+            state.orderDetails.products.forEach((product)=>{
+                product.product.price.mrp *= product.qty
+                product.product.price.cost *= product.qty
+            })
             state.orderDetails.netPrice = action.payload.products.reduce((acc, product) => acc + product.product.price.cost, 0)
             state.orderDetails.tax = state.orderDetails.netPrice * 0.15
             state.orderDetails.totalPrice = state.orderDetails.netPrice + state.orderDetails.tax - state.orderDetails.discount
