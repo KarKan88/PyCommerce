@@ -2,8 +2,6 @@
 
 The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
 
-The purpose of PYCOMMERCE is to provide a smooth and easy-to-use eCommerce website for both customers and retailers, where we can effortlessly buy and sell online products.
-
 Assignment 3 - Group Submission
 
 - _Date Created_: 15 July 2022

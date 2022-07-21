@@ -75,7 +75,8 @@ function ProfileInformation() {
     function onHandleClose(event) {
         event.preventDefault();
         if (phoneNumberError === "" && phoneNumber) {
-            axios.post("/updatephonenumber", {phoneNumber: phoneNumber, emailAddress: emailAddress}).then(
+            axios.post("/updatephonenumber", {phoneNumber: phoneNumber, emailAddress: emailAddress}
+            , { headers: { token: localStorage.getItem("jwtoken") } }).then(
                 (response) => {
                     if(response.status === 201) { 
                         setOpen(false);
@@ -121,7 +122,7 @@ function ProfileInformation() {
             axios.post("/changepassword",{
                 emailAddress : emailAddress,
                 password : newPassword
-            }).then((response) => {
+            }, { headers: { token: localStorage.getItem("jwtoken") } }).then((response) => {
                 if(response.status === 201) {
                     setOpenSnackBar(true);
                     setNewPassword("");
@@ -156,7 +157,7 @@ function ProfileInformation() {
     }
 
     useEffect(() => {
-        axios.get("/userinfo/" + emailAddress).then(
+        axios.get("/userinfo/" + emailAddress, { headers: { token: localStorage.getItem("jwtoken") } }).then(
             (response) => {
                 setName(response.data.name);
                 if(response.data?.phoneNumber != null && response.data?.phoneNumber != "undefined" ){

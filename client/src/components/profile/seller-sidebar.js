@@ -126,21 +126,6 @@ export default function Sidebar() {
             </Typography>
           </Link> */}
         </Box>
-        <Divider className={classes.divider} />
-
-        <Box
-          className={clsx(classes.sideBarLink, classes.hoverTab)}
-          style={{ cursor: "pointer" }}>
-
-          {/* <div className="d-flex"> */}
-          <PowerSettingsNewIcon className={classes.sideBarLinkIcon} />
-          <Link to="/">
-            <p style={{ color: "black" }}>Logout</p>
-          </Link>
-          {/* </div> */}
-
-
-        </Box>
       </Box>
     </>
   );
