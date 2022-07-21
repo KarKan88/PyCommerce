@@ -56,6 +56,9 @@ function App() {
         <Route exact path="/deliveryStatus">
           <ProfilePage />
         </Route>
+        <Route exact path="/updateDelivery">
+          <ProfilePage />
+        </Route>
         <Route exact path="/cart">
           <CartPage />
         </Route>
