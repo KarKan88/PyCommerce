@@ -8,7 +8,6 @@ const user_id = localStorage.getItem('id')
 
 const initialState = {
     orderDetails: {
-        _id: '',
         userId: user_id,
         products: [],
         netPrice: 0,
