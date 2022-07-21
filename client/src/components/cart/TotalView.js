@@ -19,6 +19,7 @@ import clsx from "clsx";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCost } from "../../actions/checkout-action";
+import { addDiscount } from "../../actions/order-action";
 
 const useStyle = makeStyles({
   header: {
@@ -94,15 +95,17 @@ const TotalView = ({ cartItems }) => {
         couponDiscount = result[0].couponDiscount;
         let maxOff = result[0].maximumOff;
         // console.log(maxOff);
+        console.log(finalCost);
+        console.log(couponDiscount);
         let x = (finalCost * couponDiscount) / 100;
         if (x > maxOff) {
           setFinalCost(finalCost - maxOff);
+          dispatch(addDiscount(maxOff));
         } else {
           setFinalCost(finalCost - x);
+          dispatch(addDiscount(x));
         }
         setCouponApply(true);
-        console.log("final cost: " + finalCost);
-        // setFinalCost(finalCost);
       });
   };
 
