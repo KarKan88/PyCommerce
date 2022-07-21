@@ -213,9 +213,9 @@ function Registration() {
         setSecurityQuestionTwoError(err);
     }
 
-    async function onHandleSubmit() {
+    function onHandleSubmit() {
         if((fNameSuccess && lNameSuccess && emailSuccess && passwordSuccess && conPasswordSuccess && q1Success && q2Success && phnNumSuccess && addressSuccess) && 
-        ((firstName && lastName && emailAddress && password && confirmPassword && securityQuestionOne && securityQuestionTwo) !== "")) {
+        ((firstName && lastName && emailAddress && password && confirmPassword && address && securityQuestionOne && securityQuestionTwo) !== "")) {
             axios.post("/verifyemail", {emailAddress: emailAddress}).
             then(response => {
                 if(response.status === 200) {
@@ -233,6 +233,7 @@ function Registration() {
                             setOpenDialog(true);
                         }
                     }).catch(err => {
+                        console.log(err);
                         setRegisterError("Registration failed");
                     })
                 } else {
@@ -418,7 +419,7 @@ function Registration() {
                         type="text"
                         value={address}
                         onChange={onHandleAddress}
-                        />
+                        required/>
                         <FormHelperText style={{color:"red"}}>
                         {addressError}
                         </FormHelperText>
