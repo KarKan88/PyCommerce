@@ -18,6 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
+import toastMessage from "../../utils/toast-message";
 import ToastMessageContainer from "../toast";
 
 const style = {
@@ -55,7 +56,7 @@ const state = {
   OneStar: false,
 };
 
-function CommentComponent({ product }) {
+function CommentComponent({ product, userLogged }) {
   const [commentData, setcommentData] = React.useState([]);
   const [sort, setAge] = React.useState(10);
 
@@ -94,7 +95,11 @@ function CommentComponent({ product }) {
   }, []);
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    userLogged !== null
+      ? setOpen(true)
+      : toastMessage("Please Log in to Post a review", "error");
+  };
   const handleClose = () => setOpen(false);
 
   const handleChange = (event) => {
