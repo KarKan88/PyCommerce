@@ -4,7 +4,7 @@
  * Billing section of the cart
  */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -51,12 +51,11 @@ const TotalView = ({ cartItems }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let totalCost = 0;
-  let totalMrp = 0;
-
-  let totalItems = 0;
-
-  const [finalCost, setFinalCost] = useState("");
+  const [couponApply, setCouponApply] = useState(false);
+  const [finalCost, setFinalCost] = useState(0);
+  const [totalMrpValue, setTotalMrpValue] = useState(0);
+  const [totalItemsValue, setTotalItemsValue] = useState(0);
+  const [discoutValue, setDiscountValue] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   let couponDiscount = 0;
 
@@ -66,13 +65,22 @@ const TotalView = ({ cartItems }) => {
     }
   };
 
-  for (let i = 0; i < cartItems.length; i += 1) {
-    totalItems += cartItems[i]["qty"];
-    totalCost += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["cost"];
-    totalMrp += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["mrp"];
-  }
-
-  const discount = totalMrp - totalCost;
+  useEffect(() => {
+    let totalCost = 0;
+    let totalMrp = 0;
+    let totalItems = 0;
+    for (let i = 0; i < cartItems.length; i += 1) {
+      totalItems += cartItems[i]["qty"];
+      totalCost += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["cost"];
+      totalMrp += cartItems[i]["qty"] * cartItems[i]["disc"]["price"]["mrp"];
+    }
+    const discount = totalMrp - totalCost;
+    // console.log(totalCost);
+    setTotalItemsValue(totalItems);
+    setTotalMrpValue(totalMrp);
+    setFinalCost(totalCost);
+    setDiscountValue(discount);
+  }, []);
 
   const handleOnClick = (ev) => {
     fetch("/coupons/list-couponcode/" + couponCode, {
@@ -86,24 +94,26 @@ const TotalView = ({ cartItems }) => {
         couponDiscount = result[0].couponDiscount;
         let maxOff = result[0].maximumOff;
         // console.log(maxOff);
-        let x = (totalCost * couponDiscount) / 100;
+        let x = (finalCost * couponDiscount) / 100;
         if (x > maxOff) {
-          totalCost = totalCost - maxOff;
+          setFinalCost(finalCost - maxOff);
         } else {
-          totalCost = totalCost - x;
+          setFinalCost(finalCost - x);
         }
-        console.log(totalCost);
+        setCouponApply(true);
+        console.log("final cost: " + finalCost);
+        // setFinalCost(finalCost);
       });
   };
 
   const placeOrder = () => {
-    dispatch(addCost(totalCost));
+    dispatch(addCost(finalCost));
     history.push("/shipping");
   };
 
   return (
     <>
-      {totalCost == 0 ? (
+      {finalCost == 0 ? (
         <> </>
       ) : (
         <Box>
@@ -123,11 +133,11 @@ const TotalView = ({ cartItems }) => {
             style={{ paddingTop: "2px" }}
           >
             <Typography>
-              Price ({totalItems} item)
-              <span className={classes.price}>${totalMrp}</span>
+              Price ({totalItemsValue} item)
+              <span className={classes.price}>${totalMrpValue}</span>
             </Typography>
             <Typography>
-              Discount<span className={classes.price}>-${discount}</span>
+              Discount<span className={classes.price}>-${discoutValue}</span>
             </Typography>
             <Typography>
               Delivery Charges
@@ -139,7 +149,7 @@ const TotalView = ({ cartItems }) => {
               style={{ paddingTop: "2px" }}
             >
               Total Payable
-              <span className={classes.price}>${totalCost}</span>
+              <span className={classes.price}>${finalCost}</span>
             </Typography>
             <Typography
               style={{
@@ -147,7 +157,7 @@ const TotalView = ({ cartItems }) => {
                 color: "green",
               }}
             >
-              Total saving on this order is ${discount}.
+              Total saving on this order is ${discoutValue}.
             </Typography>
             <Grid
               container
@@ -157,45 +167,62 @@ const TotalView = ({ cartItems }) => {
               }}
             >
               <>
-                <FormControl>
-                  <TextField
-                    style={{ backgroundColor: "#fff", width: 130 }}
-                    variant="filled"
-                    size="small"
-                    label="Coupon"
-                    value={couponCode}
-                    onChange={(e) => onChange(e)}
-                    name="couponCode"
-                  />
-                </FormControl>
+                {couponApply ? (
+                  <>
+                    <Typography
+                      style={{
+                        color: "#222",
+                        fontWeight: 600,
+                        width: 50,
+                        marginLeft: "100px",
+                        marginRight: "20px",
+                      }}
+                    >
+                      <span className={classes.price}>{couponCode}</span>
+                    </Typography>
+                  </>
+                ) : (
+                  <>
+                    <FormControl>
+                      <TextField
+                        style={{ backgroundColor: "#fff", width: 100 }}
+                        variant="filled"
+                        size="small"
+                        label="Coupon"
+                        value={couponCode}
+                        onChange={(e) => onChange(e)}
+                        name="couponCode"
+                      />
+                    </FormControl>
 
+                    <Button
+                      variant="contained"
+                      style={{
+                        backgroundColor: "#EB853B",
+                        color: "#222",
+                        fontWeight: 600,
+                        width: 50,
+                        marginLeft: "6px",
+                      }}
+                      onClick={(ev) => handleOnClick(ev)}
+                    >
+                      Apply
+                    </Button>
+                  </>
+                )}
                 <Button
                   variant="contained"
                   style={{
                     backgroundColor: "#EB853B",
                     color: "#222",
                     fontWeight: 600,
+                    //marginTop: "10px",
+                    marginLeft: "5px",
                     width: 50,
-                    marginLeft: "6px",
-                  }}
-                  onClick={(ev) => handleOnClick(ev)}
-                >
-                  Apply
-                </Button>
-
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "#EB853B",
-                    color: "#222",
-                    fontWeight: 600,
-                    marginTop: "10px",
-                    marginLeft: "60px",
-                    // width: 100
                   }}
                   onClick={placeOrder}
                 >
-                  Place Order
+                  Buy
                 </Button>
               </>
             </Grid>
