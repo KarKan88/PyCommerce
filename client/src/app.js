@@ -71,9 +71,6 @@ function App() {
         <Route exact path="/products/:category">
           <ProductsPage />
         </Route>
-        <Route exact path="/edit-product/:id">
-          <Addproduct />
-        </Route>
         <Route exact path="/add-coupon">
           <Addcoupon />
         </Route>
@@ -102,6 +99,9 @@ function App() {
           </Route>
           <Route exact path="/view-product">
             <Viewproduct />
+          </Route>
+          <Route exact path="/edit-product/:id">
+            <Addproduct />
           </Route>
         </>
         :

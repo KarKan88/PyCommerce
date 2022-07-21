@@ -4,6 +4,7 @@
  */
 
 const userModel = require("../models/user-model");
+const userAddressModel = require("../models/user-address-model");
 const sellerModel = require("../models/seller-model");
 const createJWT = require("../authentication/authentication");
 
@@ -52,6 +53,10 @@ const userRegistration = async (req, res) => {
       address,
       securityQuestionOne,
       securityQuestionTwo,
+    });
+    await userAddressModel.create({
+      emailAddress,
+      address,
     });
     res.status(201).json({
       message: "User Registered Successfully",

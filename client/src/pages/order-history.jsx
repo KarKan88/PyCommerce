@@ -1,7 +1,8 @@
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, List, ListItem, ListItemText, makeStyles, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,61 +28,7 @@ const useStyles = makeStyles((theme) => ({
 function OrderHistory() {
 
     const history = useHistory()
-    const [orderDetails, setODs] = useState([{
-        orderId: "Order#001",
-        orderDate: "2nd May, 2022",
-        orderTotal: "CDN$ 140.58",
-        orderItems: [
-            {
-                name: 'Product 1',
-                desc: 'A nice thing',
-                price: '$9.99',
-            },
-            {
-                name: 'Product 2',
-                desc: 'Another thing',
-                price: '$3.45',
-            },
-            {
-                name: 'Product 3',
-                desc: 'Best thing of all',
-                price: '$14.11',
-            },
-            {
-                name: 'Product 4',
-                desc: 'Best thing of all',
-                price: '$14.11',
-            },
-        ]
-    },
-    {
-        orderId: "Order#002",
-        orderDate: "8nd May, 2022",
-        orderTotal: "CDN$ 178.00",
-        orderItems: [
-            {
-                name: 'Product 1',
-                desc: 'A nice thing',
-                price: '$9.99',
-            },
-            {
-                name: 'Product 2',
-                desc: 'Another thing',
-                price: '$3.45',
-            },
-            {
-                name: 'Product 3',
-                desc: 'Best thing of all',
-                price: '$14.11',
-            },
-            {
-                name: 'Product 4',
-                desc: 'Best thing of all',
-                price: '$14.11',
-            },
-        ]
-    }
-    ])
+    const [orderDetails, setODs] = useState([])
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -90,9 +37,17 @@ function OrderHistory() {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const onTrack = () => {
-        history.push('/deliveryStatus')
+    const onTrack = (order) => {
+        history.push({pathname: '/deliveryStatus', state: order})
     }
+
+    useEffect(() => {
+        const user_id = localStorage.getItem('id')
+        axios.get('/order/get-order?id=' + user_id).then((response)=>{
+            setODs(response.data)
+        })
+
+    }, [])
 
     return (
         <div className={classes.root}>
@@ -102,16 +57,16 @@ function OrderHistory() {
 
             {orderDetails.map((order) => {
                 return (
-                    <Accordion expanded={expanded === order.orderId} onChange={handleChange(order.orderId)}>
+                    <Accordion expanded={expanded === order._id} onChange={handleChange(order._id)}>
                         <AccordionSummary
                             expandIcon={<ExpandMore />}
                             aria-controls="panel1bh-content"
                             id="panel1bh-header"
                         >
                             <Typography className={classes.heading}>
-                                <b>Order Placed</b>: {order.orderDate} <b>Order Total</b>: {order.orderTotal}
+                                <b>Order Placed</b>: {order.paymentDetails?.transactionTime} <b>Order Total</b>: $  {order.totalPrice}
                             </Typography>
-                            <Typography className={classes.secondaryHeading}>Order ID: {order.orderId}</Typography>
+                            <Typography className={classes.secondaryHeading}>Order ID: {order._id}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <List disablePadding style={{ width: '100%' }}
@@ -120,13 +75,13 @@ function OrderHistory() {
                                     overflow: 'auto',
                                     maxHeight: 420,
                                 }}>
-                                {order.orderItems.map((product) => (
-                                    <ListItem key={product.name} style={{ paddingTop: 10, paddingBottom: 10 }}>
-                                        <img style={{ padding: 10 }} width={70} height={70} src="/images/default.jpg" alt="product" />
-                                        <ListItemText primary={product.name} secondary={product.desc} />
+                                {order.products.map((product) => (
+                                    <ListItem key={product.product._id} style={{ paddingTop: 10, paddingBottom: 10 }}>
+                                        <img style={{ padding: 10 }} width={70} height={70} src={product.product.url ?? "/images/default.jpg"} alt="product" />
+                                        <ListItemText primary={product.product[0].title.shortTitle} secondary={'Qty: '+product.qty} />
                                         <Box style={{ display: 'flex', justifyContent: "flex-end", alignItems: "flex-end" }}>
                                             <Box></Box>
-                                            <Typography variant="body2">{product.price}</Typography>
+                                            <Typography variant="body2">${product.product[0].price.cost}</Typography>
                                         </Box>
                                     </ListItem>
                                 ))}
@@ -135,7 +90,7 @@ function OrderHistory() {
                         <AccordionActions>
                             {/* <Button variant="contained" style={{ backgroundColor: "#FFBB38", marginLeft: 10 }} size="small"
                                 type='button' >Update Shipping Address</Button> */}
-                            <Button variant="contained" onClick={onTrack} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
+                            <Button variant="contained" onClick={() => onTrack(order)} style={{ backgroundColor: "#FFBB38", fontWeight: 600 }} size="small">
                                 Track Package
                             </Button>
                         </AccordionActions>
