@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container, makeStyles, Checkbox, withStyles, FormControlLabel } from '@material-ui/core';
+import { Box, Button, Collapse, IconButton, TextField, Select, FormControl, InputLabel, MenuItem, Paper, Container, makeStyles, Checkbox, withStyles, FormControlLabel, Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Close } from '@material-ui/icons';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -47,7 +47,8 @@ export default function AddressForm() {
     const [province, setProvince] = React.useState(location.state?.shippingDetails.address.state ?? "")
     const [zip, setZip] = React.useState(location.state?.shippingDetails.address.zip ?? "")
     const [emailError, setEmailError] = React.useState("")
-
+    const [openDialog, setOpenDialog] = React.useState(false);
+  
     const onCheckout = (event, formData) => {
         if (firstName && lastName && validateEmail(email) && address1 && city && validateZipCode(zip) && province) {
             dispatch(addShippingDetails({
@@ -93,10 +94,14 @@ export default function AddressForm() {
             }
         }
         axios.post('/order/update-order', order).then(response=>{
-            history.push('/')
+            setOpenDialog(true)
         })
     }
 
+    function onHandleClose() {
+        setOpenDialog(false);
+        history.push("/orderHistory");
+    }
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -367,6 +372,25 @@ export default function AddressForm() {
                     </Grid>
                 </Paper>
             </Container>
+            <Dialog
+                open={openDialog}
+                onClose={onHandleClose}
+                aria-labelledby="alert-dialog-title"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  Successfully Updated shipping details
+                </DialogTitle>
+                <DialogActions>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={onHandleClose}
+                    style={{ backgroundColor: "#FFBB38", color: "#222" }}
+                  >
+                    <b>ok</b>
+                  </Button>
+                </DialogActions>
+              </Dialog>
         </React.Fragment>
     );
 }

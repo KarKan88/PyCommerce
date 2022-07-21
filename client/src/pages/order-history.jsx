@@ -1,4 +1,4 @@
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, FormControl, InputLabel, List, ListItem, ListItemText, makeStyles, MenuItem, Select, Typography } from '@material-ui/core';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, FormControl, InputLabel, List, ListItem, ListItemText, makeStyles, MenuItem, Select, Snackbar, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
@@ -31,8 +31,8 @@ function OrderHistory(props) {
     console.log(props.seller)
     const history = useHistory()
     const [orderDetails, setODs] = useState([])
-    const [orderStatus, setOrderStatus] = useState('')
-
+    const [orderStatus, setOrderStatus] = useState('Order Delivered')
+    const [snackBar, setSnackBar] = useState({})
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -49,15 +49,18 @@ function OrderHistory(props) {
     }
 
     const onUpdateStatus = (order) => {
-        if(orderStatus){
-        order.orderStatus = orderStatus
-        order.deliveryDetails.deliveryStatus = orderStatus
-        axios.post('/order/update-order', order).then(response=>{
-            history.push('/')
-        })
-    }else{
-        alert('Select Order Status')
-    }
+        if (orderStatus) {
+            order.orderStatus = orderStatus
+            order.deliveryDetails.deliveryStatus = orderStatus
+            axios.post('/order/update-order', order).then(response => {
+                setSnackBar({
+                    open: true,
+                    message: 'Order Updated Successfully'
+                })
+            })
+        } else {
+            alert('Select Order Status')
+        }
     }
 
     const onDeleteReturn = (order) => {
@@ -67,7 +70,10 @@ function OrderHistory(props) {
             order.orderStatus = 'Order Returned'
         }
         axios.post('/order/update-order', order).then(response => {
-            history.push('/')
+            setSnackBar({
+                open: true,
+                message: 'Order Updated Successfully'
+            })
         })
     }
 
@@ -131,7 +137,7 @@ function OrderHistory(props) {
                                 </Button>
                             </AccordionActions>
                         }
-                        {props.seller &&
+                        {(order.orderStatus != 'Order Cancelled' && order.orderStatus != 'Order Returned' && props.seller) &&
                             <AccordionActions>
                                 Order Status:
                                 <FormControl>
@@ -146,16 +152,21 @@ function OrderHistory(props) {
                                         <MenuItem value={'Order Placed'}>Order Placed</MenuItem>
                                         <MenuItem value={'Order Confirmed'}>Order Confirmed</MenuItem>
                                         <MenuItem value={'Order in transit'}>Order in transit</MenuItem>
-                                        <MenuItem value={'Order Delivered'}>Order Delivered</MenuItem>
+                                        <MenuItem selected={true} value={'Order Delivered'}>Order Delivered</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <Button variant="contained" onClick={() => onUpdateStatus(order)} style={{ backgroundColor: "#FFBB38", marginLeft: 10, fontWeight: 600 }} size="small"
-                                    type='button' >Update Shipping Address</Button>
+                                    type='button' >Update Shipment Status</Button>
                             </AccordionActions>
                         }
                     </Accordion>
                 )
             })}
+            <Snackbar
+                open={snackBar?.open}
+                autoHideDuration={6000}
+                message={snackBar?.message}
+            />
         </div>
     )
 }
