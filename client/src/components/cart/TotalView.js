@@ -95,17 +95,17 @@ const TotalView = ({ cartItems }) => {
         couponDiscount = result[0].couponDiscount;
         let maxOff = result[0].maximumOff;
         // console.log(maxOff);
+        console.log(finalCost);
+        console.log(couponDiscount);
         let x = (finalCost * couponDiscount) / 100;
         if (x > maxOff) {
           setFinalCost(finalCost - maxOff);
+          dispatch(addDiscount(maxOff));
         } else {
           setFinalCost(finalCost - x);
+          dispatch(addDiscount(x));
         }
         setCouponApply(true);
-        console.log("x: " + x);
-        dispatch(addDiscount(maxOff));
-        console.log("final cost: " + finalCost);
-        // setFinalCost(finalCost);
       });
   };
 
