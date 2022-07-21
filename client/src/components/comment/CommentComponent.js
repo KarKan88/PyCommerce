@@ -55,7 +55,7 @@ const state = {
   OneStar: false,
 };
 
-function CommentComponent({ product }) {
+function CommentComponent({ product, userLogged }) {
   const [commentData, setcommentData] = React.useState([]);
   const [sort, setAge] = React.useState(10);
 
