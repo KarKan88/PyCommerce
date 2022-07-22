@@ -8,35 +8,27 @@ const mail = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: "sportify5709@gmail.com",
-        pass: "xjsyafmmwglbafsf",
+        user: "pycommerce.5709@gmail.com",
+        pass: "webgroup16",
     },
 });
 
-const sendOrderConfirmationEmail = async (req, res) => {
+const sendOrderConfirmationEmail = (order) => {
     try {
         const mailContent = {
-            from: emailAddress,
-            to: request.body.email,
+            from: 'pycommerce.5709@gmail.com',
+            to: order.shippingDetails.contactDetails.email,
             subject: "Order Confirmation ",
-            html: `<p>Hey ${request.body.firstName}, your user account created successfully but you have to verify your account. Link to verify is below: <br/> <a href=${mailUrl}/verify-account?token=${jwtToken}>Verify Now</a><br/> Thanks, Sportify Team</p>`,
+            html: `<p>Hey ${order.shippingDetails.contactDetails.lastName}, your order has been placed successfully. <br/> <br/> Thanks, PyCommerce Team</p>`,
         };
 
         mail.sendMail(mailContent, function (error, info) {
             if (error) {
                 console.log(error);
-                response.status(200).json({
-                    message: "Account registered successfully, but mail not send",
-                });
-            } else {
-                response
-                    .status(200)
-                    .json({ message: "Account registered successfully" });
             }
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send();
     }
 }
 
@@ -44,6 +36,7 @@ const createOrderDetails = async (req, res) => {
     try {
         const orderDetails = new OrderDetails(req.body);
         await orderDetails.save();
+        // sendOrderConfirmationEmail(req.body)
         res.send();
     } catch (error) {
         console.log(error);
